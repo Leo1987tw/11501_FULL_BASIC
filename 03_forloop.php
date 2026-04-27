@@ -39,10 +39,25 @@
         p, div {
             color: #fff;
         }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-btn">← 返回首頁</a>
 
 <h3>For...loop 練習</h3>
 
