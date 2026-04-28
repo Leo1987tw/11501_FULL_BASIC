@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>綜合練習七</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h2>利用程式來產生陣列</h2>
@@ -27,15 +32,13 @@
     print_r($nineninetable);
     echo "</pre>";
 
-    echo "<br>";
-
     echo "<table>";
 
     foreach($nineninetable as $i => $j){
-        if($i%9 == 1){
+        if($i%9 == 0){
             echo "<tr>";
             echo "<td>" . $j . "</td>";
-        } else if($i % 9 == 0){
+        } else if($i % 9 == 8){
             echo "<td>" . $j . "</td>";
             echo "</tr>";
         } else{
