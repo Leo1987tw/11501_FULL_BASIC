@@ -5,160 +5,389 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>畫星星</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 800px;
+            width: 100%;
+        }
+        h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p, div {
+            color: #fff;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
         *{
             font-family: 'Courier New', Courier, monospace;
         }
-        </style>
+    </style>
 </head>
 <body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <h3>以 * 符號為基礎在網頁上排列出下列圖形:</h3>
 
-<h2>以 * 符號為基礎在網頁上排列出下列圖形:</h2>
+        <ul>
+            <li>直角三角型</li>
+            <li>倒直角三角型</li>
+            <li>正三角型</li>
+            <li>菱型</li>
+            <li>矩形</li>
+            <li>內含對角線的矩形</li>
+        </ul>
 
-<ul>
-    <li>直角三角型</li>
-    <li>倒直角三角型</li>
-    <li>正三角型</li>
-    <li>菱型</li>
-    <li>矩形</li>
-    <li>內含對角線的矩形</li>
-</ul>
+        <img src="畫星星.png" alt="畫星星" width="400px">
 
-<img src="畫星星.png" alt="畫星星" width="400px">
+        <form action="" method="post">
+            <label for="number">請輸入數字：</label>
+            <input type="number" id="number" name="number" required>
+            <input type="submit" value="產生數列">
+        </form>
 
-<h3>直角三角型</h3>
 
-<?php
+        <?php
 
-for($i=0; $i < 5; $i++){
-    for($j=0; $j <= $i; $j++){
-        echo "*";
-    }
-    echo "<br>";
-}
-
-echo "<br>";
-
-for($i=0; $i < 5; $i++){
-    for($j=0; $j <= 5; $j++){
-        if($i >= $j){
-            echo "*";
-        }
-    }
-    echo "<br>";
-}
-
-?>
-
-<h3>倒直角三角型</h3>
-
-<?php
-
-for($i=5; $i > 0; $i--){
-    for($j=0;$j < $i; $j++){
-        echo "*";
-    }
-    echo "<br>";
-}
-
-echo "<br>";
-
-for($i=0; $i < 5; $i++){
-    for($j=0;$j < 5-$i; $j++){
-        echo "*";
-    }
-    echo "<br>";
-}
-
-echo "<br>";
-
-for($i=0; $i < 5; $i++){
-    for($j=0; $j <= 5; $j++){
-        if($i < $j){
-            echo "*";
-        }
-    }
-    echo "<br>";
-}
-
-?>
-
-<h3>正三角型</h3>
-
-<?php
-
-for($i=0; $i < 4; $i++){
-    for($j=0; $j < 3-$i; $j++){
-        echo "&nbsp";
-    }
-    for($k=0; $k <= $i*2; $k++){
-            echo "*";
-    }
-    echo "<br>";
-}
-
-echo "<br>";
-
-for($i=0; $i < 5; $i++){
-    for($j=0; $j <= 7; $j++){
-        if($j < 3 + $i && $j > 3 - $i){
-            echo "*";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $n = $_POST["number"];
         } else {
-            echo "&nbsp";
+            echo "<div class='result'>請輸入數字。</div>";
+            exit;
         }
-    }
-    echo "<br>";
-}
 
-?>
+        ?>
 
-<h3>菱型</h3>
+        <h3>直角三角型</h3>
 
-<?php
+        <table>
+            <tr>
+                <td>
+                <?php
 
-for($i=0; $i < 5; $i++){
-    for($j=0; $j <= 7; $j++){
-        if($j < 3 + $i && $j > 3 - $i){
-            echo "*";
-        } else {
-            echo "&nbsp";
-        }
-    }
-    echo "<br>";
-}
+                for($i=0; $i < $n; $i++){
+                    for($j=0; $j <= $i; $j++){
+                        echo "*";
+                    }
+                    echo "<br>";
+                }
 
-for($i=3; $i > 0; $i--){
-    for($j=0; $j <= 7; $j++){
-        if($j < 3 + $i && $j > 3 - $i){
-            echo "*";
-        } else {
-            echo "&nbsp";
-        }
-    }
-    echo "<br>";
-}
+                ?>
+                </td>
+                <td>
+                    <?php
 
-?>
+                    for($i=0; $i < $n; $i++){
+                        for($j=0; $j <= $n; $j++){
+                            if($i >= $j){
+                                echo "*";
+                            }
+                        }
+                        echo "<br>";
+                    }
 
-<h3>矩形</h3>
+                    ?>
+                </td>
+            </tr>
+        </table>
 
-<?php
+        <h3>倒直角三角型</h3>
 
-echo "*******<br>";
+        <table>
+            <tr>
+                <td>
+                    <?php
 
-for($i=0; $i < 5; $i++){
-    echo "*&nbsp&nbsp&nbsp&nbsp&nbsp*<br>";
-}
+                    for($i=$n; $i > 0; $i--){
+                        for($j=0;$j < $i; $j++){
+                            echo "*";
+                        }
+                        echo "<br>";
+                    }
 
-echo "*******<br>";
+                    ?>
+                </td>
+                <td>
+                    <?php
 
+                    for($i=0; $i < $n; $i++){
+                        for($j=0;$j < $n-$i; $j++){
+                            echo "*";
+                        }
+                        echo "<br>";
+                    }
 
-?>
-<h3>內含對角線的矩形</h3>
-<?php
+                    ?>
+            
+                </td>
+                <td>
+                    <?php
 
+                    for($i=0; $i < $n; $i++){
+                        for($j=0; $j <= $n; $j++){
+                            if($i < $j){
+                                echo "*";
+                            }
+                        }
+                        echo "<br>";
+                    }
 
+                    ?>
+                </td>
+            </tr>
+        </table>
 
-?>
+        <h3>正三角型</h3>
+
+        <table>
+            <tr>
+                <td>
+                     <?php
+
+                    for($i=0; $i < $n; $i++){
+                        for($j=0; $j < $n - $i - 1; $j++){
+                            echo "&nbsp";
+                        }
+                        for($k=0; $k <= $i*2; $k++){
+                                echo "*";
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+                <td>
+                    <?php
+
+                    for($i=1; $i < $n + 1; $i++){
+                        for($j=0; $j <= ($n - 1)*2; $j++){
+                            if($j < $n -1 + $i && $j > $n -1 - $i){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+            </tr>
+        </table>
+
+        <h3>菱型</h3>
+
+        <table>
+            <tr>
+                <td>
+                    <?php
+
+                    for($i=0; $i < $n+1; $i++){
+                        for($j=0; $j <= $n*2; $j++){
+                            if($j < $n - 1 + $i && $j > $n - 1 - $i){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+                    for($i=$n - 1; $i > 0; $i--){
+                        for($j=0; $j <= $n*2; $j++){
+                            if($j < $n - 1 + $i && $j > $n - 1 - $i){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    
+                    for($i=0; $i < $n * 2 + 1; $i++){
+                        for($j=0; $j <= $n * 2 - 1; $j++){
+                            if($i < $n){
+                                if($j < $n - 1 + $i && $j > $n - 1 - $i){
+                                    echo "*";
+                                } else {
+                                    echo "&nbsp";
+                                }
+                            } else {
+                                if($j < $n -1 + ($n*2-$i) && $j > $n - 1 - ($n*2-$i)){
+                                    echo "*";
+                                } else {
+                                    echo "&nbsp";
+                                }
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+                <td>
+                    <?php
+
+                    for($i=0; $i < $n*2; $i++){
+                        $k = -abs($n-$i)+$n;
+                        for($j=0; $j <= $n*2 - 1; $j++){
+                            if($j < $n - 1 + $k && $j > $n - 1 - $k){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+                <td>
+                    <?php
+
+                    for($i=0; $i < $n*2 + 1; $i++){
+                        $k = $i < $n ? $i : $n*2 - $i;
+                        for($j=0; $j <= $n*2 - 1; $j++){
+                            if($j < $n - 1 + $k && $j > $n - 1 - $k){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+            </tr>
+        </table>
+
+        <h3>矩形</h3>
+
+        <table>
+            <tr>
+                <td>
+                    <?php
+
+                    for($i=0; $i < $n +2; $i++){
+                        echo "*";
+                    }
+
+                    echo "<br>";
+
+                    for($i=0; $i < $n; $i++){
+                        for($j=0; $j < $n + 2; $j++){
+                            if($j == 0 || $j == $n + 1){
+                                echo "*";
+                            } else{
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    for($i=0; $i < $n + 2; $i++){
+                        echo "*";
+                    }
+        
+                    echo "<br>";
+
+                    ?>
+                </td>
+                <td>
+                    <?php
+
+                    for($i=0; $i<$n +2; $i++){
+                        for($j=0; $j<$n +2; $j++){
+                            if($i == 0 || $i == $n +1){
+                                echo "*";
+                            } else if($j == 0 || $j == $n +1){
+                                echo "*";
+                            } else{
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+                    
+                    ?>
+                </td>
+                <td>
+                    <?php
+
+                    for($i=0; $i<$n + 2; $i++){
+                        for($j=0; $j<$n + 2; $j++){
+                            if($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1){
+                                echo "*";
+                            } else {
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+
+                    ?>
+                </td>
+            </tr>
+        </table>
+
+        <h3>內含對角線的矩形</h3>
+
+        <table>
+            <tr>
+                <td>
+                    <?php
+
+                    for($i=0; $i<$n + 2; $i++){
+                        for($j=0; $j<$n + 2; $j++){
+                            if($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1 || $i == $j || $i + $j == $n + 1){
+                                echo "*";
+                            } else{
+                                echo "&nbsp";
+                            }
+                        }
+                        echo "<br>";
+                    }
+                    
+                    ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>

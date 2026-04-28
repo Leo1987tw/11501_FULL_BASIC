@@ -143,18 +143,6 @@ foreach($score as $idx => $val){
 
 ?>
 
-<br>
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
     </div>
-</body>
-</html>
-<p>&nbsp;</p>
-
 </body>
 </html>

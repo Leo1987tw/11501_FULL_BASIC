@@ -72,6 +72,7 @@
     <div class="container">
         <a href="index.html" class="back-btn">← 返回首頁</a>
         <h3>使用for迴圈來產生以下的數列</h3>
+        
         <ul>
             <li>1,3,5,7,9……n</li>
             <li>10,20,30,40,50,60……n</li>
