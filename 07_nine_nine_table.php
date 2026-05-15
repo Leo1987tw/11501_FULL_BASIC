@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h3>九九乘法表</h3>
         <img src="九九乘法表.png" alt="九九乘法表">
 

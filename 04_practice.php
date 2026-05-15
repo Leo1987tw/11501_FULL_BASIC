@@ -60,7 +60,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
 
 <h3>分配成績等級</h3>
 

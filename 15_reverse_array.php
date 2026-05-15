@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
 
         <h2>請設計一支程式，在不產生新陣列的狀況下，將一個陣列的元素順序反轉(利用迴圈)</h2>
 

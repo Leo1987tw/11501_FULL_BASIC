@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h3>尋找字元(使用while)</h3>
 
 <ul>

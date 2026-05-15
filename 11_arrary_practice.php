@@ -61,7 +61,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h2>利用程式來產生陣列</h2>
 
         <ul>

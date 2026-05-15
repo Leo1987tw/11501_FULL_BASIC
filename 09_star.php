@@ -56,7 +56,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h3>以 * 符號為基礎在網頁上排列出下列圖形:</h3>
 
         <ul>

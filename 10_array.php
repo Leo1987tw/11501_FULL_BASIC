@@ -61,7 +61,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h2>建立一個學生成績陣列</h2>
         <h3>設計一個陣列(一維或多維)來存放學生的成績資料</h3>
         <img src="array.png" style="width: 300px;">

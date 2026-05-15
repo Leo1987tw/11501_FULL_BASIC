@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
 
         <h2>威力彩電腦選號沒有重覆號碼(利用while迴圈)</h2>
 

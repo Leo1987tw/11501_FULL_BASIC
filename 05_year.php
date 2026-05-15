@@ -99,7 +99,7 @@
 
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h3>閏年判斷</h3>
         <p>給定一個西元年份，判斷是否為閏年</p>
 

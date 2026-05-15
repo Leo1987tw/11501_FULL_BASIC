@@ -70,7 +70,7 @@
 
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <a href="./index.html" class="back-btn">← 返回前頁</a>
         <h3>使用for迴圈來產生以下的數列</h3>
         
         <ul>

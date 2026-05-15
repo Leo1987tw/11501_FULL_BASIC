@@ -7,26 +7,26 @@
     <title>程式基礎練習</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
             min-height: 100vh;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.1);
             padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 600px;
             width: 100%;
+            max-width: 600px;
         }
 
         h1 {
@@ -45,6 +45,21 @@
             margin: 15px 0;
         }
 
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
         a {
             display: block;
             padding: 15px 20px;
@@ -67,52 +82,54 @@
 
 <body>
     <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首頁</a>
+        
         <h1>程式基礎練習</h1>
         <ul>
             <li>
-                <a href="01_basic.php">01-程式基礎概念-變數、資料型態、運算子</a>
+                <a href="./01_basic.php">01-程式基礎概念-變數、資料型態、運算子</a>
             </li>
             <li>
-                <a href="02_select.php">02-流程控制-條件判斷、迴圈</a>
+                <a href="./02_select.php">02-流程控制-條件判斷、迴圈</a>
             </li>
             <li>
-                <a href="03_forloop.php">03-重覆結構</a>
+                <a href="./03_forloop.php">03-重覆結構</a>
             </li>
             <li>
-                <a href="04_practice.php">04-練習題</a>
+                <a href="./04_practice.php">04-練習題</a>
             </li>
             <li>
-                <a href="05_year.php">05-閏年判斷</a>
+                <a href="./05_year.php">05-閏年判斷</a>
             </li>
             <li>
-                <a href="06_sequence.php">06-產生數列</a>
+                <a href="./06_sequence.php">06-產生數列</a>
             </li>
             <li>
-                <a href="07_nine_nine_table.php">07-九九乘法表</a>
+                <a href="./07_nine_nine_table.php">07-九九乘法表</a>
             </li>
             <li>
-                <a href="08_search_word.php">08-尋找字元</a>
+                <a href="./08_search_word.php">08-尋找字元</a>
             </li>
             <li>
-                <a href="09_star.php">09-畫星星</a>
+                <a href="./09_star.php">09-畫星星</a>
             </li>
             <li>
-                <a href="10_array.php">10-陣列</a>
+                <a href="./10_array.php">10-陣列</a>
             </li>
             <li>
-                <a href="11_arrary_practice.php">11-陣列練習</a>
+                <a href="./11_arrary_practice.php">11-陣列練習</a>
             </li>
             <li>
-                <a href="12_random.php">12-威力彩電腦選號</a>
+                <a href="./12_random.php">12-威力彩電腦選號</a>
             </li>
             <li>
-                <a href="13_five_hundred_years.php">13-找出五百年內的閏年</a>
+                <a href="./13_five_hundred_years.php">13-找出五百年內的閏年</a>
             </li>
             <li>
-                <a href="14_lunar.php">14-找出天干地支年份</a>
+                <a href="./14_lunar.php">14-找出天干地支年份</a>
             </li>
             <li>
-                <a href="15_reverse_array.php">15-反轉陣列</a>
+                <a href="./15_reverse_array.php">15-反轉陣列</a>
             </li>
         </ul>
     </div>
