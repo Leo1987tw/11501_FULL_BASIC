@@ -1,100 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-tw">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>閏年判斷</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 800px;
-            width: 100%;
-        }
-        h3 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        p, div, li {
-            color: #fff;
-        }
-        ul {
-            margin-bottom: 20px;
-        }
-        li {
-            margin: 8px 0;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-        form {
-            margin: 20px 0;
-        }
-        label {
-            font-size: 1.1em;
-            margin-right: 10px;
-        }
-        input[type="number"] {
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1em;
-            width: 150px;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            background: rgba(255, 255, 255, 0.3);
-            color: #fff;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-        }
-        input[type="submit"]:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-        .result {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    
 </head>
 
 <body>

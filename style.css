@@ -1,84 +1,186 @@
+﻿* {
+    box-sizing: border-box;
+}
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-family: 'Arial', sans-serif; */
+    font-family:'Courier New', Courier, monospace;
     color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
-
 .container {
+    width: 100%;
+    max-width: 800px;
     margin: 40px auto;
     padding: 40px;
-    width: 100%;
-    max-width: 600px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(10px);
 }
-
 .back-btn {
     display: inline-block;
     margin-bottom: 20px;
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    text-decoration: none;
     color: #fff;
+    text-decoration: none;
     transition: all 0.3s ease;
 }
-
 .back-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
 }
-
 h1 {
     margin-bottom: 30px;
     text-align: center;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
-h3 {
+h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
-    color: #fff;
     font-size: 1.8em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
-p, div {
+p, div, ul, li, label, span, form {
     color: #fff;
 }
-
 ul {
     padding: 0;
+    margin: 0 0 20px;
     list-style: none;
 }
-
 li {
-    margin: 15px 0;
+    margin: 12px 0;
+    line-height: 1.6;
 }
-
-a {
+ul li a {
     display: block;
     padding: 15px 20px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.15em;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease;
 }
-
-a:hover {
+ul li a:hover {
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+}
+a {
+    color: #fff;
+}
+form {
+    margin: 20px 0;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+}
+input,
+select,
+textarea,
+button {
+    font: inherit;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+}
+input[type="submit"],
+button,
+.btn {
+    cursor: pointer;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+}
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+table,
+th,
+td {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th,
+td {
+    padding: 12px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+}
+th {
+    background: rgba(255, 255, 255, 0.18);
+}
+.table1,
+.table2 {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table1 td,
+.table2 td {
+    padding: 10px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+.result {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+@media (max-width: 680px) {
+    body {
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+    .container {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    h1 {
+        font-size: 1.9em;
+    }
+    h2, h3, h4, h5, h6 {
+        font-size: 1.5em;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        width: 100%;
+    }
 }
