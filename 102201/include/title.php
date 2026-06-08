@@ -2,12 +2,12 @@
 
 <br>
 
-<form action="./api/api_add_title.php" method="POST" enctype="multipart/form-data">
+<form action="./api/api_add.php?table=title" method="POST" enctype="multipart/form-data">
     <table class="all" style="width: 70%; margin: auto;">
         <tr>
             <td class="tt">網站標題圖片：</td>
             <td>
-                <input type="file" name="img">
+                <input type="file" name="src">
             </td>
         </tr>
         <tr>

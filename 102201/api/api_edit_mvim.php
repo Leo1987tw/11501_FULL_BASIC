@@ -7,11 +7,11 @@ foreach($_POST['id'] as $key => $value){
         $Mvim->del($value);
     }else {
         $row = $Mvim->find($value);
-        $row['showimg'] = (isset($_POST['showani']) && $_POST['showani'] == $value) ? '1' : '0'; 
+        $row['sh'] = (isset($_POST['sh']) && in_array($value, $_POST['sh'])) ? '1' : '0'; 
         $Mvim->save($row);
     }
 }
 
-to("../admin.php?do=title");
+to("../admin.php?do=mvim");
 
 ?>

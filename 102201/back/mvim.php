@@ -12,11 +12,11 @@
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
         <p class="t cent botli">動畫圖片管理</p>
-        <form method="post" action="./api/api_edit_title.php">
+        <form method="post" action="./api/api_edit_mvim.php">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="70%">動畫圖片</td>
+                        <td width="50%">動畫圖片</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                         <td></td>
@@ -26,13 +26,13 @@
                     foreach($mvims as $mvim):
                     ?>
                     <tr>
-                        <td width="45%">
-                            <img src="./upload/<?= $mvim['ani'];?>" style="width: 300px; height: 30px;">
+                        <td width="50%" class="cent">
+                            <img src="./upload/<?= $mvim['src'];?>" style="width: 150px; height: 150px;">
                         </td>
-                        <td width="7%">
-                            <input type="checkbox" name="showani[]" value="<?= $mvim['id'];?>" <?= ($mvim['showani'] == 1) ? 'checked' : '';?>>
+                        <td width="10%">
+                            <input type="checkbox" name="sh[]" value="<?= $mvim['id'];?>" <?= ($mvim['sh'] == 1) ? 'checked' : '';?>>
                         </td>
-                        <td width="7%">
+                        <td width="10%">
                             <input type="checkbox" name="delete[]" value="<?= $mvim['id'];?>">
                         </td>
                         <td>
@@ -47,7 +47,7 @@
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php&#39;)" value="新增動畫圖片">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/<?= $do;?>.php&#39;)" value="新增動畫圖片">
                         </td>
                         <td class="cent">
                             <input type="submit" value="修改確定">

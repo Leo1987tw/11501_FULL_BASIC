@@ -28,13 +28,13 @@
                     ?>
                     <tr>
                         <td width="45%">
-                            <img src="./upload/<?= $title['img'];?>" style="width: 300px; height: 30px;">
+                            <img src="./upload/<?= $title['src'];?>" style="width: 300px; height: 30px;">
                         </td>
                         <td width="23%">
                             <input type="text" name="text[]" value="<?= $title['text'];?>">
                         </td>
                         <td width="7%">
-                            <input type="radio" name="showimg" value="<?= $title['id'];?>" <?= ($title['showimg'] == 1) ? 'checked' : '';?>>
+                            <input type="radio" name='sh' value="<?= $title['id'];?>" <?= ($title['sh'] == 1) ? 'checked' : '';?>>
                         </td>
                         <td width="7%">
                             <input type="checkbox" name="delete[]" value="<?= $title['id'];?>">

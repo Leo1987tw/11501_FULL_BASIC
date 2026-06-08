@@ -2,7 +2,7 @@
 
 <br>
 
-<form action="./api/api_add_ad.php" method="POST" enctype="multipart/form-data">
+<form action="./api/api_add.php?table=ad" method="POST" enctype="multipart/form-data">
     <table class="all" style="width: 70%; margin: auto;">
         <tr>
             <td class="tt">動態文字廣告：</td>

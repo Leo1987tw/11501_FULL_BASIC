@@ -12,31 +12,27 @@
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
         <p class="t cent botli">動態文字廣告管理</p>
-        <form method="post" action="./api/api_edit_title.php">
+        <form method="post" action="./api/api_edit_ad.php">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="45%">動態文字廣告</td>
-                        <td width="7%">顯示</td>
-                        <td width="7%">刪除</td>
-                        <td></td>
+                        <td width="70%">動態文字廣告</td>
+                        <td width="10%">顯示</td>
+                        <td width="10%">刪除</td>
                     </tr>
                     <?php
                     $ads = $Ad->all();
                     foreach($ads as $ad):
                     ?>
                     <tr>
-                        <td width="23%">
-                            <input type="text" name="text[]" value="<?= $ad['text'];?>">
+                        <td width="10%">
+                            <input type="text" name="text[]" value="<?= $ad['text'];?>" style="width: 80%;">
                         </td>
-                        <td width="7%">
-                            <input type="checkbox" name="showimg[]" value="<?= $ad['id'];?>" <?= ($ad['showimg'] == 1) ? 'checked' : '';?>>
+                        <td width="10%">
+                            <input type="checkbox" name="sh[]" value="<?= $ad['id'];?>" <?= ($ad['sh'] == 1) ? 'checked' : '';?>>
                         </td>
-                        <td width="7%">
+                        <td width="10%">
                             <input type="checkbox" name="delete[]" value="<?= $ad['id'];?>">
-                        </td>
-                        <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $ad['id'];?>&#39;)" value="動態文字廣告">
                             <input type="hidden" name="id[]" value="<?= $ad['id'];?>">
                         </td>
                     </tr>

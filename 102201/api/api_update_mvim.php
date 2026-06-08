@@ -2,10 +2,10 @@
 
 include_once "./db.php";
 
-if(!empty($_FILES['ani']['tmp_name'])){
-    move_uploaded_file($_FILES['ani']['tmp_name'], "../upload/{$_FILES['ani']['name']}");
+if(!empty($_FILES['src']['tmp_name'])){
+    move_uploaded_file($_FILES['src']['tmp_name'], "../upload/{$_FILES['src']['name']}");
     $row = $Mvim->find($_POST['id']);
-    $row['ani'] = $_FILES['ani']['name'];
+    $row['src'] = $_FILES['src']['name'];
     $Mvim->save($row);
 }
 

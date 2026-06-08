@@ -2,12 +2,12 @@
 
 <br>
 
-<form action="./api/api_update_title.php" method="POST" enctype="multipart/form-data">
+<form action="./api/api_update_mvim.php" method="POST" enctype="multipart/form-data">
     <table class="all" style="width: 70%; margin: auto;">
         <tr>
             <td class="tt">動畫圖片：</td>
             <td>
-                <input type="file" name="img">
+                <input type="file" name="src">
             </td>
         </tr>
     </table>
