@@ -2,7 +2,8 @@
 
 include_once "./db.php";
 
-$Table = ${ucfirst($_GET['table'])};
+$table = $_GET['table'];
+$Table = ${ucfirst($table)};
 
 if(!empty($_FILES['src']['tmp_name'])){
     move_uploaded_file($_FILES['src']['tmp_name'], "../upload/{$_FILES['src']['name']}");
@@ -11,6 +12,6 @@ if(!empty($_FILES['src']['tmp_name'])){
     $Table->save($row);
 }
 
-to("../admin.php?do=mvim");
+to("../admin.php?do=$table");
 
 ?>

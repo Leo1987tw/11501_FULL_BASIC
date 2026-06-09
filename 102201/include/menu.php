@@ -7,7 +7,7 @@
         <tr>
             <td class="tt">主選單名稱</td>
             <td>
-                <input type="text" name="account">
+                <input type="text" name="text">
             </td>
         </tr>
         <tr>

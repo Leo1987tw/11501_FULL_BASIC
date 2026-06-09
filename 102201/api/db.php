@@ -29,7 +29,7 @@ class DB{
     }
 
     function count(...$args){
-        $sql = "SELECT COUNT(*) FROM `$this->table`;";
+        $sql = "SELECT COUNT(*) FROM `$this->table`";
         if(isset($args[0])){
             if(is_array($args[0])){
                 $tmp = $this->a2s($args[0]);

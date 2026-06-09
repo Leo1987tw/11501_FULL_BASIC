@@ -17,6 +17,8 @@ switch($table){
     case 'admin':
         unset($_POST['passwordchecked']);
         break;
+    case 'menu':
+        $_POST['parent'] = 0;
     default:
         $_POST['sh'] = 1;
 }

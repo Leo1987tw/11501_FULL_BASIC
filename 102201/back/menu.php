@@ -25,24 +25,27 @@
                     </tr>
                     <?php
                     $Table = ${ucfirst($do)};
-                    $rows = $Table->all();
+                    $rows = $Table->all(['parent' => 0]);
                     foreach($rows as $row):
                     ?>
                     <tr>
                         <td>
-                            <input type="text" name="text[]" value="<?= $row['text'];?>" style="width: 80%;">
+                            <input type="text" name="text[]" value="<?= $row['text'];?>">
                         </td>
                         <td>
-                            <input type="text" name="href[]" value="<?= $row['href'];?>" style="width: 80%;">
+                            <input type="text" name="href[]" value="<?= $row['href'];?>">
                         </td>
                         <td>
-                            <input type="checkbox" name='sh' value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                            <?= $Menu->count(['parent' => $row['id']]);?>
+                        </td>
+                        <td>
+                            <input type="checkbox" name='sh[]' value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
                         </td>
                         <td>
                             <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
                         </td>
                         <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="編輯次選單">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/submenu.php?id=<?= $row['id']?>&#39;)" value="編輯次選單">
                             <input type="hidden" name="id[]" value="<?= $row['id'];?>">
                         </td>
                     </tr>
