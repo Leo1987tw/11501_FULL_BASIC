@@ -11,14 +11,14 @@
         </tbody>
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">動態文字廣告管理</p>
+        <p class="t cent botli">管理者帳號管理</p>
         <form method="post" action="./api/api_edit.php?table=<?= $do?>">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="70%">動態文字廣告</td>
-                        <td width="10%">顯示</td>
-                        <td width="10%">刪除</td>
+                        <td width="40%">帳號</td>
+                        <td width="40%">密碼</td>
+                        <td width="20%">刪除</td>
                     </tr>
                     <?php
                     $Table = ${ucfirst($do)};
@@ -27,10 +27,10 @@
                     ?>
                     <tr>
                         <td>
-                            <input type="text" name="text[]" value="<?= $row['text'];?>" style="width: 80%;">
+                            <input type="text" name="account[]" value="<?= $row['account'];?>">
                         </td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                            <input type="password" name="password[]" value="<?= $row['password'];?>">
                         </td>
                         <td>
                             <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
@@ -44,7 +44,7 @@
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/<?= $do;?>.php&#39;)" value="新增動態文字廣告">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/<?= $do;?>.php&#39;)" value="新增管理者帳號">
                         </td>
                         <td class="cent">
                             <input type="submit" value="修改確定">

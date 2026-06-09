@@ -12,7 +12,7 @@
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
         <p class="t cent botli">動畫圖片管理</p>
-        <form method="post" action="./api/api_edit_mvim.php">
+        <form method="post" action="./api/api_edit.php?table=<?= $do?>">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
@@ -22,22 +22,23 @@
                         <td></td>
                     </tr>
                     <?php
-                    $mvims = $Mvim->all();
-                    foreach($mvims as $mvim):
+                    $Table = ${ucfirst($do)};
+                    $rows = $Table->all();
+                    foreach($rows as $row):
                     ?>
                     <tr>
-                        <td width="50%" class="cent">
-                            <img src="./upload/<?= $mvim['src'];?>" style="width: 150px; height: 150px;">
-                        </td>
-                        <td width="10%">
-                            <input type="checkbox" name="sh[]" value="<?= $mvim['id'];?>" <?= ($mvim['sh'] == 1) ? 'checked' : '';?>>
-                        </td>
-                        <td width="10%">
-                            <input type="checkbox" name="delete[]" value="<?= $mvim['id'];?>">
+                        <td class="cent">
+                            <img src="./upload/<?= $row['src'];?>" style="width: 150px; height: 150px;">
                         </td>
                         <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $mvim['id'];?>&#39;)" value="更換動畫圖片">
-                            <input type="hidden" name="id[]" value="<?= $mvim['id'];?>">
+                            <input type="checkbox" name="sh[]" value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
+                        </td>
+                        <td>
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="更換動畫">
+                            <input type="hidden" name="id[]" value="<?= $row['id'];?>">
                         </td>
                     </tr>
                     <?php endforeach;?>

@@ -11,7 +11,7 @@ class DB{
     }
 
     function all(...$args){
-        $sql = "SELECT * FROM `$this->table`;";
+        $sql = "SELECT * FROM `$this->table`";
         if(isset($args[0])){
             if(is_array($args[0])){
                 $tmp = $this->a2s($args[0]);
@@ -29,7 +29,7 @@ class DB{
     }
 
     function count(...$args){
-        $sql = "SELECT COUNT(*) FROM '$this->table';";
+        $sql = "SELECT COUNT(*) FROM `$this->table`;";
         if(isset($args[0])){
             if(is_array($args[0])){
                 $tmp = $this->a2s($args[0]);
@@ -118,7 +118,7 @@ $Image = new DB('image');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
-$Browser = new DB('browser');
+$Total = new DB('total');
 $Bottom = new DB('bottom');
 
 ?>

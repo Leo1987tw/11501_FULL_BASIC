@@ -12,7 +12,7 @@
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
         <p class="t cent botli">網站標題管理</p>
-        <form method="post" action="./api/api_edit_title.php">
+        <form method="post" action="./api/api_edit.php?table=<?= $do?>">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
@@ -23,25 +23,26 @@
                         <td></td>
                     </tr>
                     <?php
-                    $titles = $Title->all();
-                    foreach($titles as $title):
+                    $Table = ${ucfirst($do)};
+                    $rows = $Table->all();
+                    foreach($rows as $row):
                     ?>
                     <tr>
-                        <td width="45%">
-                            <img src="./upload/<?= $title['src'];?>" style="width: 300px; height: 30px;">
-                        </td>
-                        <td width="23%">
-                            <input type="text" name="text[]" value="<?= $title['text'];?>">
-                        </td>
-                        <td width="7%">
-                            <input type="radio" name='sh' value="<?= $title['id'];?>" <?= ($title['sh'] == 1) ? 'checked' : '';?>>
-                        </td>
-                        <td width="7%">
-                            <input type="checkbox" name="delete[]" value="<?= $title['id'];?>">
+                        <td>
+                            <img src="./upload/<?= $row['src'];?>" style="width: 300px; height: 30px;">
                         </td>
                         <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $title['id'];?>&#39;)" value="更新圖片">
-                            <input type="hidden" name="id[]" value="<?= $title['id'];?>">
+                            <input type="text" name="text[]" value="<?= $row['text'];?>">
+                        </td>
+                        <td>
+                            <input type="radio" name='sh' value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
+                        </td>
+                        <td>
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="更新圖片">
+                            <input type="hidden" name="id[]" value="<?= $row['id'];?>">
                         </td>
                     </tr>
                     <?php endforeach;?>
