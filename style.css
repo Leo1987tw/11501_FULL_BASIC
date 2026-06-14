@@ -1,18 +1,27 @@
 ﻿* {
     box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
-body {
-    margin: 0;
-    padding: 0;
+
+html, body {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
     min-height: 100vh;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* font-family: 'Arial', sans-serif; */
-    font-family:'Courier New', Courier, monospace;
-    color: #fff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    max-width: 1200px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, 764ba2 100%);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }
+
 .container {
     width: 100%;
     max-width: 800px;
@@ -24,6 +33,7 @@ body {
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(10px);
 }
+
 .back-btn {
     display: inline-block;
     margin-bottom: 20px;
@@ -34,24 +44,29 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
 }
+
 .back-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
 }
+
 h1 {
     margin-bottom: 30px;
     text-align: center;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
     font-size: 1.8em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 p, div, ul, li, label, span, form {
     color: #fff;
 }
+
 ul {
     padding: 0;
     margin: 0 0 20px;
