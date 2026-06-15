@@ -1,4 +1,4 @@
-<!DOCTYPE html
+<?php include_once "./api/db.php"?><!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,9 +22,9 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <a title="" href="?do=main">
-            <div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>
-            <!--標題-->
+        <?php $title=$Title->find(["sh" => 1]);?>
+        <a title="<?= $title['text'];?>" href="?do=title">
+            <div class="ti" style="background:url(&#39;upload/<?= $title['src'];?>&#39;); background-size:cover;"></div>
         </a>
         <div id="ms">
             <div id="lf" style="float:left;">

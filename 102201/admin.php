@@ -26,8 +26,10 @@ include_once "./api/db.php";
 	</div>
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-		<a title="" href="?do=title">
-			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題-->
+		<?php $title=$Title->find(["sh" => 1]);?>
+		<a title="<?= $title['text'];?>" href="?do=title">
+			<div class="ti" style="background:url(&#39;upload/<?= $title['src'];?>&#39;); background-size:cover;"></div>
+			<!--標題-->
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">
