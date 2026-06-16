@@ -2,14 +2,11 @@
 
 <div class="di" style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
     <!--正中央-->
-    <table width="100%">
-        <tbody>
-            <tr>
-                <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-                <td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <?php
+
+    include_once "./back/logout.php";
+    
+    ?>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
         <p class="t cent botli">管理者帳號管理</p>
         <form method="post" action="./api/api_edit.php?table=<?= $do?>">
@@ -24,6 +21,8 @@
                     $Table = ${ucfirst($do)};
                     $rows = $Table->all();
                     foreach($rows as $row):
+                        if($_SESSION['login'] == 1 && $_SESSION['account'] == "admin"):
+                    
                     ?>
                     <tr>
                         <td>
@@ -37,7 +36,29 @@
                             <input type="hidden" name="id[]" value="<?= $row['id'];?>">
                         </td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php
+                    
+                        elseif ($row['account'] != "admin"):
+                    
+                    ?>
+                    <tr>
+                        <td>
+                            <input type="text" name="account[]" value="<?= $row['account'];?>">
+                        </td>
+                        <td>
+                            <input type="password" name="password[]" value="<?= $row['password'];?>">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
+                            <input type="hidden" name="id[]" value="<?= $row['id'];?>">
+                        </td>
+                    </tr>
+                    <?php
+
+                        endif;
+                    endforeach;
+                    
+                    ?>
                 </tbody>
             </table>
             <table style="margin-top:40px; width:70%;">

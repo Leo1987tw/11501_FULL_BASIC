@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class DB{
     protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
     protected $pdo;
@@ -74,7 +76,7 @@ class DB{
             $sql = "INSERT INTO `$this->table`(`" . join("`, `", $keys) . "`) VALUES ('" . join("', '", $arg) . "');";
         }
 
-        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $this->pdo->exec($sql);
     }
 
     function del($arg){
@@ -120,5 +122,12 @@ $Admin = new DB('admin');
 $Menu = new DB('menu');
 $Total = new DB('total');
 $Bottom = new DB('bottom');
+
+if(!isset($_SESSION['visit'])){
+    $_SESSION['visit'] = 1;
+    $visit = $Total->find(1);
+    $visit['total'] += 1;
+    $Total->save($visit);
+}
 
 ?>

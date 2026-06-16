@@ -103,7 +103,7 @@
                 <!--右邊-->
                 <?php
 
-                if(isset($_SESSION) && $_SESSION['login'] == 1){
+                if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                 
                 ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;./admin.php&#39;)">回到後台</button>
@@ -127,7 +127,7 @@
                     foreach ($images as $key => $image):
 
                     ?>
-                        <div class="im cent" id="ssaa<?= $key; ?>"><img src="./upload/<?= $image['src']; ?>" alt="" style="width: 150px; height: 103px; bolder: 3px solid orange"></div>
+                        <div class="im cent" id="ssaa<?= $key; ?>" style="margin: 10px;"><img src="./upload/<?= $image['src']; ?>" alt="" style="width: 150px; height: 103px; bolder: 3px solid orange"></div>
                     <?php endforeach; ?>
                     <div class="cent"><img src="./icon/dn.jpg" onclick="pp(2)"></div>
                     <script>
