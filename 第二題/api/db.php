@@ -3,7 +3,7 @@
 session_start();
 
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
+    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_02";
     protected $pdo;
     protected $table;
 
@@ -113,21 +113,13 @@ function to($url){
     header("location: $url");
 }
 
-$Title = new DB('title');
-$Ad = new DB('ad');
-$Mvim = new DB('mvim');
-$Image = new DB('image');
-$News = new DB('news');
-$Admin = new DB('admin');
-$Menu = new DB('menu');
-$Total = new DB('total');
-$Bottom = new DB('bottom');
+$Members = new DB('members');
 
-if(!isset($_SESSION['visit'])){
-    $_SESSION['visit'] = 1;
-    $visit = $Total->find(1);
-    $visit['total'] += 1;
-    $Total->save($visit);
-}
+// if(!isset($_SESSION['visit'])){
+//     $_SESSION['visit'] = 1;
+//     $visit = $Total->find(1);
+//     $visit['total'] += 1;
+//     $Total->save($visit);
+// }
 
 ?>

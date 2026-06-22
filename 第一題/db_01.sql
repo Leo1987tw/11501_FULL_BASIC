@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-06-15 06:46:34
+-- 產生時間： 2026-06-17 02:25:27
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -62,7 +62,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `account`, `password`) VALUES
-(1, 'Leo1987tw', '1111');
+(1, 'admin', '1234'),
+(2, 'Leo', '1234');
 
 -- --------------------------------------------------------
 
@@ -122,11 +123,19 @@ INSERT INTO `image` (`id`, `src`, `text`, `sh`, `delete_at`) VALUES
 
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
-  `href` text NOT NULL,
+  `src` text NOT NULL,
   `text` text NOT NULL,
   `sh` tinyint(1) NOT NULL DEFAULT 0,
   `parent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `menu`
+--
+
+INSERT INTO `menu` (`id`, `src`, `text`, `sh`, `parent`) VALUES
+(1, './index.php', '回到首頁', 1, 0),
+(2, './index.php?do=news', '最新消息', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -219,7 +228,10 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `total`) VALUES
-(1, 99999);
+(1, 100000),
+(2, 0),
+(3, 0),
+(4, 0);
 
 --
 -- 已傾印資料表的索引
@@ -293,7 +305,7 @@ ALTER TABLE `ad`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bottom`
@@ -311,7 +323,7 @@ ALTER TABLE `image`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mvim`
@@ -335,7 +347,7 @@ ALTER TABLE `title`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `total`
 --
 ALTER TABLE `total`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
