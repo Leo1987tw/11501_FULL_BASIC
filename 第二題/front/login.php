@@ -40,9 +40,9 @@
                 $.post("./api/api_check_password.php", user, (response2) => {
                     if(parseInt(response2) > 0){
                         if(user.account == 'admin'){
-                            to("admin.php");
+                            location.href = "./admin.php";
                         }else {
-                            to("index.php");
+                            location.href = "./index.php";
                         }
                     }else {
                         alert("密碼錯誤");

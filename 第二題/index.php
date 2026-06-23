@@ -24,7 +24,7 @@ include_once "./api/db.php";
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?= date("m月 d號 l");?> | 今日瀏覽: 1 | 累積瀏覽: 36
+			<?= date("m月 d號 l");?> | 今日瀏覽: <?= $Visits->find(['date' => date("Y-m-d")])['number'];?> | 累積瀏覽: <?= $Visits->q("SELECT SUM(`number`) FROM `visits`");?>
 			<a href="./index.php" style="float: right;">回首頁</a>
 		</div>
 		<div id="title2">
@@ -46,7 +46,25 @@ include_once "./api/db.php";
 				<div>
 					<marquee behavior="" direction="" style="display: inline-block; width: 80%;">請民眾踴躍投稿電子報，讓電子報成為大家相交流、分享的園地！詳見最新文章</marquee>
 					<span style="width:18%; display:inline-block;">
+						<?php
+
+						if(isset($_SESSION['login'])):
+						
+						?>
+						<div style="display: inline-block;">
+							歡迎，<?= $_SESSION['login']?>
+						</div>
+						<?php
+						
+						if($_SESSION['login'] == 'admin'):
+						
+						?>
+						<button onclick="location.href='./admin.php'">管理</button>
+						<?php endif;?>
+						<button onclick="location.href='./api/api_logout.php'">登出</button>
+						<?php else:;?>
 						<a href="?do=login">會員登入</a>
+						<?php endif;?>
 					</span>
 					<div class="">
 						<?php

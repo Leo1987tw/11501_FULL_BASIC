@@ -99,7 +99,7 @@ class DB{
     }
 
     function q($sql){
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchColumn();
     }
 }
 
@@ -114,12 +114,20 @@ function to($url){
 }
 
 $Members = new DB('members');
+$Visits = new DB('visits');
+$News = new DB('news');
+$Ques = new DB('ques');
 
-// if(!isset($_SESSION['visit'])){
-//     $_SESSION['visit'] = 1;
-//     $visit = $Total->find(1);
-//     $visit['total'] += 1;
-//     $Total->save($visit);
-// }
+if(!isset($_SESSION['visit'])){
+    $today = $Visits->find(['date' => date("Y-m-d")]);
+    if(!empty($today)){
+        $today['number'] += 1;
+        $Visits->save($today);
+        $_SESSION['visit'] = $today['number'];
+    }else {
+        $Visits->save(['date' => date("Y-m-d"), 'number' => 1]);
+        $_SESSION['visit'] = 1;
+    }
+}
 
 ?>
