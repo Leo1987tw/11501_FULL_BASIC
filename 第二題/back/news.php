@@ -39,8 +39,8 @@
         }
 
         for($i = 1; $i <= $allpages; $i++){
-            $size = ($nowpage == $i) ? '24px' : '';
-            echo "<a href='?do=news&p=$i'> $i </a>";
+            $size = ($nowpage == $i) ? '24px' : '18px';
+            echo "<a href='?do=news&p=$i' style='font-size: $size'> $i </a>";
         }
 
         if($nowpage < $allpages){

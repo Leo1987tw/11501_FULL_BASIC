@@ -117,6 +117,7 @@ $Members = new DB('members');
 $Visits = new DB('visits');
 $News = new DB('news');
 $Ques = new DB('ques');
+$Logs = new DB('logs');
 
 if(!isset($_SESSION['visit'])){
     $today = $Visits->find(['date' => date("Y-m-d")]);

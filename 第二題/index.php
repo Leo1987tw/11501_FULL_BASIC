@@ -15,16 +15,28 @@ include_once "./api/db.php";
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
+	<style>
+		.alerr {
+			background: rgba(51, 51, 51, 0.8);
+			color: #FFF;
+			min-height: 100px;
+			width: 300px;
+			position: fixed;
+			display: none;
+			z-index: 9999;
+			overflow: auto;
+		}
+	</style>
 </head>
 
 <body>
-	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
-		<pre id="ssaa"></pre>
-	</div>
+	<!-- <div class="alerr">
+		<pre class="ssaa"></pre>
+	</div> -->
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?= date("m月 d號 l");?> | 今日瀏覽: <?= $Visits->find(['date' => date("Y-m-d")])['number'];?> | 累積瀏覽: <?= $Visits->q("SELECT SUM(`number`) FROM `visits`");?>
+			<?= date("m月 d號 l"); ?> | 今日瀏覽: <?= $Visits->find(['date' => date("Y-m-d")])['number']; ?> | 累積瀏覽: <?= $Visits->q("SELECT SUM(`number`) FROM `visits`"); ?>
 			<a href="./index.php" style="float: right;">回首頁</a>
 		</div>
 		<div id="title2">
@@ -48,32 +60,32 @@ include_once "./api/db.php";
 					<span style="width:18%; display:inline-block;">
 						<?php
 
-						if(isset($_SESSION['login'])):
-						
+						if (isset($_SESSION['login'])):
+
 						?>
-						<div style="display: inline-block;">
-							歡迎，<?= $_SESSION['login']?>
-						</div>
-						<?php
-						
-						if($_SESSION['login'] == 'admin'):
-						
-						?>
-						<button onclick="location.href='./admin.php'">管理</button>
-						<?php endif;?>
-						<button onclick="location.href='./api/api_logout.php'">登出</button>
-						<?php else:;?>
-						<a href="?do=login">會員登入</a>
-						<?php endif;?>
+							<div style="display: inline-block;">
+								歡迎，<?= $_SESSION['login'] ?>
+							</div>
+							<?php
+
+							if ($_SESSION['login'] == 'admin'):
+
+							?>
+								<button onclick="location.href='./admin.php'">管理</button>
+							<?php endif; ?>
+							<button onclick="location.href='./api/api_logout.php'">登出</button>
+						<?php else:; ?>
+							<a href="?do=login">會員登入</a>
+						<?php endif; ?>
 					</span>
 					<div class="">
 						<?php
 
 						$do = $_GET['do'] ?? "main";
 						$file = "./front/$do.php";
-						if(file_exists($file)){
+						if (file_exists($file)) {
 							include_once $file;
-						}else {
+						} else {
 							include_once "./front/main.php";
 						}
 
