@@ -12,7 +12,7 @@
         <?php
 
         $totalnews = $News->count(['sh' => 1]);
-        $division = 3;
+        $division = 4;
         $allpages = ceil($totalnews/$division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
@@ -20,15 +20,30 @@
         foreach($rows as $row):
         ?>
         <tr>
-            <td class="post-title"><?= $row['title'];?></td>
-            <td>
+            <td class="post-title" style="padding: 20px;"><?= $row['title'];?></td>
+            <td style="position: relative;">
                 <span><?= mb_substr($row['content'], 0, 30);?>...</span>
-                <div class="alerr">
+                <div class="alerr" style="position: absolute; left: -50%; width: 200%">
                     <h3><?= $row['title']?></h3>
                     <pre class="ssaa"><?= nl2br($row['content'])?></pre>
                 </div>
             </td>
-            <td></td>
+            <td>
+                <?= $row['good'];?>個人說<span class="good"></span>
+                <?php
+
+                if(!empty($_SESSION['login'])){
+                    echo "<a href='javascript: good({$row['id']})'>";
+                    $check = $Logs->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
+                    if($check){
+                        echo "收回讚";
+                    }else {
+                        echo "讚";
+                    }
+                    echo "</a>";
+                }
+                ?>
+            </td>
         </tr>
         <?php endforeach;?>
     </table>
@@ -61,15 +76,21 @@
             $(".alerr").hide();
             $(this).next("td").children(".alerr").show();
         }, function(){
-            $(".alerr").show();
+            $(".alerr").hide();
         }
     );
 
-    $("alerr").hover(
+    $(".alerr").hover(
         function(){
             $(this).show();
         }, function(){
             $(".alerr").hide();
         }
     );
+
+    function good(id){
+        $.post("./api/api_good.php", {id}, () => {
+            location.reload();
+        });
+    }
 </script>

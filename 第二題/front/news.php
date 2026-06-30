@@ -12,7 +12,7 @@
         <?php
 
         $totalnews = $News->count(['sh' => 1]);
-        $division = 3;
+        $division = 4;
         $allpages = ceil($totalnews/$division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
@@ -72,6 +72,8 @@
     })
 
     function good(id){
-        $.post("./api/api_good.php", {id}, () => {});
+        $.post("./api/api_good.php", {id}, () => {
+            location.reload();
+        });
     }
 </script>
