@@ -1,6 +1,6 @@
 <?php
 
-include_once "./api/db.php"
+include_once "./api/db.php";
 
 ?>
 
@@ -33,13 +33,8 @@ include_once "./api/db.php"
   </div>
   <?php
 
-  $do = $_GET['do'] ?? 'main';
-  $file = "./back/" . $do . ".php";
-  if(file_exists($file)){
-    include_once $file;
-  }else {
-    include_once "./back/admin.php";
-  }
+  include_once "./back/main.php";
+  
   ?>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
