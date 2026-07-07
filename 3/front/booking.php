@@ -1,11 +1,5 @@
 <div id="mm">
   <div class="tab rb" style="width:87%;">
-    <?php
-
-    $rows = ${ucfirst($_GET['do'])};
-    foreach($rows as $index => $value):
-    
-    ?>
     <div style="background:#FFF; width:100%; color:#333; text-align:left">
       <video src="./upload/03B20v.mp4" width="300px" height="250px" controls="" style="float:right;"></video>
       <font style="font-size:24px"> <img src="./upload/03B20.png" width="200px" height="250px" style="margin:10px; float:left">
@@ -30,6 +24,5 @@
         </tbody>
       </table>
     </div>
-    <?php endforeach;?>
   </div>
 </div>

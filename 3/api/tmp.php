@@ -10,11 +10,11 @@ for($i = 1; $i<=10; $i++){
     $data = [];
     $data['number'] = date("Ymd") . sprintf("%04d", $i);
     $data['movie'] = $movies[rand(0, 1)];
-    $data['ondate'] = $days[rand(0, 1)];
+    $data['date'] = $days[rand(0, 1)];
     $data['session'] = $session[rand(0, 1)];
     $data['qt'] = rand(1, 4);
     $tmp = [];
-    for($j = 1; $j <= 10; $j++){
+    for($j = 1; $j <= $data['qt']; $j++){
         $tmp[] = rand(0, 19);
     }
     $data['seats'] = serialize($tmp);
