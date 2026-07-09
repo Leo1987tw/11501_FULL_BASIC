@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>找出天干地支年份</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
@@ -19,37 +21,38 @@
             <li>天干地支配對：甲子、乙丑、丙寅….甲戌、乙亥、丙子….</li>
         </ul>
 
-    <form action="" method="post">
-        <label for="year">請輸入西元年份：</label>
-        <input type="number" id="year" name="year" min="2026" max="2526" required>
-        <input type="submit" value="判斷">
-    </form>
+        <form action="" method="post">
+            <label for="year">請輸入西元年份：</label>
+            <input type="number" id="year" name="year" min="2026" max="2526" required>
+            <input type="submit" value="判斷">
+        </form>
 
-    <?php
+        <?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $year = $_POST["year"];
-    } else {
-        echo "<div class='result'>請輸入年份。</div>";
-        exit;
-    }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $year = $_POST["year"];
+        } else {
+            echo "<div class='result'>請輸入年份。</div>";
+            exit;
+        }
 
-    ?>
+        ?>
 
-    <?php
+        <?php
 
-    $sky_stems = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
-    $earth_branches = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+        $sky_stems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+        $earth_branches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
 
-    $difference = $year -1024;
-    $index = $difference % 60;
+        $difference = $year - 1024;
+        $index = $difference % 60;
 
-    $sky = $sky_stems[$index % 10];
-    $earth = $earth_branches[$index % 12];
+        $sky = $sky_stems[$index % 10];
+        $earth = $earth_branches[$index % 12];
 
-    echo "西元{$year}年是{$sky}{$earth}年";
-    
-    ?>
+        echo "西元{$year}年是{$sky}{$earth}年";
+
+        ?>
     </div>
 </body>
+
 </html>

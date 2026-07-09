@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>威力彩電腦選號</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
@@ -20,35 +22,36 @@
             <li>完成選號後將陣列內容印出</li>
         </ul>
 
-<?php
+        <?php
 
-$lotto=[];
+        $lotto = [];
 
-while(count($lotto) < 6){
-    $temporary = rand(1, 38);
-    echo "$temporary";
-    if(!in_array($temporary, $lotto)){
-        $lotto[]=$temporary;
-        echo "<pre>";
-        print_r($lotto);
-        echo "</pre>";
-    }
-    echo "<br>";
-}
+        while (count($lotto) < 6) {
+            $temporary = rand(1, 38);
+            echo "$temporary";
+            if (!in_array($temporary, $lotto)) {
+                $lotto[] = $temporary;
+                echo "<pre>";
+                print_r($lotto);
+                echo "</pre>";
+            }
+            echo "<br>";
+        }
 
-foreach($lotto as $index => $number){
-    if($index < 5){
-        echo "$number, ";
-    } else{
-        echo "$number";
-    }
-}
+        foreach ($lotto as $index => $number) {
+            if ($index < 5) {
+                echo "$number, ";
+            } else {
+                echo "$number";
+            }
+        }
 
-$spacial_number = rand(1, 8);
+        $spacial_number = rand(1, 8);
 
-echo "$spacial_number";
+        echo "$spacial_number";
 
-?>
+        ?>
     </div>
 </body>
+
 </html>

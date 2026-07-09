@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>反轉陣列</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
@@ -17,27 +19,28 @@
             <li>例：$a=[2,4,6,1,8] 反轉後 $a=[8,1,6,4,2]</li>
         </ul>
 
-    <?php
+        <?php
 
-    $a=[2,4,6,1,8];
+        $a = [2, 4, 6, 1, 8];
 
-    echo "<pre>";
-    print_r($a);
-    echo "</pre>";
-    
-    $max_index = count($a)-1;
+        echo "<pre>";
+        print_r($a);
+        echo "</pre>";
 
-    for($i=0; $i < count($a)/2; $i++){
-         $temporary = $a[$i];
-         $a[$i] = $a[$max_index - $i];
-         $a[$max_index - $i] = $temporary;
-    }
+        $max_index = count($a) - 1;
 
-    echo "<pre>";
-    print_r($a);
-    echo "</pre>";
+        for ($i = 0; $i < count($a) / 2; $i++) {
+            $temporary = $a[$i];
+            $a[$i] = $a[$max_index - $i];
+            $a[$max_index - $i] = $temporary;
+        }
 
-    ?>
+        echo "<pre>";
+        print_r($a);
+        echo "</pre>";
+
+        ?>
     </div>
 </body>
+
 </html>

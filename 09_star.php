@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>畫星星</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
@@ -46,23 +48,23 @@
         <table>
             <tr>
                 <td>
-                <?php
+                    <?php
 
-                for($i=0; $i < $n; $i++){
-                    for($j=0; $j <= $i; $j++){
-                        echo "*";
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j <= $i; $j++) {
+                            echo "*";
+                        }
+                        echo "<br>";
                     }
-                    echo "<br>";
-                }
 
-                ?>
+                    ?>
                 </td>
                 <td>
                     <?php
 
-                    for($i=0; $i < $n; $i++){
-                        for($j=0; $j <= $n; $j++){
-                            if($i >= $j){
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j <= $n; $j++) {
+                            if ($i >= $j) {
                                 echo "*";
                             }
                         }
@@ -81,8 +83,8 @@
                 <td>
                     <?php
 
-                    for($i=$n; $i > 0; $i--){
-                        for($j=0;$j < $i; $j++){
+                    for ($i = $n; $i > 0; $i--) {
+                        for ($j = 0; $j < $i; $j++) {
                             echo "*";
                         }
                         echo "<br>";
@@ -93,22 +95,22 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n; $i++){
-                        for($j=0;$j < $n-$i; $j++){
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j < $n - $i; $j++) {
                             echo "*";
                         }
                         echo "<br>";
                     }
 
                     ?>
-            
+
                 </td>
                 <td>
                     <?php
 
-                    for($i=0; $i < $n; $i++){
-                        for($j=0; $j <= $n; $j++){
-                            if($i < $j){
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j <= $n; $j++) {
+                            if ($i < $j) {
                                 echo "*";
                             }
                         }
@@ -127,14 +129,14 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n; $i++){
-                        for($j=0; $j < $n - $i; $j++){
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j < $n - $i; $j++) {
                             echo "&nbsp";
                         }
-                        for($k=0; $k <= $i*2; $k++){
-                                echo "*";
+                        for ($k = 0; $k <= $i * 2; $k++) {
+                            echo "*";
                         }
-                        for($l=0; $l < $n - $i; $l++){
+                        for ($l = 0; $l < $n - $i; $l++) {
                             echo "&nbsp";
                         }
                         echo "<br>";
@@ -145,9 +147,9 @@
                 <td>
                     <?php
 
-                    for($i=1; $i < $n + 1; $i++){
-                        for($j=0; $j <= ($n - 1)*2; $j++){
-                            if($j < $n -1 + $i && $j > $n -1 - $i){
+                    for ($i = 1; $i < $n + 1; $i++) {
+                        for ($j = 0; $j <= ($n - 1) * 2; $j++) {
+                            if ($j < $n - 1 + $i && $j > $n - 1 - $i) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -168,9 +170,9 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n+1; $i++){
-                        for($j=0; $j <= $n*2; $j++){
-                            if($j < $n - 1 + $i && $j > $n - 1 - $i){
+                    for ($i = 0; $i < $n + 1; $i++) {
+                        for ($j = 0; $j <= $n * 2; $j++) {
+                            if ($j < $n - 1 + $i && $j > $n - 1 - $i) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -178,9 +180,9 @@
                         }
                         echo "<br>";
                     }
-                    for($i=$n - 1; $i > 0; $i--){
-                        for($j=0; $j <= $n*2; $j++){
-                            if($j < $n - 1 + $i && $j > $n - 1 - $i){
+                    for ($i = $n - 1; $i > 0; $i--) {
+                        for ($j = 0; $j <= $n * 2; $j++) {
+                            if ($j < $n - 1 + $i && $j > $n - 1 - $i) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -193,17 +195,17 @@
                 </td>
                 <td>
                     <?php
-                    
-                    for($i=0; $i < $n * 2 + 1; $i++){
-                        for($j=0; $j <= $n * 2 - 1; $j++){
-                            if($i < $n){
-                                if($j < $n - 1 + $i && $j > $n - 1 - $i){
+
+                    for ($i = 0; $i < $n * 2 + 1; $i++) {
+                        for ($j = 0; $j <= $n * 2 - 1; $j++) {
+                            if ($i < $n) {
+                                if ($j < $n - 1 + $i && $j > $n - 1 - $i) {
                                     echo "*";
                                 } else {
                                     echo "&nbsp";
                                 }
                             } else {
-                                if($j < $n -1 + ($n*2-$i) && $j > $n - 1 - ($n*2-$i)){
+                                if ($j < $n - 1 + ($n * 2 - $i) && $j > $n - 1 - ($n * 2 - $i)) {
                                     echo "*";
                                 } else {
                                     echo "&nbsp";
@@ -218,10 +220,10 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n*2; $i++){
-                        $k = -abs($n-$i)+$n;
-                        for($j=0; $j <= $n*2 - 1; $j++){
-                            if($j < $n - 1 + $k && $j > $n - 1 - $k){
+                    for ($i = 0; $i < $n * 2; $i++) {
+                        $k = -abs($n - $i) + $n;
+                        for ($j = 0; $j <= $n * 2 - 1; $j++) {
+                            if ($j < $n - 1 + $k && $j > $n - 1 - $k) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -235,10 +237,10 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n*2 + 1; $i++){
-                        $k = $i < $n ? $i : $n*2 - $i;
-                        for($j=0; $j <= $n*2 - 1; $j++){
-                            if($j < $n - 1 + $k && $j > $n - 1 - $k){
+                    for ($i = 0; $i < $n * 2 + 1; $i++) {
+                        $k = $i < $n ? $i : $n * 2 - $i;
+                        for ($j = 0; $j <= $n * 2 - 1; $j++) {
+                            if ($j < $n - 1 + $k && $j > $n - 1 - $k) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -259,27 +261,27 @@
                 <td>
                     <?php
 
-                    for($i=0; $i < $n +2; $i++){
+                    for ($i = 0; $i < $n + 2; $i++) {
                         echo "*";
                     }
 
                     echo "<br>";
 
-                    for($i=0; $i < $n; $i++){
-                        for($j=0; $j < $n + 2; $j++){
-                            if($j == 0 || $j == $n + 1){
+                    for ($i = 0; $i < $n; $i++) {
+                        for ($j = 0; $j < $n + 2; $j++) {
+                            if ($j == 0 || $j == $n + 1) {
                                 echo "*";
-                            } else{
+                            } else {
                                 echo "&nbsp";
                             }
                         }
                         echo "<br>";
                     }
 
-                    for($i=0; $i < $n + 2; $i++){
+                    for ($i = 0; $i < $n + 2; $i++) {
                         echo "*";
                     }
-        
+
                     echo "<br>";
 
                     ?>
@@ -287,27 +289,27 @@
                 <td>
                     <?php
 
-                    for($i=0; $i<$n +2; $i++){
-                        for($j=0; $j<$n +2; $j++){
-                            if($i == 0 || $i == $n +1){
+                    for ($i = 0; $i < $n + 2; $i++) {
+                        for ($j = 0; $j < $n + 2; $j++) {
+                            if ($i == 0 || $i == $n + 1) {
                                 echo "*";
-                            } else if($j == 0 || $j == $n +1){
+                            } else if ($j == 0 || $j == $n + 1) {
                                 echo "*";
-                            } else{
+                            } else {
                                 echo "&nbsp";
                             }
                         }
                         echo "<br>";
                     }
-                    
+
                     ?>
                 </td>
                 <td>
                     <?php
 
-                    for($i=0; $i<$n + 2; $i++){
-                        for($j=0; $j<$n + 2; $j++){
-                            if($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1){
+                    for ($i = 0; $i < $n + 2; $i++) {
+                        for ($j = 0; $j < $n + 2; $j++) {
+                            if ($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1) {
                                 echo "*";
                             } else {
                                 echo "&nbsp";
@@ -328,17 +330,17 @@
                 <td>
                     <?php
 
-                    for($i=0; $i<$n + 2; $i++){
-                        for($j=0; $j<$n + 2; $j++){
-                            if($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1 || $i == $j || $i + $j == $n + 1){
+                    for ($i = 0; $i < $n + 2; $i++) {
+                        for ($j = 0; $j < $n + 2; $j++) {
+                            if ($i == 0 || $i == $n + 1 || $j == 0 || $j == $n + 1 || $i == $j || $i + $j == $n + 1) {
                                 echo "*";
-                            } else{
+                            } else {
                                 echo "&nbsp";
                             }
                         }
                         echo "<br>";
                     }
-                    
+
                     ?>
                 </td>
             </tr>
@@ -346,4 +348,5 @@
     </div>
 
 </body>
+
 </html>

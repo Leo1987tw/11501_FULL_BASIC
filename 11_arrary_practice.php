@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>綜合練習七</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
@@ -17,37 +19,38 @@
             <li>將九九乘法表的每個項目以字串型式存入陣列中</li>
             <li>再以迴圈方式將陣列內容印出</li>
         </ul>
-    <?php
+        <?php
 
-    $nineninetable = [];
+        $nineninetable = [];
 
-    for($i=1; $i<=9; $i++){
-        for($j=1; $j<=9; $j++){
-            $nineninetable[] = "$i x $j = " . ($i*$j);
+        for ($i = 1; $i <= 9; $i++) {
+            for ($j = 1; $j <= 9; $j++) {
+                $nineninetable[] = "$i x $j = " . ($i * $j);
+            }
         }
-    }
 
-    echo "<pre>";
-    print_r($nineninetable);
-    echo "</pre>";
+        echo "<pre>";
+        print_r($nineninetable);
+        echo "</pre>";
 
-    echo "<table>";
+        echo "<table>";
 
-    foreach($nineninetable as $i => $j){
-        if($i%9 == 0){
-            echo "<tr>";
-            echo "<td>" . $j . "</td>";
-        } else if($i % 9 == 8){
-            echo "<td>" . $j . "</td>";
-            echo "</tr>";
-        } else{
-            echo "<td>" . $j . "</td>";
+        foreach ($nineninetable as $i => $j) {
+            if ($i % 9 == 0) {
+                echo "<tr>";
+                echo "<td>" . $j . "</td>";
+            } else if ($i % 9 == 8) {
+                echo "<td>" . $j . "</td>";
+                echo "</tr>";
+            } else {
+                echo "<td>" . $j . "</td>";
+            }
         }
-    }
 
-    echo "</table>";
+        echo "</table>";
 
-    ?>
+        ?>
     </div>
 </body>
+
 </html>

@@ -1,100 +1,103 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>重覆結構</title>
     <link rel="stylesheet" href="./style.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <a href="./index.html" class="back-btn">← 返回前頁</a>
 
-<h3>For...loop 練習</h3>
+        <h3>For...loop 練習</h3>
 
-<h4>列出一到十乘以十</h4>
+        <h4>列出一到十乘以十</h4>
 
-<?php
+        <?php
 
-for($i=1; $i<=10; $i=$i+1){
-    echo "$i =>";
-    echo $i*10 . "<br>";
-    }
-    
-    ?>
+        for ($i = 1; $i <= 10; $i = $i + 1) {
+            echo "$i =>";
+            echo $i * 10 . "<br>";
+        }
 
-<br>
+        ?>
 
-<h4>列出奇數</h4>
+        <br>
 
-<?php
+        <h4>列出奇數</h4>
 
-for($i=1; $i<=10; $i=$i+1){
-    echo "$i =>";
-    echo $i*2-1 . "<br>";
-    }
-    
-    ?>
+        <?php
 
-<br>
+        for ($i = 1; $i <= 10; $i = $i + 1) {
+            echo "$i =>";
+            echo $i * 2 - 1 . "<br>";
+        }
 
-<h4>列出偶數</h4>
+        ?>
 
-<?php
+        <br>
 
-for($i=1; $i<=10; $i=$i+1){
-    echo "$i =>";
-    echo $i*2-2 . "<br>";
-    }
-    
-?>
+        <h4>列出偶數</h4>
 
-<h4>列出費氏數列</h4>
+        <?php
 
-<?php
-    
-for($i=1, $j=0 ,$k=1 ; $i<=10; $i=$i+1){
-    
-        $l=$j+$k;
-        $j=$k;
-        $k=$l;
-        echo "$i =>";
-        echo $l . "<br>";
-}
-    
-?>
+        for ($i = 1; $i <= 10; $i = $i + 1) {
+            echo "$i =>";
+            echo $i * 2 - 2 . "<br>";
+        }
 
-<h3>WHILE loop 練習</h3>
+        ?>
 
-<?php
+        <h4>列出費氏數列</h4>
 
-$score=23;
+        <?php
 
-echo "成績為：" . $score . "分" . "<br>";
-$count=0; //計算迴圈執行次數
-while($score<60){
-    $score=$score+10;
-    $count=$count+1;
-}
+        for ($i = 1, $j = 0, $k = 1; $i <= 10; $i = $i + 1) {
 
-echo "登錄成績為" . $score . "分 <br>";
-echo "迴圈執行次數：" . $count . "次 <br>";
+            $l = $j + $k;
+            $j = $k;
+            $k = $l;
+            echo "$i =>";
+            echo $l . "<br>";
+        }
 
-?>
+        ?>
 
-<h3>foreach練習</h3>
+        <h3>WHILE loop 練習</h3>
 
-<?php
+        <?php
 
-$score=[23, 34, 56, 61, 73];
+        $score = 23;
 
-foreach($score as $idx => $val){
-    echo "第" . ($idx+1) . "位成績為：" . $val . "分 <br>";
-}
+        echo "成績為：" . $score . "分" . "<br>";
+        $count = 0; //計算迴圈執行次數
+        while ($score < 60) {
+            $score = $score + 10;
+            $count = $count + 1;
+        }
 
-?>
+        echo "登錄成績為" . $score . "分 <br>";
+        echo "迴圈執行次數：" . $count . "次 <br>";
+
+        ?>
+
+        <h3>foreach練習</h3>
+
+        <?php
+
+        $score = [23, 34, 56, 61, 73];
+
+        foreach ($score as $idx => $val) {
+            echo "第" . ($idx + 1) . "位成績為：" . $val . "分 <br>";
+        }
+
+        ?>
 
     </div>
 </body>
+
 </html>
