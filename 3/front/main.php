@@ -120,7 +120,7 @@
             next = $(".poster").eq(0);
           }
           let ani = $(now).data("ani");
-          console.log(ani);
+          // console.log(ani);
           switch(ani){
             case 1:
               $(now).fadeOut(1000, () => {
