@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh_TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>線上月曆製作 - 四種結果展示</title>
+    <title>線上月曆製作</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="back-nav">
@@ -30,13 +32,21 @@
         <h3>1. 基礎數字填充版</h3>
         <p class="desc">使用簡單的 if 判斷式計算格子索引並填入數字。</p>
         <table>
-            <tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+            <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+            </tr>
             <?php
-            for($i=0; $i < $TotalWeeks; $i++){
+            for ($i = 0; $i < $TotalWeeks; $i++) {
                 echo "<tr>";
-                for($j=0; $j < 7; $j++){
+                for ($j = 0; $j < 7; $j++) {
                     echo "<td>";
-                    if($j + $i * 7 > $FirstDayWeek -1 && $j + $i *7 <= $FirstDayWeek + $MonthDays - 1){
+                    if ($j + $i * 7 > $FirstDayWeek - 1 && $j + $i * 7 <= $FirstDayWeek + $MonthDays - 1) {
                         echo ($j + $i * 7 - $FirstDayWeek + 1);
                     }
                     echo "</td>";
@@ -52,14 +62,22 @@
         <h3>2. 日期格式化版 (date 函式應用)</h3>
         <p class="desc">利用 strtotime 與 date("d") 確保日期輸出的一致性。</p>
         <table>
-            <tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+            <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+            </tr>
             <?php
-            for($i=0; $i < $TotalWeeks; $i++){
+            for ($i = 0; $i < $TotalWeeks; $i++) {
                 echo "<tr>";
-                for($j=0; $j < 7; $j++){
+                for ($j = 0; $j < 7; $j++) {
                     echo "<td>";
                     $DayNumber = $j + $i * 7 - $FirstDayWeek + 1;
-                    if($DayNumber > 0 && $DayNumber <= $MonthDays){
+                    if ($DayNumber > 0 && $DayNumber <= $MonthDays) {
                         $date = date("Y-m-$DayNumber");
                         echo date("d", strtotime($date));
                     }
@@ -77,15 +95,21 @@
         <p class="desc">不使用傳統 Table 標籤，改用 CSS FlexBox 進行排版練習。</p>
         <div class="flex-calendar">
             <div class="tr tr--header">
-                <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+                <div>日</div>
+                <div>一</div>
+                <div>二</div>
+                <div>三</div>
+                <div>四</div>
+                <div>五</div>
+                <div>六</div>
             </div>
             <?php
-            for($i=0; $i < $TotalWeeks; $i++){
+            for ($i = 0; $i < $TotalWeeks; $i++) {
                 echo "<div class='tr'>";
-                for($j=0; $j < 7; $j++){
+                for ($j = 0; $j < 7; $j++) {
                     echo "<div>";
                     $DayNumber = $j + $i * 7 - $FirstDayWeek + 1;
-                    if($DayNumber > 0 && $DayNumber <= $MonthDays){
+                    if ($DayNumber > 0 && $DayNumber <= $MonthDays) {
                         echo $DayNumber;
                     }
                     echo "</div>";
@@ -100,7 +124,7 @@
         <!-- 結果四：互動查詢版 -->
         <h3>4. 互動查詢與導覽版</h3>
         <p class="desc">加入表單提交與月份切換功能，可即時查看不同月份。</p>
-        
+
         <form action="03_calendar.php" method="GET">
             <input type="month" name="month" value="<?= $_GET['month'] ?? date('Y-m'); ?>">
             <input type="submit" value="查詢月份">
@@ -113,9 +137,9 @@
         $fDayW = date("w", strtotime($fDay));
         $m = date("m", strtotime($fDay));
         $y = date("Y", strtotime($fDay));
-        
-        $prevM = ($m == 1) ? ($y-1)."-12" : $y."-".str_pad($m-1, 2, '0', STR_PAD_LEFT);
-        $nextM = ($m == 12) ? ($y+1)."-01" : $y."-".str_pad($m+1, 2, '0', STR_PAD_LEFT);
+
+        $prevM = ($m == 1) ? ($y - 1) . "-12" : $y . "-" . str_pad($m - 1, 2, '0', STR_PAD_LEFT);
+        $nextM = ($m == 12) ? ($y + 1) . "-01" : $y . "-" . str_pad($m + 1, 2, '0', STR_PAD_LEFT);
         ?>
 
         <div class="nav-links" id="fixed">
@@ -124,15 +148,23 @@
         </div>
 
         <table>
-            <tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+            <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+            </tr>
             <?php
-            $tWeeks = ($mDays + $fDayW + (6 - date("w", strtotime($currMonth."-".$mDays)))) / 7;
-            for($i=0; $i < $tWeeks; $i++){
+            $tWeeks = ($mDays + $fDayW + (6 - date("w", strtotime($currMonth . "-" . $mDays)))) / 7;
+            for ($i = 0; $i < $tWeeks; $i++) {
                 echo "<tr>";
-                for($j=0; $j < 7; $j++){
+                for ($j = 0; $j < 7; $j++) {
                     echo "<td>";
                     $dNum = $j + $i * 7 - $fDayW + 1;
-                    if($dNum > 0 && $dNum <= $mDays) echo $dNum;
+                    if ($dNum > 0 && $dNum <= $mDays) echo $dNum;
                     echo "</td>";
                 }
                 echo "</tr>";
@@ -141,4 +173,5 @@
         </table>
     </div>
 </body>
+
 </html>

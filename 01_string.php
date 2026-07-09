@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="back-nav">
@@ -84,7 +86,7 @@
             $keyword = "程式設計";
             $temporary = "<span style='color: #00d2ff; font-size: 24px; font-weight: bold;'>$keyword</span>";
 
-            if(strpos($string, $keyword) > 0){
+            if (strpos($string, $keyword) > 0) {
                 $string = str_replace($keyword, $temporary, $string);
             }
             echo $string;
@@ -93,7 +95,7 @@
             $string = "學習程式設計就像是一場充滿驚喜的馬拉松。剛才我們一起看了 PHP 的字串處理和 HTML5 Canvas 的繪圖技巧，這讓我想到，寫程式最迷人的地方就在於那份「精準」。有時候，只是一個漏掉的分號或是用錯的引號，就能讓整段代碼停擺。但正是這些小細節，鍛鍊了我們解決問題的邏輯。無論是在處理複雜的字串擷取，還是調整網頁上的漸層顏色，每一行程式碼都是在構建你腦中的藍圖。不要被螢幕上紅色的錯誤訊息給嚇到，把它們看作是通往成功的提示。當你最後成功在瀏覽器上看到預期的成果時，那種成就感是無與倫比的。保持好奇心，繼續探索這個充滿邏輯的美麗世界吧！";
             $keywords = ["程式設計", "馬拉松", "迷人"];
             $temporary = [];
-            foreach($keywords as $keyword){
+            foreach ($keywords as $keyword) {
                 $temporary[] = "<a href='#' style='color: #00d2ff; font-size: 24px; font-weight: bold; text-decoration: none;'>$keyword</a>";
             }
             $string = str_replace($keywords, $temporary, $string);
@@ -103,4 +105,5 @@
         </div>
     </div>
 </body>
+
 </html>

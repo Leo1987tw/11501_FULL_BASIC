@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="back-nav">
@@ -26,7 +28,7 @@
             $end = "2026-05-04";
             $start_time = strtotime($start);
             $end_time = strtotime($end);
-            $difference = ($end_time - $start_time) / ( 24 * 60 * 60 );
+            $difference = ($end_time - $start_time) / (24 * 60 * 60);
             echo "<br>";
             echo "間隔天數: " . $difference . " 天";
             ?>
@@ -40,13 +42,13 @@
             $this_birthday = date("Y") . date("-m-d", strtotime($birthday));
             $this_birthday_time = strtotime($this_birthday);
             $today_time = strtotime($today);
-            
+
             echo "時間戳對比: " . $today_time . " - " . $this_birthday_time;
 
-            if($today_time >= $this_birthday_time){
-                $difference = (strtotime("+1 year", strtotime($this_birthday)) - $today_time) / ( 24 *60 * 60 );
-            } else{
-                $difference = ($this_birthday_time - $today_time) / ( 24 *60 * 60 );
+            if ($today_time >= $this_birthday_time) {
+                $difference = (strtotime("+1 year", strtotime($this_birthday)) - $today_time) / (24 * 60 * 60);
+            } else {
+                $difference = ($this_birthday_time - $today_time) / (24 * 60 * 60);
             }
 
             echo "<br>";
@@ -75,7 +77,7 @@
         <div class="output-box">
             <?php
             $date = "2026-05-04";
-            for($i=1; $i<=5; $i++){
+            for ($i = 1; $i <= 5; $i++) {
                 $timestring = strtotime("+$i week", strtotime($date));
                 echo date("Y-m-d 星期一", $timestring);
                 echo "<br>";
@@ -85,4 +87,5 @@
     </div>
 
 </body>
+
 </html>
