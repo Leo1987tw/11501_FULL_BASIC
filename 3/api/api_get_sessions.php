@@ -47,7 +47,7 @@ if($date == $today && $hour > 14){
 
 if($start != 5){
     for($i = $start; $i < 5; $i++){
-        echo "<option value='$i'>$sessions[$i] 剩餘座位</option>";
+        echo "<option value='$sessions[$i]'>$sessions[$i] 剩餘座位</option>";
     }
 }else {
     echo "本日已無場次";
