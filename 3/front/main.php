@@ -111,13 +111,17 @@
         // }
         , 3000);
 
-        function slider(){
+        function slider(index=undefined){
           let now = $(".poster:visible");
           let next;
-          if($(now).index() + 1 < $(".poster").length){
-            next = $(".poster").eq($(now).index() + 1);
+          if(index == undefined){
+            if($(now).index() + 1 < $(".poster").length){
+              next = $(".poster").eq($(now).index() + 1);
+            }else {
+              next = $(".poster").eq(0);
+            }
           }else {
-            next = $(".poster").eq(0);
+            next = $(".poster").eq(index);
           }
           let ani = $(now).data("ani");
           // console.log(ani);
@@ -140,6 +144,11 @@
           }
         }
 
+        $(".btn").on("click", function(){
+          let index = $(this).index();
+          slider(index);
+        });
+
         let p = 0;
         let total = $(".poster").length;
         $(".left-btn, .right-btn").on("click", function(){
@@ -159,6 +168,14 @@
           }
           $(".btn").animate({right: p*70});
         })
+
+        $(".btn").hover(
+          function(){
+            clearInterval(autoSlide);
+          }, function(){
+            autoSlide = setInterval(slider, 3000);
+          }
+        );
       </script>
     </div>
   </div>

@@ -51,7 +51,7 @@ $movie = $Movie->find($_GET['id']);
                             <select name="month" id="month">
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
-                                    $select = ($date == $i) ? 'selected' : '';
+                                    $select = ($month == $i) ? 'selected' : '';
                                     echo "<option value='$i' $select>$i</option>";
                                 };
                                 ?>
@@ -60,7 +60,7 @@ $movie = $Movie->find($_GET['id']);
                             <select name="date" id="date">
                                 <?php
                                 for ($i = 1; $i <= 31; $i++) {
-                                    $select = ($month == $i) ? 'selected' : '';
+                                    $select = ($date == $i) ? 'selected' : '';
                                     echo "<option value='$i' $select>$i</option>";
                                 };
                                 ?>
