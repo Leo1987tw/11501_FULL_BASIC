@@ -53,7 +53,7 @@
             background-position: center;
         }
 
-        .booking {
+        .booked {
             background-image: url("./images/03D03.png");
             background-repeat: no-repeat;
             background-position: center;
@@ -141,8 +141,14 @@
     }
 
     function booking(){
+        let data = {
+            "movie": $("#movie option:selected").text(), 
+            "date": $("#date").val(), 
+            "session": $("#session").val()
+        }
+
         $("#booking-form").hide();
-        $.get("./api/api_get_seats.php", (seats) => {
+        $.get("./api/api_get_seats.php", data , (seats) => {
             $("#seats").html(seats);
             $(".seats-movie").text($("#movie option:selected").text());
             $(".seats-date").text($("#date").val());

@@ -47,7 +47,9 @@ if($date == $today && $hour > 14){
 
 if($start != 5){
     for($i = $start; $i < 5; $i++){
-        echo "<option value='$sessions[$i]'>$sessions[$i] 剩餘座位</option>";
+        $qt = $Order->q("SELECT sum(`qt`) AS `sum` FROM `orders` WHERE `movie`='{$movie['name']}' AND `date`='$date' AND `session`='$sessions[$i]'")[0]["sum"];
+        $rqt = 20 - $qt;
+        echo "<option value='$sessions[$i]'>$sessions[$i] 剩餘座位$rqt</option>";
     }
 }else {
     echo "本日已無場次";

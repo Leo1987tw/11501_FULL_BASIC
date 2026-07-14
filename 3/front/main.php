@@ -2,6 +2,16 @@
   <div class="half" style="vertical-align:top;">
     <h1>預告片介紹</h1>
     <style>
+      .lists {
+        position: relative;
+      }
+
+      .poster {
+        position: absolute;
+        width: 180px;
+        height: 230px;
+      }
+
       .controls {
 	      display: flex;
 	      justify-content: space-between;
@@ -132,13 +142,27 @@
               });
               break;
             case 2:
-              $(now).slideUp(1000, () => {
-                $(next).slideDown(1000);
+              // $(now).slideUp(1000, () => {
+              //   $(next).slideDown(1000);
+              // });
+              $(now).animate({left: -181, width: 180, height: 230}, 1000, () => {
+                $(now).hide();
+                $(now).css({left: 0, width: 180, height: 230});
               });
+              $(next).css({left: 181, width: 180, height: 230});
+              $(next).show();
+              $(next).animate({left: 0, width: 180, height: 230}, 1000);
               break
             case 3:
-              $(now).hide(1000, () => {
-                $(next).show(1000);
+              // $(now).hide(1000, () => {
+              //   $(next).show(1000);
+              // });
+              $(now).animate({left: 90, top: 115, width: 0, height: 0}, 1000, () => {
+                $(now).hide();
+                $(now).css({left: 0, top: 0, width: 180, height: 230});
+                $(next).css({left: 90, top: 115, width: 0, height: 0});
+                $(next).show();
+                $(next).animate({left: 0, top: 0, width: 180, height: 230}, 1000);
               });
             break;
           }

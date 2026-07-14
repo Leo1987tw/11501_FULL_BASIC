@@ -104,6 +104,12 @@ class DB {
     }
 }
 
+function dd($array){
+    echo "</pre>";
+    print_r($array);
+    echo "</pre>";
+}
+
 function to($url){
     header("location: " . $url);
 }

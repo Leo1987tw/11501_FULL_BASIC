@@ -37,8 +37,8 @@
                     <input type="checkbox" name="del[]" value="<?= $value['id'];?>"><label for="del[]">刪除</label>
                     <select name="ani[]">
                         <option value="1" <?= ($value['ani'] == 1) ? 'selected' : '';?>>淡入淡出</option>
-                        <option value="2" <?= ($value['ani'] == 1) ? 'selected' : '';?>>縮放</option>
-                        <option value="3" <?= ($value['ani'] == 1) ? 'selected' : '';?>>滑入滑出</option>
+                        <option value="2" <?= ($value['ani'] == 2) ? 'selected' : '';?>>滑入滑出</option>
+                        <option value="3" <?= ($value['ani'] == 3) ? 'selected' : '';?>>縮放</option>
                     </select>
                     <input type="hidden" name="id[]" value="<?= $value['id'];?>">
                 </div>
