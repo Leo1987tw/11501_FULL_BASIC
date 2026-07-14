@@ -105,8 +105,8 @@
     getMovies();
 
     $("#movie").on("change", function(){
-        let id = $(this).val();
-        getDays(id);
+        let movie = $(this).val();
+        getDays(movie);
     });
 
     $("#date").on("change", function(){
@@ -117,12 +117,12 @@
 
     function getMovies(){
         $.get("./api/api_get_movies.php", (movies) => {
-            $("#movie").html(movies);
-            let movie = $("#movie").val();
-            getDays(movie);
             if(movieId != null){
                 $(`#movie option[value="${movieId}"]`).prop("selected", true);
             }
+            $("#movie").html(movies);
+            let movie = $("#movie").val();
+            getDays(movie);
         });
     }
 

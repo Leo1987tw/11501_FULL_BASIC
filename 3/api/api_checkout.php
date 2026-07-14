@@ -4,6 +4,27 @@ include_once "./db.php";
 
 // dd($_POST);
 
+$orders = $Order->all([
+    "movie" => $_POST["movie"], 
+    "date" => $_POST["date"], 
+    "session" => $_POST["session"]
+]);
+
+$seats = [];
+
+foreach($orders as $o){
+    $tmp = unserialize(($o["seats"]));
+    $seats = array_merge($seats, $tmp);
+}
+
+$collision = array_intersect($seats, $_POST["seats"]);
+
+if($collision){
+    echo "<div>訂購失敗，您的選位已被訂走。</div>";
+    echo "<div><button onclick=\"location.href='./index.php?do=booking'\">確定</button></div>";
+    return;
+}
+
 $max_id = $Order->q("SELECT max(`id`) AS `id` FROM `orders`")[0]["id"] + 1;
 $_POST["number"] = date("Ymd") . sprintf("%04d", $max_id);
 sort($_POST["seats"]);

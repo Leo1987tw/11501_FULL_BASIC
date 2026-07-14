@@ -1,18 +1,7 @@
 <div id="mm">
   <div class="half" style="vertical-align:top;">
     <h1>預告片介紹</h1>
-    <style>
-      .lists {
-        position: relative;
-      }
-
-      .poster {
-        position: absolute;
-        width: 180px;
-        height: 230px;
-      }
-
-      .controls {
+    <style>.controls {
 	      display: flex;
 	      justify-content: space-between;
 	      align-items: center;
@@ -37,9 +26,16 @@
       }
 
       .lists {
+        position: relative;
         width: 210px;
         height: 240px;
         margin: auto;
+      }
+      
+      .poster {
+        position: absolute;
+        width: 180px;
+        height: 230px;
       }
 
       .btns {
