@@ -12,8 +12,8 @@ $orders = $Order->all([
 
 $seats = [];
 
-foreach($orders as $o){
-    $tmp = unserialize(($o["seats"]));
+foreach($orders as $order){
+    $tmp = unserialize(($order["seats"]));
     $seats = array_merge($seats, $tmp);
 }
 
@@ -45,7 +45,6 @@ $Order->save($_POST);
         background-color: white;
     }
 </style>
-<><>
 <table id="result">
     <tr>
         <td colspan="2">感謝您的訂購，您的訂單編號是：<?= $_POST["number"];?></td>
