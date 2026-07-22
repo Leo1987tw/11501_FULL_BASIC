@@ -5,11 +5,15 @@
     <table class="all">
         <tr>
             <td class="tt ct">所屬大分類</td>
-            <td class="pp"><input type="select" name="big" id="big"></td>
+            <td class="pp">
+                <select name="big" id="big"></select>
+            </td>
         </tr>
         <tr>
             <td class="tt ct">所屬中分類</td>
-            <td class="pp"><input type="select" name="middle" id="middle"></td>
+            <td class="pp">
+                <select name="middle" id="middle"></select>
+            </td>
         </tr>
         <tr>
             <td class="tt ct">商品編號</td>
@@ -61,3 +65,24 @@
         <input type="button" value="返回">
     </div>
 </form>
+
+<script>
+    getBigs();
+
+    $("#big").on("change", function(){
+        getMiddles($(this).val());
+    });
+
+    function getBigs(){
+        $.get("./api/api_get_bigs.php", (bigs) => {
+            $("#big").html(bigs);
+            getMiddles($("#big").val());
+        })
+    };
+
+    function getMiddles(big){
+        $.get("./api/api_get_middles.php", {big}, (middles) => {
+            $("#middle").html(middles);
+        })
+    }
+</script>

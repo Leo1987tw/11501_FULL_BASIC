@@ -22,7 +22,7 @@
 <script>
     getBigs();
 
-    getTypeList()
+    getTypeList();
 
     function addBig(){
         let big = $("#big").val();
@@ -89,36 +89,14 @@
     <button onclick="location.href = '?do=add_item'">新增商品</button>
 </div>
 
-<table class="all">
-    <tr class="tt ct">
-        <td>編號</td>
-        <td>商品名稱</td>
-        <td>庫存量</td>
-        <td>狀態</td>
-        <td>操作</td>
-    </tr>
-    <?php
-    
-    $items = $Items->all(["sh" => 1]);
+<div class="item-list"></div>
 
-    foreach($items as $item):
+<script>
+    getItemList();
     
-    ?>
-    <tr class="pp ct">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-            <button style="padding: 5px;">修改</button>
-            <button style="padding: 5px;">刪除</button>
-            <button style="padding: 5px;">上架</button>
-            <button style="padding: 5px;">下嫁</button>
-        </td>
-    </tr>
-    <?php
-    
-    endforeach;
-    
-    ?>
-</table>
+    function getItemList(){
+        $.get("./api/api_get_item_list.php", (response) => {
+            $(".item-list").html(response)
+        })
+    }
+</script>

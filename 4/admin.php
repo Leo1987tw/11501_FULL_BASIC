@@ -2,7 +2,7 @@
 
 include_once "./api/db.php";
 
-if(!isset($_SESSION['admin'])){
+if (!isset($_SESSION['admin'])) {
     to('./index.php');
     exit;
 }
@@ -39,59 +39,59 @@ $system["private"] = unserialize($system["private"]);
             <div style="min-height:400px;">
                 <a href="?do=admin">管理權限設置</a>
                 <?php
-                
-                if(in_array(1, $system["private"])):
-                
+
+                if (in_array(1, $system["private"])):
+
                 ?>
-                <a href="?do=th">商品分類與管理</a>
+                    <a href="?do=th">商品分類與管理</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
                 <?php
-                
-                if(in_array(2, $system["private"])):
-                
+
+                if (in_array(2, $system["private"])):
+
                 ?>
-                <a href="?do=order">訂單管理</a>
+                    <a href="?do=order">訂單管理</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
                 <?php
-                
-                if(in_array(3, $system["private"])):
-                
+
+                if (in_array(3, $system["private"])):
+
                 ?>
-                <a href="?do=mem">會員管理</a>
+                    <a href="?do=mem">會員管理</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
                 <?php
-                
-                if(in_array(4, $system["private"])):
-                
+
+                if (in_array(4, $system["private"])):
+
                 ?>
-                <a href="?do=bot">頁尾版權管理</a>
+                    <a href="?do=bot">頁尾版權管理</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
                 <?php
-                
-                if(in_array(5, $system["private"])):
-                
+
+                if (in_array(5, $system["private"])):
+
                 ?>
-                <a href="?do=news">最新消息管理</a>
+                    <a href="?do=news">最新消息管理</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
                 <a href="./api/api_logout.php?do=admin" style="color:#f00;">登出</a>
             </div>
@@ -111,12 +111,16 @@ $system["private"] = unserialize($system["private"]);
             ?>
         </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
-            頁尾版權 : </div>
+            <?= $Bottom->find(1)["bottom"]; ?>
+        </div>
     </div>
 
     <script>
-        function del(model, id){
-            $.post("./api/api_delete.php", {model, id}, (response) => {
+        function del(model, id) {
+            $.post("./api/api_delete.php", {
+                model,
+                id
+            }, (response) => {
                 location.reload();
             })
         }

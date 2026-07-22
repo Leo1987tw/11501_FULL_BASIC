@@ -30,38 +30,38 @@ include_once "./api/db.php";
                 <a href="?do=look">購物流程</a> |
                 <a href="?do=buycart">購物車</a> |
                 <?php
-                
-                if(isset($_SESSION["member"])):
-                
+
+                if (isset($_SESSION["member"])):
+
                 ?>
-                <a href="./api/api_logout.php?do=member">登出</a>
+                    <a href="./api/api_logout.php?do=member">登出</a>
                 <?php
-                
+
                 else:
-                
+
                 ?>
-                <a href="?do=login">會員登入</a>
+                    <a href="?do=login">會員登入</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?> |
                 <?php
-                
-                if(isset($_SESSION["admin"])):
-                
+
+                if (isset($_SESSION["admin"])):
+
                 ?>
-                <a href="./admin.php">返回管理</a>
+                    <a href="./admin.php">返回管理</a>
                 <?php
-                
+
                 else:
-                
+
                 ?>
-                <a href="?do=admin">管理登入</a>
+                    <a href="?do=admin">管理登入</a>
                 <?php
-                
+
                 endif;
-                
+
                 ?>
             </div>
             <marquee behavior="" direction="">
@@ -93,7 +93,8 @@ include_once "./api/db.php";
             ?>
         </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-            頁尾版權 : </div>
+            <?= $Bottom->find(1)["bottom"]; ?>
+        </div>
     </div>
 
 </body>
