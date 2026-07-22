@@ -2,6 +2,11 @@
 
 include_once "./api/db.php";
 
+if(!isset($_SESSION['admin'])){
+    to('./index.php');
+    exit;
+}
+
 $system = $Admin->find(["account" => $_SESSION["admin"]]);
 
 $system["private"] = unserialize($system["private"]);
@@ -108,6 +113,14 @@ $system["private"] = unserialize($system["private"]);
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
             頁尾版權 : </div>
     </div>
+
+    <script>
+        function del(model, id){
+            $.post("./api/api_delete.php", {model, id}, (response) => {
+                location.reload();
+            })
+        }
+    </script>
 
 </body>
 

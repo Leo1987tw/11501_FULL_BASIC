@@ -115,5 +115,7 @@ function dd($array){
 
 $Members = new DB("members");
 $Admin = new DB("admin");
+$Types = new DB("types");
+$Items = new DB("items");
 
 ?>

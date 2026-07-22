@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-07-21 10:17:01
+-- 產生時間： 2026-07-22 05:40:37
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -45,6 +45,26 @@ INSERT INTO `admin` (`id`, `account`, `password`, `private`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `number` text NOT NULL,
+  `name` text NOT NULL,
+  `price` int(10) UNSIGNED NOT NULL,
+  `specification` text NOT NULL,
+  `stock` int(10) UNSIGNED NOT NULL,
+  `img` text NOT NULL,
+  `introduction` text NOT NULL,
+  `big` int(10) UNSIGNED NOT NULL,
+  `middle` int(10) UNSIGNED NOT NULL,
+  `sh` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `members`
 --
 
@@ -66,6 +86,35 @@ CREATE TABLE `members` (
 INSERT INTO `members` (`id`, `name`, `account`, `password`, `telephone`, `address`, `email`, `created_at`) VALUES
 (1, '游禮中', 'Leo1987tw', '1234', '0987654321', '新北市板橋區', 'leo1987tw@gmail.com', '2026-07-21 03:40:17');
 
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `types`
+--
+
+CREATE TABLE `types` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` text NOT NULL,
+  `parent` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `types`
+--
+
+INSERT INTO `types` (`id`, `name`, `parent`) VALUES
+(1, '流行皮件', 0),
+(2, '流行鞋區', 0),
+(3, '流行飾品', 0),
+(4, '背包', 0),
+(5, '男用皮件', 1),
+(6, '女用皮件', 1),
+(7, '少女鞋區', 2),
+(8, '紳士流行鞋區', 2),
+(9, '時尚手錶', 3),
+(10, '時尚珠寶', 3),
+(11, '背包', 4);
+
 --
 -- 已傾印資料表的索引
 --
@@ -77,9 +126,21 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `members`
 --
 ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `types`
+--
+ALTER TABLE `types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -93,10 +154,22 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members`
 --
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `types`
+--
+ALTER TABLE `types`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

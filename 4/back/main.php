@@ -50,12 +50,10 @@
     <button onclick="location.href = './index.php'">返回</button>
 </div>
 
-
-
-<script>
+<!-- <script>
     function del(model, id){
         $.post("./api/api_delete.php", {model, id}, (response) => {
             location.reload();
         })
     }
-</script>
+</script> -->
