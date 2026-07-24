@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-07-22 09:46:14
+-- 產生時間： 2026-07-24 10:26:04
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -116,7 +116,24 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `name`, `account`, `password`, `telephone`, `address`, `email`, `created_at`) VALUES
-(1, '游禮中', 'Leo1987tw', '1234', '0987654321', '新北市板橋區', 'leo1987tw@gmail.com', '2026-07-21 03:40:17');
+(1, '游禮中', 'Leo1987tw', '1234', '0987654321', '新北市板橋區', 'Leo1987tw@gmail.com', '2026-07-24 05:54:54');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `number` text NOT NULL,
+  `price` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `good` int(11) NOT NULL,
+  `good_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -176,6 +193,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `types`
 --
 ALTER TABLE `types`
@@ -208,6 +231,12 @@ ALTER TABLE `items`
 --
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `types`
