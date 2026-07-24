@@ -65,7 +65,7 @@ body
 }
 .all td
 {
-	min-width:100px;
+	/* min-width:100px; */
 	padding:10px;
 }
 .tt
@@ -109,4 +109,10 @@ div.ww:hover > div.s
 .sb button
 {
 	font-size:12px;
+}
+
+#left .s a {
+	position: relative;
+	left: 20px;
+	background:#e2caae;
 }

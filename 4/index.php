@@ -71,11 +71,36 @@ include_once "./api/db.php";
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
+                <a href="?type=0">全部商品</a>
+                <?php
+                
+                $bigs = $Types->all(['parent' => 0]);
+                foreach($bigs as $big):
+                    echo "<div class='ww'>";
+                ?>
+                <a href="?type=<?= $big['id'];?>" class="ww"><?= $big['name'];?></a>
+                <?php
+                
+                    if($Types->count(['parent' => $big['id']]) > 0):
+                        $middles = $Types->all(['parent' => $big['id']]);
+                        echo "<div class='s'>";
+                        foreach($middles as $middle):
+                
+                ?>
+                <a href="?type=<?= $middle['id'];?>"><?= $middle['name'];?></a>
+                <?php
+                
+                        endforeach;
+                        echo "</div>";
+                    endif;
+                    echo "</div>";
+                endforeach;
+                
+                ?>
             </div>
             <span>
                 <div>進站總人數</div>
-                <div style="color:#f00; font-size:28px;">
-                    00005 </div>
+                <div style="color:#f00; font-size:28px;">00005</div>
             </span>
         </div>
         <div id="right">
