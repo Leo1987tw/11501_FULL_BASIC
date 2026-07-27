@@ -83,7 +83,6 @@ class DB {
         }else {
             $sql = "INSERT INTO `$this->table`(`" . join("`, `", array_keys($arg)) . "`) VALUES ('" . join("', '", $arg) . "')";
         }
-        echo $sql;
 
         return $this->pdo->exec($sql);
     }
@@ -119,6 +118,6 @@ $Admin = new DB("admin");
 $Types = new DB("types");
 $Items = new DB("items");
 $Bottom = new DB("bottom");
-$Order = new DB("orders");
+$Orders = new DB("orders");
 
 ?>

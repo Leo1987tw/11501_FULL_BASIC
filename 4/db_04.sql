@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-07-24 10:26:04
+-- 產生時間： 2026-07-27 04:26:09
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -125,14 +125,16 @@ INSERT INTO `members` (`id`, `name`, `account`, `password`, `telephone`, `addres
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `account` text NOT NULL,
   `number` text NOT NULL,
-  `price` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `good` int(11) NOT NULL,
-  `good_id` int(11) NOT NULL
+  `total` int(11) UNSIGNED NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `address` text NOT NULL,
+  `telephone` text NOT NULL,
+  `items` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -236,7 +238,7 @@ ALTER TABLE `members`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `types`

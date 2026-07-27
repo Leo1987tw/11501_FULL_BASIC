@@ -11,23 +11,33 @@ $items = $Items->find()
 <table class="all">
     <tr>
         <td class="tt ct">會員帳號</td>
-        <td class="pp"><?= $member['account'];?></td>
+        <td class="pp">
+            <input type="text" name="account" id="account" value="<?= $member['account'];?>">
+        </td>
     </tr>
     <tr>
         <td class="tt ct">姓名</td>
-        <td class="pp"><?= $member['name'];?></td>
+        <td class="pp">
+            <input type="text" name="name" id="name" value="<?= $member['name'];?>">
+        </td>
     </tr>
     <tr>
         <td class="tt ct">電子信箱</td>
-        <td class="pp"><?= $member['email'];?></td>
+        <td class="pp">
+            <input type="text" name="email" id="email" value="<?= $member['email'];?>">
+        </td>
     </tr>
     <tr>
         <td class="tt ct">聯絡地址</td>
-        <td class="pp"><?= $member['address'];?></td>
+        <td class="pp">
+            <input type="text" name="address" id="address" value="<?= $member['address'];?>">
+        </td>
     </tr>
     <tr>
         <td class="tt ct">聯絡電話</td>
-        <td class="pp"><?= $member['telephone'];?></td>
+        <td class="pp">
+            <input type="text" name="telephone" id="telephone" value="<?= $member['telephone'];?>">
+        </td>
     </tr>
 </table>
 <!-- table.all>tr.tt.ct>td*5 -->
@@ -69,14 +79,16 @@ $items = $Items->find()
 <script>
     function send(){
         let user = {
-            name: $("#name").val();
-            email: $("#email").val();
-            address: $("#address").val();
-            telephone: $("#telephone").val();
+            name: $("#name").val(), 
+            email: $("#email").val(), 
+            address: $("#address").val(), 
+            telephone: $("#telephone").val(), 
+            total: <?= $summary;?>
         }
 
-        $.post("./api/api_checkout.php", user, () => {
+        $.post("./api/api_checkout.php", user, (response) => {
             alert("訂購成功\n感謝您的選購");
+            location.href = "./index.php";
         })
     }
 </script>

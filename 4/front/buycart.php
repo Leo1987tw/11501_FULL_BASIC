@@ -66,7 +66,23 @@ if(!isset($_SESSION['member'])){
 
 <div class="ct">
     <img src="./icon/0411.jpg" alt="" style="width: 150px; padding: 5px;" onclick="location.href = '?'">
+    <?php
+    
+    if($_SESSION['cart'] != []):
+    
+    ?>
     <img src="./icon/0412.jpg" alt="" style="width: 150px; padding: 5px;" onclick="location.href = '?do=checkout'">
+    <?php
+    
+    else:
+    
+    ?>
+    <img src="./icon/0412.jpg" alt="" style="width: 150px; padding: 5px;" onclick="alert('請在購物車放入商品');">
+    <?php
+    
+    endif;
+    
+    ?>
 </div>
 
 <script>
