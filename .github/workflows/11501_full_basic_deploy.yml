@@ -16,10 +16,8 @@ jobs:
     - name: 🏗️ 步驟2：動態配置專案資料夾結構
       run: |
         rm -rf deploy_temp
-        # 🎯 沿用你成功的結構：外層必須要有 htdocs/
         mkdir -p deploy_temp/htdocs/back_end_learning/11501_full_basic/
         
-        # 🎯 沿用你成功的 `./` 指令，只差在我們指定只抓 11501_full_basic 資料夾內部
         rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501_full_basic/ deploy_temp/htdocs/back_end_learning/11501_full_basic/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機

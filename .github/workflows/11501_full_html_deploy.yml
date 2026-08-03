@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '11501_full_html/**'
 
 jobs:
   web-deploy:
@@ -18,8 +16,9 @@ jobs:
     - name: 🏗️ 步驟2：動態配置專案資料夾結構
       run: |
         rm -rf deploy_temp
-        mkdir -p deploy_temp/back_end_learning/11501_full_html/
-        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501_full_html deploy_temp/back_end_learning/11501_full_html/
+        mkdir -p deploy_temp/htdocs/back_end_learning/11501_full_html/
+        
+        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501_full_html/ deploy_temp/htdocs/back_end_learning/11501_full_html/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4

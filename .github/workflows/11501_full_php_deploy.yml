@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '11501_full_php/**'
 
 jobs:
   web-deploy:
@@ -19,6 +17,7 @@ jobs:
       run: |
         rm -rf deploy_temp
         mkdir -p deploy_temp/htdocs/back_end_learning/11501_full_php/
+        
         rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501_full_php/ deploy_temp/htdocs/back_end_learning/11501_full_php/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機
