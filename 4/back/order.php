@@ -1,0 +1,46 @@
+<h2 class="ct">訂單管理</h2>
+
+<!-- table.all>tr.tt.ct*2>td*6 -->
+<table class="all">
+    <tr class="tt ct">
+        <td>訂單編號</td>
+        <td>金額</td>
+        <td>會員帳號</td>
+        <td style="width: 80px;">姓名</td>
+        <td>下單時間</td>
+        <td style="width: 60px;">操作</td>
+    </tr>
+    <?php
+    
+    $orders = $Orders->all();
+    foreach($orders as $order):
+    
+    ?>
+    <tr class="pp ct">
+        <td>
+            <a href="?do=detail&id=<?= $order['id'];?>">
+                <?= $order['number'];?>
+            </a>
+        </td>
+        <td>
+            <?= $order['total'];?>
+        </td>
+        <td>
+            <?= $order['account'];?>
+        </td>
+        <td>
+            <?= $order['name'];?>
+        </td>
+        <td>
+            <?= $order['created_at'];?>
+        </td>
+        <td>
+            <button onclick="del('Order', <?= $order['id'];?>)">刪除</button>
+        </td>
+    </tr>
+    <?php
+    
+    endforeach;
+    
+    ?>
+</table>
