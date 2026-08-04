@@ -191,3 +191,171 @@
 .btn-cancel:active{
     transform: scale(0.98);
 }
+
+.upload-form{
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 24px;
+    border: 1px solid #d0d7de;
+    border-radius: 10px;
+    background: #f8fafc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.form-group label{
+    font-weight: bold;
+    color: #334155;
+}
+
+.upload-form input[type="file"],
+.upload-form input[type="text"]{
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.btn-submit{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-submit:hover{
+    background: #1d4ed8;
+}
+
+.upload-message{
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.sub-title{
+    max-width: 600px;
+    margin: 24px auto 10px;
+    font-size: 22px;
+}
+
+.file-list{
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding-left: 20px;
+}
+
+.file-list li{
+    margin-bottom: 8px;
+}
+
+.file-list a{
+    color: #2563eb;
+}
+
+/* 匯入結果與提示訊息 */
+.message{
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+/* 關鍵字篩選表單 */
+.filter-form{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 16px 24px;
+    border: 1px solid #d0d7de;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+/* 放表格的表單要比一般表單寬，才裝得下所有欄位 */
+.data-form{
+    max-width: 1100px;
+}
+
+.form-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-actions .btn-submit{
+    display: inline-block;
+    text-decoration: none;
+    line-height: normal;
+}
+
+.btn-clear{
+    background: #64748b;
+}
+
+.btn-clear:hover{
+    background: #475569;
+}
+
+.btn-submit:disabled{
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+/* 資料表格 */
+.data-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.data-table th,
+.data-table td{
+    border: 1px solid #e2e8f0;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.data-table thead th{
+    background: #e2e8f0;
+    color: #1e293b;
+    position: sticky;
+    top: 0;
+}
+
+.data-table tbody tr:nth-child(even){
+    background: #f8fafc;
+}
+
+.data-table tbody tr:hover{
+    background: #eff6ff;
+}
+
+/* 分頁區塊 */
+.pagination{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.pagination span{
+    color: #334155;
+}
