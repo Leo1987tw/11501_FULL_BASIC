@@ -1,108 +1,9 @@
 <?php
-session_start();
-
-function generateCaptchaCode(int $length = null): string
-{
-    $length = $length ?? rand(4, 8);
-    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $code = '';
-
-    for ($i = 0; $i < $length; $i++) {
-        $code .= $chars[random_int(0, strlen($chars) - 1)];
-    }
-
-    return $code;
-}
-
-function locateFontFile(): string
-{
-    $fontCandidates = [
-        'C:/Windows/Fonts/arial.ttf',
-        'C:/Windows/Fonts/Arial.ttf',
-        'C:/Windows/Fonts/msyh.ttc',
-        'C:/Windows/Fonts/simsun.ttc',
-    ];
-
-    foreach ($fontCandidates as $fontFile) {
-        if (file_exists($fontFile)) {
-            return $fontFile;
-        }
-    }
-
-    return '';
-}
-
-function renderCaptchaImage(string $code): void
-{
-    $width = 180;
-    $height = 60;
-    $image = imagecreatetruecolor($width, $height);
-
-    $backgroundColor = imagecolorallocate($image, 245, 248, 250);
-    $borderColor = imagecolorallocate($image, 220, 220, 220);
-    $lineColor = imagecolorallocate($image, 180, 190, 200);
-    $textColor = imagecolorallocate($image, 70, 70, 70);
-
-    imagefill($image, 0, 0, $backgroundColor);
-    imagerectangle($image, 0, 0, $width - 1, $height - 1, $borderColor);
-
-    $fontFile = locateFontFile();
-    if ($fontFile === '') {
-        imagestring($image, 5, 20, 20, $code, $textColor);
-    } else {
-        $fontSize = 24;
-        $bbox = imagettfbbox($fontSize, 0, $fontFile, $code);
-        $textWidth = $bbox[2] - $bbox[0];
-        $textHeight = $bbox[1] - $bbox[7];
-        $x = (int) (($width - $textWidth) / 2 - $bbox[0]);
-        $y = (int) (($height + $textHeight) / 2 - $bbox[1]);
-
-        imagettftext($image, $fontSize, 0, $x, $y, $textColor, $fontFile, $code);
-    }
-
-    $lineCount = rand(4, 6);
-
-    // 左側 10% 與右側 10% 的 x 畫素帶，確保每條線都橫跨整個字元區域
-    $leftBandMax = (int) ($width * 0.1);
-    $rightBandMin = (int) ($width * 0.9);
-    $midY = (int) ($height * 0.5);
-
-    imagesetthickness($image, 2);
-
-    for ($i = 0; $i < $lineCount; $i++) {
-        $x1 = rand(0, $leftBandMax);
-        $x2 = rand($rightBandMin, $width - 1);
-
-        // 一端落在上半部、另一端落在下半部，讓線一定斜跨中線
-        if (rand(0, 1) === 0) {
-            $y1 = rand(0, $midY - 1);
-            $y2 = rand($midY + 1, $height - 1);
-        } else {
-            $y1 = rand($midY + 1, $height - 1);
-            $y2 = rand(0, $midY - 1);
-        }
-
-        imageline($image, $x1, $y1, $x2, $y2, $lineColor);
-    }
-
-    imagesetthickness($image, 1);
-
-    header('Content-Type: image/png');
-    header('Cache-Control: no-store, no-cache, must-revalidate');
-    header('Pragma: no-cache');
-
-    imagepng($image);
-    imagedestroy($image);
-}
-
-if (isset($_GET['captcha'])) {
-    $captchaCode = $_SESSION['captcha_code'] ?? generateCaptchaCode();
-    renderCaptchaImage($captchaCode);
-    exit;
-}
-
-$captchaCode = generateCaptchaCode();
-$_SESSION['captcha_code'] = $captchaCode;
+// ===== 檔案說明 =====
+// 這個檔案現在只是「前端示範頁」，本身不再產生驗證碼。
+// 產圖與驗證都拆到獨立的後端服務，由下面的 JavaScript 用 ajax 呼叫：
+//   captcha_image.php  → GET，取得 base64 圖片（帶 reload=1 就是重置）
+//   captcha_verify.php → POST，回傳 1 或 0
 ?>
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -118,11 +19,79 @@ $_SESSION['captcha_code'] = $captchaCode;
 
 <div style="max-width: 320px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
     <p>請輸入下方圖形驗證碼：</p>
-    <img src="image.php?captcha=1&t=<?php echo time(); ?>" alt="圖形驗證碼" style="display:block; border:1px solid #ccc;">
+
+    <!--
+        注意：不要寫死 width / height！
+        字元會隨機旋轉、驗證碼長度也是 4~8 字不固定，
+        所以後端會自動計算需要多大的畫布，每次產生的圖片尺寸可能都不一樣。
+        寫死尺寸會讓圖被拉扁或壓縮變形，這裡只用 max-width 限制不要超出容器。
+    -->
+    <img id="captchaImage" src="" alt="圖形驗證碼" style="display:block; border:1px solid #ccc; max-width:100%;">
+
     <p style="margin-top: 12px;">
-        <a href="image.php">重新整理</a>
+        <button type="button" id="captchaReload">重新產生</button>
     </p>
+
+    <p style="margin-top: 12px;">
+        <input type="text" id="captchaInput" placeholder="輸入驗證碼" autocomplete="off" style="width: 140px;">
+        <button type="button" id="captchaCheck">檢查</button>
+    </p>
+
+    <p id="captchaResult" style="margin-top: 12px; min-height: 1.2em;"></p>
 </div>
+
+<script>
+const captchaImage = document.getElementById('captchaImage');
+const captchaInput = document.getElementById('captchaInput');
+const captchaResult = document.getElementById('captchaResult');
+
+// 取得驗證碼圖片。reload = true 代表要換一組新的。
+async function loadCaptcha(reload = false) {
+    const url = reload ? 'captcha_image.php?reload=1' : 'captcha_image.php';
+    const response = await fetch(url, { credentials: 'same-origin' });
+    const data = await response.json();
+
+    if (data.success) {
+        captchaImage.src = data.image; // data:image/png;base64,....
+    }
+}
+
+// 把輸入的驗證碼送去後端檢查，後端只會回 '1' 或 '0'。
+async function checkCaptcha() {
+    const response = await fetch('captcha_verify.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ captcha: captchaInput.value })
+    });
+    const result = (await response.text()).trim();
+
+    if (result === '1') {
+        captchaResult.textContent = '驗證碼正確';
+        captchaResult.style.color = 'green';
+    } else {
+        captchaResult.textContent = '驗證碼不符合';
+        captchaResult.style.color = 'red';
+    }
+}
+
+document.getElementById('captchaReload').addEventListener('click', function () {
+    captchaResult.textContent = '';
+    captchaInput.value = '';
+    loadCaptcha(true);
+});
+
+document.getElementById('captchaCheck').addEventListener('click', checkCaptcha);
+
+captchaInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        checkCaptcha();
+    }
+});
+
+// 進頁面先抓一張圖回來
+loadCaptcha();
+</script>
 
 </body>
 </html>
