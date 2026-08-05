@@ -14,7 +14,6 @@ for($i = 1; $i<=10; $i++){
     $data['session'] = $session[rand(0, 1)];
     $remain = $Order->q("SELECT COUNT(*) FROM `orders` WHERE `movie`= '{$data['movie']}' and `date`='{$data['date']}' and `session`='{$data['session']}'");
     if($remain == 0){
-        
         continue;
     }
     $data['qt'] = rand(1, $remain);

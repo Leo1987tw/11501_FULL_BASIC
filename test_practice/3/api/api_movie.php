@@ -12,7 +12,7 @@ if(!empty($_FILES['poster']['tmp_name'])){
     $_POST['poster'] = $_FILES['poster']['name'];
 }
 
-if(isset($_POST['id'])){
+if(isset(!$_POST['id'])){
     $_POST['sh'] = 1;
     $_POST['rank'] = $Movie->q("SELECT MAX(`id`) AS 'maxid' FROM `posters`;")[0]['maxid'] + 1;
 }

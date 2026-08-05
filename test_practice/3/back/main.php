@@ -2,7 +2,7 @@
 
 if(isset($_POST['account']) && $_POST['account'] == "admin" && isset($_POST['password']) && $_POST['password'] == "1234"){
   $_SESSION['login'] = "admin";
-}elseif(isset($_POST['account']) || isset($_POST['password']) && $_POST['password'] == "1234") {
+}elseif((isset($_POST['account']) && $_POST['account'] !== "admin") || (isset($_POST['password']) && $_POST['password'] !== "1234")) {
   echo "<p class='ct'>帳號或密碼錯誤</p>";
 }
 
