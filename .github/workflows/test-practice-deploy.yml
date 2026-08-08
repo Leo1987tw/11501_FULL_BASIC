@@ -17,7 +17,7 @@ jobs:
       run: |
         rm -rf deploy_temp
         mkdir -p deploy_temp/htdocs/back-end-learning/test-practice/
-        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./ deploy_temp/htdocs/back-end-learning/test-practice/
+        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./test-practice/ deploy_temp/htdocs/back-end-learning/test-practice/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
