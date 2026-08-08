@@ -17,7 +17,6 @@ jobs:
       run: |
         rm -rf deploy_temp
         mkdir -p deploy_temp/htdocs/back-end-learning/11501-full-html/
-        
         rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501-full-html/ deploy_temp/htdocs/back-end-learning/11501-full-html/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機

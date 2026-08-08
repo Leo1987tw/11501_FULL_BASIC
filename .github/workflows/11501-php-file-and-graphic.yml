@@ -1,4 +1,4 @@
-name: 🚀 自動外送 11501-full-basic 到 11501-full-basic
+name: 🚀 自動外送 11501-php-file-and-graphic 到 11501-php-file-and-graphic
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 11501-full-basic專屬主機同步
+    name: 🎉 11501-php-file-and-graphic專屬主機同步
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 步驟1：取得最新程式碼
@@ -16,9 +16,8 @@ jobs:
     - name: 🏗️ 步驟2：動態配置專案資料夾結構
       run: |
         rm -rf deploy_temp
-        mkdir -p deploy_temp/htdocs/back-end-learning/11501-full-basic/
-        
-        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501-full-basic/ deploy_temp/htdocs/back-end-learning/11501-full-basic/
+        mkdir -p deploy_temp/htdocs/back-end-learning/11501-php-file-and-graphic/
+        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501-php-file-and-graphic/ deploy_temp/htdocs/back-end-learning/11501-php-file-and-graphic/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
