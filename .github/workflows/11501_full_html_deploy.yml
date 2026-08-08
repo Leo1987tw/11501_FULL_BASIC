@@ -1,4 +1,4 @@
-name: 🚀 自動外送 11501_full_html 到 11501_full_html
+name: 🚀 自動外送 11501-full-html 到 11501-full-html
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 11501_full_html專屬主機同步
+    name: 🎉 11501-full-html專屬主機同步
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 步驟1：取得最新程式碼
@@ -16,9 +16,9 @@ jobs:
     - name: 🏗️ 步驟2：動態配置專案資料夾結構
       run: |
         rm -rf deploy_temp
-        mkdir -p deploy_temp/htdocs/back_end_learning/11501_full_html/
+        mkdir -p deploy_temp/htdocs/back-end-learning/11501-full-html/
         
-        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501_full_html/ deploy_temp/htdocs/back_end_learning/11501_full_html/
+        rsync -av --exclude='deploy_temp' --exclude='.git' --exclude='.github' ./11501-full-html/ deploy_temp/htdocs/back-end-learning/11501-full-html/
 
     - name: 📂 步驟3：透過 FTP 安全同步到主機
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
