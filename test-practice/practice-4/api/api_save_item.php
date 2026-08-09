@@ -12,7 +12,7 @@ if(!isset($_POST["id"])){
     $_POST["sh"] = 1;
 }
 
-$Items->save($_POST);
+$Item->save($_POST);
 
 to("../admin.php?do=th");
 

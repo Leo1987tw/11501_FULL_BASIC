@@ -3,7 +3,7 @@
 include_once "./db.php";
 
 $movie = $Movie->find($_GET['movie']);
-$ondate = strtotime($movie["ondate"]);
+$ondate = strtotime($movie["on_date"]);
 $today = strtotime(date("Y-m-d"));
 
 for($i = 0; $i < 3; $i++){

@@ -1,6 +1,6 @@
 <?php
 
-$item = $Items->find(['id' => $_GET['id']]);
+$item = $Item->find(['id' => $_GET['id']]);
 
 ?>
 <!-- div.all>div*2>table>tr>td.pp -->

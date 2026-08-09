@@ -1,6 +1,6 @@
 <?php
 
-$item = $Items->find($_GET["id"]);
+$item = $Item->find($_GET["id"]);
 
 ?>
 

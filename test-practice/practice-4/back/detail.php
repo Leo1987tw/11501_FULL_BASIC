@@ -1,6 +1,6 @@
 <?php
 
-$order = $Orders->find($_GET['id']);
+$order = $Order->find($_GET['id']);
 
 ?><h2 class="ct">訂單編號<span style="color: red;"><?= $order['number'];?></span></h2>
 
@@ -50,7 +50,7 @@ $order = $Orders->find($_GET['id']);
     
     $cart = unserialize($order['items']);
     foreach($cart as $key => $value):
-        $item = $Items->find($key);
+        $item = $Item->find($key);
     
     ?>
     <tr class="pp ct">

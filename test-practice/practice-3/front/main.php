@@ -68,12 +68,12 @@
         <ul class="lists" style="margin: auto;">
           <?php
           
-          $posters = $Poster->all(["sh" => 1], " ORDER BY `rank`");
+          $posters = $Poster->all(["is_displayed" => 1], " ORDER BY `rank`");
           foreach($posters as $key => $value):
           
           ?>
-          <li class="poster" data-ani="<?= $value['ani'];?>" style="display: none; margin: 30px auto;">
-            <img src="./upload/<?= $value['img'];?>" alt="">
+          <li class="poster" data-ani="<?= $value['animation_type'];?>" style="display: none; margin: 30px auto;">
+            <img src="./upload/<?= $value['image_path'];?>" alt="">
             <div style="text-align: center;"><?= $value['name'];?></div>
           </li>
           <?php
@@ -87,12 +87,12 @@
           <li class="btns">
             <?php
             
-            $posters = $Poster->all(["sh" => 1], " ORDER BY `rank`");
+            $posters = $Poster->all(["is_displayed" => 1], " ORDER BY `rank`");
             foreach($posters as $key => $value):
             
             ?>
             <div class="btn">
-              <img src="./upload/<?= $value['img'];?>" alt="">
+              <img src="./upload/<?= $value['image_path'];?>" alt="">
             </div>
             <?php
             
@@ -213,12 +213,12 @@
         $today = date("Y-m-d");
         $ondate = date("Y-m-d", strtotime("-2 days"));
         // echo $today . "-" . $ondate;
-        $total = $Movie->count(" WHERE `ondate` between '$ondate' AND '$today' && `sh`='1'");
+        $total = $Movie->count(" WHERE `on_date` between '$ondate' AND '$today' && `is_displayed`='1'");
         $division = 4;
         $pages = ceil($total / $division);
         $now = $_GET['p'] ?? 1;
         $start = ($now - 1) * $division;
-        $rows = $Movie->all(['sh' => '1'], " && `ondate` between '$ondate' AND '$today' ORDER BY `rank` LIMIT $start, $division");
+        $rows = $Movie->all(['is_displayed' => '1'], " && `on_date` between '$ondate' AND '$today' ORDER BY `rank` LIMIT $start, $division");
         foreach($rows as $row):
 
         ?>
@@ -229,7 +229,7 @@
           <div style="width: 48%; padding: 3px; font-size: 16px;">
             <?= $row['name'];?><br>
             分級：<img src="./icon/03C0<?= $row['grade'];?>.png" alt="" style="width: 20px;"><br>
-            上映日期：<?= $row['ondate'];?>
+            上映日期：<?= $row['on_date'];?>
           </div>
           <div>
             <button onclick="location.href='?do=intro&id=<?= $row['id']?>'">劇情簡介</button>

@@ -79,7 +79,7 @@
         <tr>
             <td style="width: 20%; vertical-align: top;">劇情簡介</td>
             <td style="width: 80%;">
-                <textarea style="width: 70%; overflow: scroll;"></textarea>
+                <textarea name="introduction" style="width: 70%; overflow: scroll;"></textarea>
             </td>
         </tr>
     </table>

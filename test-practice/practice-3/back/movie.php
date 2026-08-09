@@ -33,11 +33,11 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>片名:<?= $value['name'];?></div>
                 <div>片長:<?= $value['length'];?></div>
-                <div>上映時間:<?= $value['ondate'];?></div>
+                <div>上映時間:<?= $value['on_date'];?></div>
             </div>
             <div style="display: flex; justify-content: end; align-items: center;">
                 <button class="show" data-id="<?= $value['id'];?>">
-                    <?= ($value['sh'] == 1) ? "顯示" : "隱藏"?>
+                    <?= ($value['is_displayed'] == 1) ? "顯示" : "隱藏"?>
                 </button>
                 <?php
                 
@@ -50,7 +50,7 @@
                 <button onclick="location.href='?do=edit_movie&id=<?= $value['id'];?>'">修改電影資料</button>
                 <button class="delete" data-id="<?= $value['id'];?>">刪除電影</button>
             </div>
-            <div>劇情介紹:<?= $value['intro'];?></div>
+            <div>劇情介紹:<?= $value['introduction'];?></div>
         </div>
     </div>
     <?php
@@ -72,15 +72,15 @@
     $(".show").on("click", function(){
         let index = $(this).data("id");
         $.post("./api/api_show.php", {index}, () => {
-            // switch($(this).text().trim()){
-            //     case "顯示":
-            //         $(this).text("隱藏");
-            //         break;
-            //     case "隱藏":
-            //         $(this).text("顯示");
-            //         break;
-            // }
-            location.reload();
+            switch($(this).text().trim()){
+                case "顯示":
+                    $(this).text("隱藏");
+                    break;
+                case "隱藏":
+                    $(this).text("顯示");
+                    break;
+            }
+            // location.reload();
         })
     })
 

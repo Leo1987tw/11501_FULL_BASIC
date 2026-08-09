@@ -113,11 +113,11 @@ function dd($array){
     echo "</pre>";
 }
 
-$Members = new DB("members");
-$Admin = new DB("admin");
-$Types = new DB("types");
-$Items = new DB("items");
-$Bottom = new DB("bottom");
-$Orders = new DB("orders");
+$Member = new DB("members");
+$Admin = new DB("admins");
+$Type = new DB("types");
+$Item = new DB("items");
+$Footer = new DB("footers");
+$Order = new DB("orders");
 
 ?>

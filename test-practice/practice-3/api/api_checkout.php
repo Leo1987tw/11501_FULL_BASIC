@@ -5,8 +5,8 @@ include_once "./db.php";
 // dd($_POST);
 
 $orders = $Order->all([
-    "movie" => $_POST["movie"], 
-    "date" => $_POST["date"], 
+    "movie_id" => $_POST["movie_id"], 
+    "on_date" => $_POST["on_date"], 
     "session" => $_POST["session"]
 ]);
 
@@ -26,7 +26,7 @@ if($collision){
 }
 
 $max_id = $Order->q("SELECT max(`id`) AS `id` FROM `orders`")[0]["id"] + 1;
-$_POST["number"] = date("Ymd") . sprintf("%04d", $max_id);
+$_POST["order_number"] = date("Ymd") . sprintf("%04d", $max_id);
 sort($_POST["seats"]);
 $_POST["seats"] = serialize($_POST["seats"]);
 
@@ -47,16 +47,16 @@ $Order->save($_POST);
 </style>
 <table id="result">
     <tr>
-        <td colspan="2">感謝您的訂購，您的訂單編號是：<?= $_POST["number"];?></td>
+        <td colspan="2">感謝您的訂購，您的訂單編號是：<?= $_POST["order_number"];?></td>
         <td></td>
     </tr>
     <tr>
         <td>電影名稱：</td>
-        <td><?= $_POST["movie"];?></td>
+        <td><?= $_POST["movie_id"];?></td>
     </tr>
     <tr>
         <td>日期：</td>
-        <td><?= $_POST["date"];?></td>
+        <td><?= $_POST["on_date"];?></td>
     </tr>
     <tr>
         <td>場次時間：</td>
@@ -75,7 +75,7 @@ $Order->save($_POST);
                 echo "號";
                 echo "<br>";
             }
-            echo "共" , $_POST["qt"] . "張電影票";
+            echo "共" , $_POST["quantity"] . "張電影票";
             
             ?>
         </td>

@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$item = $Items->find($_POST["id"]);
+$item = $Item->find($_POST["id"]);
 
 switch($_POST["type"]){
     case 0:
@@ -13,6 +13,6 @@ switch($_POST["type"]){
         break;
 }
 
-$Items->save($item);
+$Item->save($item);
 
 ?>

@@ -111,7 +111,7 @@ $system["private"] = unserialize($system["private"]);
             ?>
         </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
-            <?= $Bottom->find(1)["bottom"]; ?>
+            <?= $Footer->find(1)["text"]; ?>
         </div>
     </div>
 

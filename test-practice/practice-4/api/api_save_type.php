@@ -2,6 +2,6 @@
 
 include_once "./db.php";
 
-$Types->save($_POST);
+$Type->save($_POST);
 
 ?>

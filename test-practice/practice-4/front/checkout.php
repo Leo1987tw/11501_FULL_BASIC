@@ -1,7 +1,7 @@
 <?php
 
-$member = $Members->find(['account' => $_SESSION['member']]);
-$items = $Items->find()
+$member = $Member->find(['account' => $_SESSION['member']]);
+$items = $Item->find()
 
 ?>
 
@@ -53,7 +53,7 @@ $items = $Items->find()
     
     $summary = 0;
     foreach($_SESSION['cart'] as $key => $value):
-        $item = $Items->find($key);
+        $item = $Item->find($key);
         $summary += $value * $item['price'];
     
     ?>

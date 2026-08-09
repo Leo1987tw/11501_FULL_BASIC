@@ -38,9 +38,9 @@ $movie = $Movie->find($_GET['id']);
                         <td>上映日期:</td>
                         <td>
                             <?php
-                            $year = (int)explode("-", $movie['ondate'])[0];
-                            $month = (int)explode("-", $movie['ondate'])[1];
-                            $date = (int)explode("-", $movie['ondate'])[2];
+                            $year = (int)explode("-", $movie['on_date'])[0];
+                            $month = (int)explode("-", $movie['on_date'])[1];
+                            $date = (int)explode("-", $movie['on_date'])[2];
                             ?>
                             <select name="year" id="year">
                                 <option value="2026" <?= $year == 2026 ? 'selected' : ''; ?>>2026</option>
@@ -98,7 +98,7 @@ $movie = $Movie->find($_GET['id']);
         <tr>
             <td>劇情簡介</td>
             <td>
-                <textarea name="intro" id="intro"></textarea>
+                <textarea name="introduction" id="introduction"><?= $movie['introduction']?></textarea>
             </td>
         </tr>
     </table>

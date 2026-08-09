@@ -14,7 +14,7 @@ include_once "./db.php";
     </tr>
     <?php
     
-    $items = $Items->all();
+    $items = $Item->all();
 
     foreach($items as $item):
     

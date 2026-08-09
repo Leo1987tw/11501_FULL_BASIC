@@ -31,7 +31,7 @@ if(!isset($_SESSION['member'])){
     <?php
     
     foreach($_SESSION['cart'] as $key => $value):
-        $item = $Items->find($key);
+        $item = $Item->find($key);
     
     ?>
     <tr class="pp">

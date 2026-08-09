@@ -1,6 +1,6 @@
 <?php
 
-$member = $Members->find($_GET['id']);
+$member = $Member->find($_GET['id']);
 
 ?>
 

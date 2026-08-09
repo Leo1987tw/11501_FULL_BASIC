@@ -12,7 +12,7 @@
     </tr>
     <?php
     
-    $orders = $Orders->all();
+    $orders = $Order->all();
     foreach($orders as $order):
     
     ?>

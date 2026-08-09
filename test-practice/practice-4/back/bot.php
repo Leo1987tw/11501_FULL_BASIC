@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST["bottom"])){
-    $Bottom->save($_POST);
+    $Footer->save($_POST);
 }
 
 ?>
@@ -14,8 +14,8 @@ if(isset($_POST["bottom"])){
         <tr>
             <td class="tt ct">頁尾宣告內容</td>
             <td class="pp">
-                <input type="hidden" name="id" value=<?= $Bottom->find(1)["id"];?>>
-                <input type="text" name="bottom" value="<?= $Bottom->find(1)["bottom"];?>">
+                <input type="hidden" name="id" value=<?= $Footer->find(1)["id"];?>>
+                <input type="text" name="bottom" value="<?= $Footer->find(1)["text"];?>">
             </td>
         </tr>
     </table>

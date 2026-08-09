@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-07-27 04:26:09
+-- 產生時間： 2026-08-09 22:03:12
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -24,41 +24,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `admin`
+-- 資料表結構 `admins`
 --
 
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `account` text NOT NULL,
-  `password` text NOT NULL,
-  `private` text NOT NULL
+CREATE TABLE `admins` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `account` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `permissions` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 傾印資料表的資料 `admin`
+-- 傾印資料表的資料 `admins`
 --
 
-INSERT INTO `admin` (`id`, `account`, `password`, `private`) VALUES
+INSERT INTO `admins` (`id`, `account`, `password`, `permissions`) VALUES
 (1, 'admin', '1234', 'a:5:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";i:3;s:1:\"4\";i:4;s:1:\"5\";}'),
 (2, 'Leo1987tw', '1234', 'a:5:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";i:3;s:1:\"4\";i:4;s:1:\"5\";}');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `bottom`
+-- 資料表結構 `footers`
 --
 
-CREATE TABLE `bottom` (
+CREATE TABLE `footers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `bottom` text NOT NULL
+  `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 傾印資料表的資料 `bottom`
+-- 傾印資料表的資料 `footers`
 --
 
-INSERT INTO `bottom` (`id`, `bottom`) VALUES
-(1, 'Copyright2013頁尾版權宣告');
+INSERT INTO `footers` (`id`, `text`) VALUES
+(1, 'Copyright2026頁尾版權宣告');
 
 -- --------------------------------------------------------
 
@@ -68,23 +68,23 @@ INSERT INTO `bottom` (`id`, `bottom`) VALUES
 
 CREATE TABLE `items` (
   `id` int(10) UNSIGNED NOT NULL,
-  `number` text NOT NULL,
-  `name` text NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `price` int(10) UNSIGNED NOT NULL,
-  `specification` text NOT NULL,
+  `specification` varchar(255) NOT NULL,
   `stock` int(10) UNSIGNED NOT NULL,
-  `image` text NOT NULL,
+  `image` varchar(255) NOT NULL,
   `introduction` text NOT NULL,
   `big` int(10) UNSIGNED NOT NULL,
   `middle` int(10) UNSIGNED NOT NULL,
-  `sh` tinyint(1) NOT NULL
+  `is_displayed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `items`
 --
 
-INSERT INTO `items` (`id`, `number`, `name`, `price`, `specification`, `stock`, `image`, `introduction`, `big`, `middle`, `sh`) VALUES
+INSERT INTO `items` (`id`, `number`, `name`, `price`, `specification`, `stock`, `image`, `introduction`, `big`, `middle`, `is_displayed`) VALUES
 (1, '602587', '手工訂製長夾', 1200, '全牛皮', 2, '0403.jpg', '手工製作長夾卡片層6*2 鈔票層 *2 零錢拉鍊層 *1 \r\n採用愛馬仕相同的雙針縫法,皮件堅固耐用不脫線 \r\n材質:直革鞣(馬鞍皮)牛皮製作  \r\n手工染色                                 ', 1, 5, 1),
 (2, '020705', '兩用式磁扣腰包', 685, '中型', 18, '0404.jpg', '材質:進口牛皮\r\n顏色:黑色荔枝紋+黑色珠光面皮(黑色縫線)\r\n尺寸:15cm*14cm(高)*6cm(前後)\r\n產地:臺灣', 1, 5, 1),
 (3, '020706', '超薄設計男士長款真皮', 800, 'L號', 61, '0405.jpg', '基本:編織皮革對摺長款零錢包\r\n特色:最潮流最時尚的單品 \r\n顏色:黑色珠光面皮(黑色縫線)\r\n形狀:黑白格編織皮革對摺', 1, 5, 1),
@@ -101,13 +101,13 @@ INSERT INTO `items` (`id`, `number`, `name`, `price`, `specification`, `stock`, 
 --
 
 CREATE TABLE `members` (
-  `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `account` text NOT NULL,
-  `password` text NOT NULL,
-  `telephone` text NOT NULL,
-  `address` text NOT NULL,
-  `email` text NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `account` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `telephone` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -126,14 +126,11 @@ INSERT INTO `members` (`id`, `name`, `account`, `password`, `telephone`, `addres
 
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
-  `account` text NOT NULL,
-  `number` text NOT NULL,
-  `total` int(11) UNSIGNED NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `address` text NOT NULL,
-  `telephone` text NOT NULL,
-  `items` text NOT NULL,
+  `order_number` varchar(255) NOT NULL,
+  `price` int(11) UNSIGNED NOT NULL,
+  `quantity` int(11) UNSIGNED NOT NULL,
+  `member_id` int(11) UNSIGNED NOT NULL,
+  `item_id` int(11) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -145,15 +142,15 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `types` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` text NOT NULL,
-  `parent` int(10) UNSIGNED NOT NULL
+  `name` varchar(255) NOT NULL,
+  `parent_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `types`
 --
 
-INSERT INTO `types` (`id`, `name`, `parent`) VALUES
+INSERT INTO `types` (`id`, `name`, `parent_id`) VALUES
 (1, '流行皮件', 0),
 (2, '流行鞋區', 0),
 (3, '流行飾品', 0),
@@ -171,15 +168,15 @@ INSERT INTO `types` (`id`, `name`, `parent`) VALUES
 --
 
 --
--- 資料表索引 `admin`
+-- 資料表索引 `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `bottom`
+-- 資料表索引 `footers`
 --
-ALTER TABLE `bottom`
+ALTER TABLE `footers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -211,15 +208,15 @@ ALTER TABLE `types`
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `admins`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `admins`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `bottom`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `footers`
 --
-ALTER TABLE `bottom`
+ALTER TABLE `footers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -232,7 +229,7 @@ ALTER TABLE `items`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `orders`

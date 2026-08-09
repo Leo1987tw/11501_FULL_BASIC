@@ -7,10 +7,12 @@
     <select name="movie">
         <?php
         
-        $movies = $Order->q("SELECT `movie` FROM `orders` GROUP BY `movie`");
+        $movies = $Order->q("SELECT `movie_id` FROM `orders` GROUP BY `movie_id`");
         foreach($movies as $key => $value){
-            echo "<option value='{$value['movie']}'>";
-            echo $value['movie'];
+            $movie_id = $value['movie_id'];
+            $movie_name = $Movie->find($movie_id)['name'];
+            echo "<option value='{$value['movie_id']}'>";
+            echo $movie_name;
             echo "</option>";
         }
         
@@ -30,16 +32,16 @@
 </div>
 <?php
 
-$rows = $Order->all(" ORDER BY `number` DESC");
+$rows = $Order->all(" ORDER BY `order_number` DESC");
 foreach($rows as $key => $value):
 
 ?>
 <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div><?= $value['number'];?></div>
-    <div><?= $value['movie'];?></div>
-    <div><?= $value['date'];?></div>
+    <div><?= $value['order_number'];?></div>
+    <div><?= $value['movie_id'];?></div>
+    <div><?= $value['on_date'];?></div>
     <div><?= $value['session'];?></div>
-    <div><?= $value['qt'];?></div>
+    <div><?= $value['quantity'];?></div>
     <div>
         <?php
 

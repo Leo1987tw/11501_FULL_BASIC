@@ -9,8 +9,8 @@ foreach($_POST['id'] as $key => $value){
         $row = $Poster->find($value);
         $row['name'] = $_POST['name'][$key];
         $row['rank'] = $_POST['rank'][$key];
-        $row['sh'] = isset($_POST['sh'][$key]) && in_array($value, $_POST['sh']) ? "1" : "0";
-        $row['ani'] = $_POST['ani'][$key];
+        $row['is_displayed'] = isset($_POST['is_displayed'][$key]) && in_array($value, $_POST['is_displayed']) ? "1" : "0";
+        $row['animation_type'] = $_POST['animation_type'][$key];
         $Poster->save($row);
     }
 }

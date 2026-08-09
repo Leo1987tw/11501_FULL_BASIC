@@ -16,7 +16,7 @@
             ?>
             <div style="display: flex; justify-content: space-between; align-items: center; height:100px; margin: 3px; padding: 3px; background-color: white; color: black;">
                 <div style="width: 20%;">
-                    <img src="./upload/<?= $value['img']?>" alt="" style="width: 60px; height: 80px;">
+                    <img src="./upload/<?= $value['image_path']?>" alt="" style="width: 60px; height: 80px;">
                 </div>
                 <div style="width: 30%;">
                     <input type="text" name="name[]" value="<?= $value['name'];?>">
@@ -33,12 +33,12 @@
                     <input type="button" class="switch-rank" value="往下" data-switch="<?= $value['id'] . "-" . $next;?>">
                 </div>
                 <div style="width: 25%;">
-                    <input type="checkbox" name="sh[]" value="<?= $value['id'];?>" <?= ($value['sh'] == 1) ? "checked" : "";?>><label for="sh[]">顯示</label>
+                    <input type="checkbox" name="is_displayed[]" value="<?= $value['id'];?>" <?= ($value['is_displayed'] == 1) ? "checked" : "";?>><label for="sh[]">顯示</label>
                     <input type="checkbox" name="del[]" value="<?= $value['id'];?>"><label for="del[]">刪除</label>
-                    <select name="ani[]">
-                        <option value="1" <?= ($value['ani'] == 1) ? 'selected' : '';?>>淡入淡出</option>
-                        <option value="2" <?= ($value['ani'] == 2) ? 'selected' : '';?>>滑入滑出</option>
-                        <option value="3" <?= ($value['ani'] == 3) ? 'selected' : '';?>>縮放</option>
+                    <select name="animation_type[]">
+                        <option value="1" <?= ($value['animation_type'] == 1) ? 'selected' : '';?>>淡入淡出</option>
+                        <option value="2" <?= ($value['animation_type'] == 2) ? 'selected' : '';?>>滑入滑出</option>
+                        <option value="3" <?= ($value['animation_type'] == 3) ? 'selected' : '';?>>縮放</option>
                     </select>
                     <input type="hidden" name="id[]" value="<?= $value['id'];?>">
                 </div>
@@ -70,7 +70,7 @@
             <tr>
                 <td>
                     預告片海報：
-                    <input type="file" id="img" name="img">
+                    <input type="file" id="image_path" name="image_path">
                 </td>
                 <td>
                     預告片片名：

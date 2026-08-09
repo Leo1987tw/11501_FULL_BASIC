@@ -7,7 +7,7 @@ include_once "./db.php";
 <table class="all">
     <?php
 
-    $bigs = $Types->all(["parent" => 0]);
+    $bigs = $Type->all(["parent" => 0]);
     foreach ($bigs as $big):
 
     ?>
@@ -20,8 +20,8 @@ include_once "./db.php";
         </tr>
         <?php
 
-        if ($Types->count(["parent" => $big['id']]) > 0):
-            $middles = $Types->all(["parent" => $big["id"]]);
+        if ($Type->count(["parent" => $big['id']]) > 0):
+            $middles = $Type->all(["parent" => $big["id"]]);
             foreach ($middles as $middle):
 
         ?>

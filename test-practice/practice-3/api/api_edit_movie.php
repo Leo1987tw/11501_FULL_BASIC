@@ -16,7 +16,7 @@ $year = $_POST['year'];
 $month = sprintf("%02d", $_POST['month']);
 $date = sprintf("%02d", $_POST['date']);
 
-$_POST['ondate'] = $year . "-" . $month . "-" . $date;
+$_POST['on_date'] = $year . "-" . $month . "-" . $date;
 
 unset($_POST['year'], $_POST['month'], $_POST['date']);
 

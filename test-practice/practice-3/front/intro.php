@@ -18,13 +18,14 @@ $movie = $Movie->find($_GET['id']);
       <p style="margin:3px">導演 ： <?= $movie['director'];?></p>
       <br>
       <br>
-      <p style="margin:10px 3px 3px 3px; word-break:break-all"> 劇情簡介：<br><?= $movie['intro'];?>
+      <p style="margin:10px 3px 3px 3px; word-break:break-all"> 劇情簡介：<br><?= $movie['introduction'];?>
       </p>
       </font>
       <table width="100%" border="0">
         <tbody>
           <tr>
-            <td align="center"><input type="button" value="院線片清單" onclick="lof(&#39;?&#39;)"></td>
+            <!-- <td align="center"><input type="button" value="院線片清單" onclick="lof(&#39;?&#39;)"></td> -->
+            <td align="center"><input type="button" value="院線片清單" onclick="location.href = 'index.php'"></td>
           </tr>
         </tbody>
       </table>

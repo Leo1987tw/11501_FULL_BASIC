@@ -4,17 +4,17 @@ $type = $_GET['type'] ?? 0;
 
 $nav_string = "全部商品";
 
-$items = $Items->all(['sh' => 1]);
+$items = $Item->all(['sh' => 1]);
 
 if($type != 0){
     $tmp = $Types->find($type);
     if($tmp['parent'] == 0){
         $nav_string = $tmp['name'];
-        $items = $Items->all(['big' => $tmp['id'], 'sh' => 1]);
+        $items = $Item->all(['big' => $tmp['id'], 'sh' => 1]);
     }else {
         $big = $Types->find($tmp['parent']);
         $nav_string = $big['name'] . ">" . $tmp['name'];
-        $items = $Items->all(['middle' => $tmp['id']]);
+        $items = $Item->all(['middle' => $tmp['id']]);
     }
 }
 
