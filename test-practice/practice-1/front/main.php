@@ -4,7 +4,6 @@
     include_once "./include/marquee.php";
     
     ?>
-
     <div style="height:32px; display:block;"></div>
     <!--正中央-->
     <script>

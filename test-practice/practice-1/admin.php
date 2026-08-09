@@ -31,7 +31,7 @@ if($_SESSION['login'] != 1){
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<?php $title=$Title->find(["sh" => 1]);?>
-		<a title="<?= $title['text'];?>" href="?do=title">
+		<a title="<?= $title['text'];?>" href="index.php?do=title">
 			<div class="ti" style="background:url(&#39;upload/<?= $title['src'];?>&#39;); background-size:cover;"></div>
 			<!--標題-->
 		</a>

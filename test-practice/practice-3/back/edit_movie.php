@@ -105,7 +105,7 @@ $movie = $Movie->find($_GET['id']);
     <hr>
     <div class="ct">
         <input type="hidden" name="id" value="<?= $movie['id']?>">
-        <input type="submit" value="新增">
+        <input type="submit" value="確認修改">
         <input type="reset" value="重置">
     </div>
 </form>

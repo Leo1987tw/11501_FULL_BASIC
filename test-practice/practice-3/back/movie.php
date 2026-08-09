@@ -47,7 +47,7 @@
                 ?>
                 <button class="switch-rank" data-switch="<?= $value['id'] . "-" . $prev;?>">往上</button>
                 <button class="switch-rank" data-switch="<?= $value['id'] . "-" . $next;?>">往下</button>
-                <button onclick="location.href='?do=edit_movie&id=<?= $value['id'];?>'">編輯電影</button>
+                <button onclick="location.href='?do=edit_movie&id=<?= $value['id'];?>'">修改電影資料</button>
                 <button class="delete" data-id="<?= $value['id'];?>">刪除電影</button>
             </div>
             <div>劇情介紹:<?= $value['intro'];?></div>

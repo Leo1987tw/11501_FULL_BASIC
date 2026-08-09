@@ -40,7 +40,7 @@
 
                     ?>
                         <div class="mainmu cent">
-                            <a href="<?= $mainMenu['src']; ?>">
+                            <a href="<?= $mainMenu['href']; ?>">
                                 <?= $mainMenu['text']; ?>
                             </a>
                             <div class="mw" style="display: none; position: absolute; top: 25px; left: 120px; width: 220px; z-index: 99;">
@@ -52,7 +52,7 @@
 
                                 ?>
                                         <div class="mainmu2">
-                                            <a href="<?= $subMenu['src'] ?>">
+                                            <a href="<?= $subMenu['href'] ?>">
                                                 <?= $subMenu['text']; ?>
                                             </a>
                                         </div>
