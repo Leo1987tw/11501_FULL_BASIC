@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-07-14 06:31:32
+-- 產生時間： 2026-08-11 04:26:12
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -24,21 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `logs`
+-- 資料表結構 `likes`
 --
 
-CREATE TABLE `logs` (
-  `id` int(11) NOT NULL,
-  `user` text NOT NULL,
-  `news` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `likes` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `username` varchar(64) NOT NULL COMMENT '操作者的帳號',
+  `news_id` int(11) UNSIGNED NOT NULL COMMENT '被操作的最新消息ID',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '操作建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 傾印資料表的資料 `logs`
+-- 傾印資料表的資料 `likes`
 --
 
-INSERT INTO `logs` (`id`, `user`, `news`, `created_at`) VALUES
+INSERT INTO `likes` (`id`, `username`, `news_id`, `created_at`) VALUES
 (1, 'admin', 1, '2026-06-29 08:30:52'),
 (2, 'admin', 2, '2026-06-29 08:30:55'),
 (3, 'admin', 3, '2026-06-29 08:30:56'),
@@ -55,10 +55,10 @@ INSERT INTO `logs` (`id`, `user`, `news`, `created_at`) VALUES
 --
 
 CREATE TABLE `members` (
-  `id` int(11) NOT NULL,
-  `account` text NOT NULL,
-  `password` text NOT NULL,
-  `email` text NOT NULL
+  `id` int(11) UNSIGNED NOT NULL,
+  `account` varchar(64) NOT NULL COMMENT '會員登入帳號',
+  `password` varchar(255) NOT NULL COMMENT '加密後的密碼雜湊',
+  `email` varchar(100) NOT NULL COMMENT '會員電子郵件'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -78,19 +78,19 @@ INSERT INTO `members` (`id`, `account`, `password`, `email`) VALUES
 --
 
 CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `content` text NOT NULL,
-  `sh` tinyint(1) NOT NULL DEFAULT 1,
-  `good` tinyint(1) NOT NULL DEFAULT 0,
-  `type` text NOT NULL
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT '消息標題',
+  `content` text NOT NULL COMMENT '消息詳細內文',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
+  `likes` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '按讚/推薦次數',
+  `type` varchar(50) NOT NULL COMMENT '消息分類名稱'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `content`, `sh`, `good`, `type`) VALUES
+INSERT INTO `news` (`id`, `title`, `content`, `status`, `likes`, `type`) VALUES
 (1, '缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%(一)', '資料來源： 行政院衛生署國民健康局 \n發佈日期： 2012 / 10 / 07\n世界衛生組織指出運動不足已成全球第四大致死因素，每年有6%的死亡率與運動不足有關，僅次於高血壓（13％）、菸品使用（9％）及高血糖（6％）之後，有超過200萬死亡人數可歸因於靜態生活。世界上約60-85％的成人過著靜態生活，三分之二的兒童運動不足，未來都將影響健康並造成公共衛生問題。運動不足除了增加死亡率，還會使心血管疾病、糖尿病、肥胖的風險加倍，並增加大腸癌、高血壓、骨質疏鬆、脂質失調症（lipid disorders）、憂鬱、焦慮的風險。大約21-25％乳癌及大腸癌、27%糖尿病與30％的缺血性心臟病，係因運動不足所造成。許多國家運動不足的人口比率，也正不斷地增加，依據行政院體育委員會2011年運動城巿調查結果顯示，國人無規律運動習慣之比率高達72.2%。\n我國十大死因的危險因子皆與運動不足有關，運動的好處很多，可以預防慢性疾病，降低罹患癌症、跌倒的風險等。國家衛生研究院溫啟邦教授利用台灣一個大型的追蹤世代，分析各個不同運動量的健康效益。研究發現，與不運動的人相比，每天運動15分鐘(每週約90分鐘)是可以減少14%總死亡、10%癌症死亡及20%的心血管疾病死亡，延長3年壽命。這些好處不但適用於各個年齡層包括年青人、年老人，也適用於男性與女性，對有心血管疾病風險的人包括吸菸、肥胖者，也一樣有用。\n國民健康局鼓勵民眾養成規律運動習慣，對於預防心血管疾病、糖尿病、高血脂以及高血壓等，都有顯著的效益，並可降低罹患癌症的風險，加速代謝脂肪，強化肌肉組織與功能，維持健康體重，提高腦內啡的釋放，降低情緒壓力。一般而言，成人只要每週運動累積達150分鐘、兒童每日運動累積60分鐘，就能有足夠的運動量，建議成人每天運動30分鐘，可分段累積運動量，效果與一次做完一樣。例如上下班(學)通勤時間與中午休息時間分段進行，每次15分鐘分2次或是每次10分鐘分3次完成，只要每天持之以恆，健康體能就會大大地提昇。\n許多上班族時常抱怨沒時間或空間運動，國民健康局製作15分鐘「上班族健康操」，不受場地、服裝的限制，每天上、下午各跳15分鐘健康操，可消耗100大卡的熱量，持續1年，約可減少4公斤，不但消耗過多熱量，還能促進身體健康。國民健康局為幫助同仁達到規律運動，運用電腦提示系統，於每天上午9時45分及下午3時45分，電腦螢幕會自動跳出「上班族健康操」畫面，鼓勵同仁暫時放下手邊的工作，隨著音樂一起動一動。', 1, 1, '健康新知'),
 (2, '缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%(二)', '對於沒有運動習的民眾，「健走」也是很好的入門運動，衛生署國民健康局自91年起推動「每日一萬步 健康有保固」，「健走」是既簡單又輕鬆的運動，不需特殊裝備，只要穿著輕便服裝、運動鞋，運用「抬頭挺胸縮小腹、雙手微握放腰部、自然擺動肩放鬆、邁開腳步向前行」健走小口訣，以4公里/小時的速度，日行萬步，只要90分鐘，步行約6公里，就可以消耗約300大卡，走向健康。\n國民健康局並介紹運動生活化之小撇步，協助民眾落實生活化的運動。\n1. 從日常生活中找出時間來活動，例如：步行買午、晚餐、水果、日用品；步行去用餐；蹓狗。\n2. 外出或是上下班(學)不妨多多利用大眾運輸工具，讓自己提早出門提前一站下車，步行至目的地。\n3. 可以走樓梯就不要坐電梯，如果一下子沒辦法走這麼多樓梯，步行走上幾層樓後再搭乘電梯，慢慢增加自己的運動量。\n4. 多和家人到戶外活動，或騎腳踏車、打球等活動。\n5. 假日可以自己動手整理家裡、擦擦地板，也可以增加運動量!或利用掃地、拖地時加大動作幅度，那也是很好的身體活動。\n6. 在家裡、辦公室附近找方便的資源運動，包括公園、職場辦的課程、活動。\n7. 減少看電視、打電玩等靜態生活的時間。\n    民眾對運動如有疑問，可參考國民健康局肥胖防治網-「快樂動」(http://obesity.bhp.gov.tw)，亦可撥打免費市話健康體重管理電話諮詢服務，諮詢專線「0800-367-100（0800-瘦落去-要動動）」，也可利用國民健康局局網首頁或肥胖防治網問題諮詢專區的網路電話撥入功能，向客服人員諮詢關於運動、健康飲食及健康體重管理等相關疑問。', 1, 1, '健康新知'),
 (3, '菸害防治法規(一)', '第二十三條　　違反第五條或第十條第一項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並得按次連續處罰。\n第二十四條　　製造或輸入違反第六條第一項、第二項或第七條第一項規定之菸品者，處新臺幣一百萬元以上五百萬元以下罰鍰，並令限期回收；屆期未回收者，按次連續處罰，違規之菸品沒入並銷毀之。\n販賣違反第六條第一項、第二項或第七條第一項規定之菸品者，處新臺幣一萬元以上五萬元以下罰鍰。\n第二十五條　　違反第八條第一項規定者，處新臺幣十萬元以上五十萬元以下罰鍰，並令限期申報；屆期未申報者，按次連續處罰。\n規避、妨礙或拒絕中央主管機關依第八條第二項規定所為之取樣檢查（驗）者，處新臺幣十萬元以上五十萬元以下罰鍰。\n第二十六條　　製造或輸入業者，違反第九條各款規定者，處新臺幣五百萬元以上二千五百萬元以下罰鍰，並按次連續處罰。\n廣告業或傳播媒體業者違反第九條各款規定，製作菸品廣告或接受傳播或刊載者，處新臺幣二十萬元以上一百萬元以下罰鍰，並按次處罰。\n違反第九條各款規定，除前二項另有規定者外，處新臺幣十萬元以上五十萬元以下罰鍰，並按次連續處罰。\n第二十七條　　違反第十一條規定者，處新臺幣二千元以上一萬元以下罰鍰。', 1, 1, '菸害防治'),
@@ -103,21 +103,21 @@ INSERT INTO `news` (`id`, `title`, `content`, `sh`, `good`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `ques`
+-- 資料表結構 `quizzes`
 --
 
-CREATE TABLE `ques` (
-  `id` int(11) NOT NULL,
-  `text` text NOT NULL,
-  `subject` int(11) NOT NULL,
-  `vote` int(11) NOT NULL
+CREATE TABLE `quizzes` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT '題目/問卷/投票主題文字',
+  `subject_id` int(11) UNSIGNED NOT NULL COMMENT '所屬科目/分類表ID',
+  `vote` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '總得票數/選取次數'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 傾印資料表的資料 `ques`
+-- 傾印資料表的資料 `quizzes`
 --
 
-INSERT INTO `ques` (`id`, `text`, `subject`, `vote`) VALUES
+INSERT INTO `quizzes` (`id`, `title`, `subject_id`, `vote`) VALUES
 (1, '你最常做什麼運動來促進健康體能呢?', 0, 10),
 (2, '1.健走或爬樓梯、慢跑等較不受時間、場地限制的運動。', 1, 4),
 (3, '2.仰臥起坐、抬腿及伏地挺身、伸展操、瑜珈等室內運動。', 1, 2),
@@ -137,88 +137,94 @@ INSERT INTO `ques` (`id`, `text`, `subject`, `vote`) VALUES
 --
 
 CREATE TABLE `visits` (
-  `id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `number` int(11) NOT NULL
+  `id` int(11) UNSIGNED NOT NULL,
+  `date` date NOT NULL COMMENT '統計日期',
+  `view_count` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '該日瀏覽人次'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `visits`
 --
 
-INSERT INTO `visits` (`id`, `date`, `number`) VALUES
+INSERT INTO `visits` (`id`, `date`, `view_count`) VALUES
 (1, '2026-06-23', 2),
 (2, '2026-06-29', 1),
 (3, '2026-06-30', 1),
-(4, '2026-07-06', 1);
+(4, '2026-08-09', 1);
 
 --
 -- 已傾印資料表的索引
 --
 
 --
--- 資料表索引 `logs`
+-- 資料表索引 `likes`
 --
-ALTER TABLE `logs`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_username` (`username`),
+  ADD KEY `idx_news_id` (`news_id`);
 
 --
 -- 資料表索引 `members`
 --
 ALTER TABLE `members`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_account` (`account`);
 
 --
 -- 資料表索引 `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_type` (`type`);
 
 --
--- 資料表索引 `ques`
+-- 資料表索引 `quizzes`
 --
-ALTER TABLE `ques`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `quizzes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_subject_id` (`subject_id`);
 
 --
 -- 資料表索引 `visits`
 --
 ALTER TABLE `visits`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_date` (`date`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `logs`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `likes`
 --
-ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `likes`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `ques`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `quizzes`
 --
-ALTER TABLE `ques`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `quizzes`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

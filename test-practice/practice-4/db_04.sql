@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-09 22:03:12
+-- 產生時間： 2026-08-11 04:26:30
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` int(11) UNSIGNED NOT NULL,
-  `account` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `permissions` varchar(255) NOT NULL
+  `account` varchar(64) NOT NULL COMMENT '管理員登入帳號',
+  `password` varchar(255) NOT NULL COMMENT '加密後的密碼雜湊值',
+  `permissions` varchar(100) NOT NULL COMMENT '管理模組權限清單(如 1,2,3,4)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49,16 +49,16 @@ INSERT INTO `admins` (`id`, `account`, `password`, `permissions`) VALUES
 --
 
 CREATE TABLE `footers` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `text` text NOT NULL
+  `id` int(1) UNSIGNED NOT NULL,
+  `copyright` varchar(255) NOT NULL COMMENT '網頁底部版權宣告文字'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `footers`
 --
 
-INSERT INTO `footers` (`id`, `text`) VALUES
-(1, 'Copyright2026頁尾版權宣告');
+INSERT INTO `footers` (`id`, `copyright`) VALUES
+(1, 'Copyright 2026 頁尾版權宣告.');
 
 -- --------------------------------------------------------
 
@@ -68,23 +68,23 @@ INSERT INTO `footers` (`id`, `text`) VALUES
 
 CREATE TABLE `items` (
   `id` int(10) UNSIGNED NOT NULL,
-  `number` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` int(10) UNSIGNED NOT NULL,
-  `specification` varchar(255) NOT NULL,
-  `stock` int(10) UNSIGNED NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `introduction` text NOT NULL,
-  `big` int(10) UNSIGNED NOT NULL,
-  `middle` int(10) UNSIGNED NOT NULL,
-  `is_displayed` tinyint(1) NOT NULL
+  `item_no` varchar(32) NOT NULL COMMENT '商品編號(如040101)',
+  `title` varchar(100) NOT NULL COMMENT '商品名稱/標題',
+  `price` int(10) UNSIGNED NOT NULL COMMENT '商品單價',
+  `specification` varchar(255) NOT NULL COMMENT '商品規格/顏色/尺寸描述',
+  `stock` int(10) UNSIGNED NOT NULL COMMENT '現貨庫存數量',
+  `file_name` varchar(255) NOT NULL COMMENT '商品圖片檔案名稱',
+  `introduction` text NOT NULL COMMENT '商品詳細介紹說明',
+  `big_type_id` int(10) UNSIGNED NOT NULL COMMENT '所屬大分類ID',
+  `middle_type_id` int(10) UNSIGNED NOT NULL COMMENT '所屬中分類ID',
+  `is_displayed` tinyint(1) NOT NULL DEFAULT 1 COMMENT '上架狀態：0下架/隱藏，1上架/顯示'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `items`
 --
 
-INSERT INTO `items` (`id`, `number`, `name`, `price`, `specification`, `stock`, `image`, `introduction`, `big`, `middle`, `is_displayed`) VALUES
+INSERT INTO `items` (`id`, `item_no`, `title`, `price`, `specification`, `stock`, `file_name`, `introduction`, `big_type_id`, `middle_type_id`, `is_displayed`) VALUES
 (1, '602587', '手工訂製長夾', 1200, '全牛皮', 2, '0403.jpg', '手工製作長夾卡片層6*2 鈔票層 *2 零錢拉鍊層 *1 \r\n採用愛馬仕相同的雙針縫法,皮件堅固耐用不脫線 \r\n材質:直革鞣(馬鞍皮)牛皮製作  \r\n手工染色                                 ', 1, 5, 1),
 (2, '020705', '兩用式磁扣腰包', 685, '中型', 18, '0404.jpg', '材質:進口牛皮\r\n顏色:黑色荔枝紋+黑色珠光面皮(黑色縫線)\r\n尺寸:15cm*14cm(高)*6cm(前後)\r\n產地:臺灣', 1, 5, 1),
 (3, '020706', '超薄設計男士長款真皮', 800, 'L號', 61, '0405.jpg', '基本:編織皮革對摺長款零錢包\r\n特色:最潮流最時尚的單品 \r\n顏色:黑色珠光面皮(黑色縫線)\r\n形狀:黑白格編織皮革對摺', 1, 5, 1),
@@ -102,13 +102,13 @@ INSERT INTO `items` (`id`, `number`, `name`, `price`, `specification`, `stock`, 
 
 CREATE TABLE `members` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `account` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `telephone` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `name` varchar(50) NOT NULL COMMENT '會員真實姓名',
+  `account` varchar(64) NOT NULL COMMENT '會員登入帳號',
+  `password` varchar(255) NOT NULL COMMENT '加密後的密碼雜湊值',
+  `telephone` varchar(32) NOT NULL COMMENT '會員聯絡電話',
+  `address` varchar(255) NOT NULL COMMENT '會員通訊/送貨地址',
+  `email` varchar(100) NOT NULL COMMENT '會員電子郵件',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '帳號註冊時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -126,12 +126,12 @@ INSERT INTO `members` (`id`, `name`, `account`, `password`, `telephone`, `addres
 
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
-  `order_number` varchar(255) NOT NULL,
-  `price` int(11) UNSIGNED NOT NULL,
-  `quantity` int(11) UNSIGNED NOT NULL,
-  `member_id` int(11) UNSIGNED NOT NULL,
-  `item_id` int(11) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `order_number` varchar(32) NOT NULL COMMENT '唯一訂單編號',
+  `total_price` int(11) UNSIGNED NOT NULL COMMENT '訂單結帳總金額',
+  `quantity` int(11) UNSIGNED NOT NULL COMMENT '購買商品總數量',
+  `member_id` int(11) UNSIGNED NOT NULL COMMENT '關聯 members 表的 ID',
+  `item_id` int(11) UNSIGNED NOT NULL COMMENT '關聯 items 表的 ID',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '下單結帳時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -142,8 +142,8 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `types` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `parent_id` int(10) UNSIGNED NOT NULL
+  `name` varchar(100) NOT NULL COMMENT '商品分類名稱',
+  `parent_id` int(10) UNSIGNED NOT NULL COMMENT '父層分類ID (0代表最上層大分類)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -171,7 +171,8 @@ INSERT INTO `types` (`id`, `name`, `parent_id`) VALUES
 -- 資料表索引 `admins`
 --
 ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_account` (`account`);
 
 --
 -- 資料表索引 `footers`
@@ -183,25 +184,32 @@ ALTER TABLE `footers`
 -- 資料表索引 `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_big_type_displayed` (`big_type_id`,`is_displayed`),
+  ADD KEY `idx_middle_type_displayed` (`middle_type_id`,`is_displayed`);
 
 --
 -- 資料表索引 `members`
 --
 ALTER TABLE `members`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_account` (`account`);
 
 --
 -- 資料表索引 `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_order_number` (`order_number`),
+  ADD KEY `idx_member_id` (`member_id`),
+  ADD KEY `idx_item_id` (`item_id`);
 
 --
 -- 資料表索引 `types`
 --
 ALTER TABLE `types`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_parent_id` (`parent_id`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
@@ -212,12 +220,6 @@ ALTER TABLE `types`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `footers`
---
-ALTER TABLE `footers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `items`
