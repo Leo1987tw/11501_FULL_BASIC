@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$Total->save($_POST);
+$Counter->save($_POST);
 
 to("../admin.php?do=total");
 

@@ -7,7 +7,7 @@ foreach($_POST['id'] as $id){
         $News->del($id);
     }else {
         $news = $News->find($id);
-        $news['sh'] = (isset($_POST['show']) && in_array($id, $_POST['show'])) ? 1 : 0;
+        $news['status'] = (isset($_POST['status']) && in_array($id, $_POST['status'])) ? 1 : 0;
         $News->save($news);
     }
 }

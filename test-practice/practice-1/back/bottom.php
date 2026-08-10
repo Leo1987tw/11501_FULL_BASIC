@@ -15,7 +15,7 @@
                     <tr class="yel">
                         <td width="50%">頁尾版權資料：</td>
                         <td width="50%">
-                            <input type="text" name="bottom" value=<?= $Bottom->find(1)['bottom']?>>
+                            <input type="text" name="bottom" value=<?= $Copyright->find(1)['bottom']?>>
                             <input type="hidden" name="id" value="1">
                         </td>
                     </tr>

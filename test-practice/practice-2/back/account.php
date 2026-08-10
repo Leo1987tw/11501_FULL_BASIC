@@ -9,7 +9,7 @@
             </tr>
             <?php
 
-            $members = $Members->all();
+            $members = $Member->all();
             foreach($members as $member):
             
             ?>

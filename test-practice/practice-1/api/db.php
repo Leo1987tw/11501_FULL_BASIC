@@ -120,14 +120,24 @@ $Image = new DB('image');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
-$Total = new DB('total');
-$Bottom = new DB('bottom');
+$Counter = new DB('counter');
+$Copyright = new DB('copyright');
+
+// $Title = new DB('titles');
+// $Ad = new DB('ads');
+// $Mvim = new DB('mvims');
+// $Image = new DB('images');
+// $News = new DB('news');
+// $Admin = new DB('admins');
+// $Menu = new DB('menus');
+// $Counter = new DB('visits');
+// $Copyright = new DB('footers');
 
 if(!isset($_SESSION['visit'])){
     $_SESSION['visit'] = 1;
-    $visit = $Total->find(1);
+    $visit = $Counter->find(1);
     $visit['total'] += 1;
-    $Total->save($visit);
+    $Counter->save($visit);
 }
 
 ?>

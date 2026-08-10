@@ -1,13 +1,13 @@
 <fieldset>
     <legend>
-        目前位置：首頁 > 問卷調查 > <?= $Ques->find($_GET['id'])['text'];?>
+        目前位置：首頁 > 問卷調查 > <?= $Quiz->find($_GET['id'])['text'];?>
     </legend>
 
-    <h3><?= $Ques->find($_GET['id'])['text'];?></h3>
+    <h3><?= $Quiz->find($_GET['id'])['text'];?></h3>
 
     <form action="./api/api_vote.php" method="post">
         <?php
-        $rows = $Ques->all(['subject' => $_GET['id']]);
+        $rows = $Quiz->all(['subject' => $_GET['id']]);
         foreach($rows as $key => $value):
         ?>
         <p>

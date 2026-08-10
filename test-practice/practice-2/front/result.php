@@ -1,19 +1,19 @@
 <?php
 
-$ques = $Ques->find($_GET['id']);
+$quiz = $Quiz->find($_GET['id']);
 
 ?>
 
 <fieldset>
     <legend>
-        目前位置：首頁 > 問卷調查 > <?= $ques['text'];?>
+        目前位置：首頁 > 問卷調查 > <?= $quiz['text'];?>
     </legend>
 
-    <h3><?= $ques['text'];?></h3>
+    <h3><?= $quiz['text'];?></h3>
 
     <?php
-    $rows = $Ques->all(['subject' => $_GET['id']]);
-    $division = $ques['vote'] > 0 ? $ques['vote'] : 1;
+    $rows = $Quiz->all(['subject' => $_GET['id']]);
+    $division = $quiz['vote'] > 0 ? $quiz['vote'] : 1;
     foreach($rows as $key => $value):
         $rate = $value['vote'] / $division;
         $percent = round($rate * 100);

@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$check = $Members->count($_POST);
+$check = $Member->count($_POST);
 
 if($check){
     echo 1;

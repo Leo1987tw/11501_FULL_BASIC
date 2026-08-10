@@ -24,7 +24,7 @@ include_once "./api/db.php";
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?= date("m月 d號 l");?> | 今日瀏覽: <?= $Visits->find(['date' => date("Y-m-d")])['number'];?> | 累積瀏覽: <?= $Visits->q("SELECT SUM(`number`) FROM `visits`");?>
+			<?= date("m月 d號 l");?> | 今日瀏覽: <?= $Counter->find(['date' => date("Y-m-d")])['number'];?> | 累積瀏覽: <?= $Counter->q("SELECT SUM(`number`) FROM `visits`");?>
 			<a href="./index.php" style="float: right;">回首頁</a>
 		</div>
 		<div id="title2">

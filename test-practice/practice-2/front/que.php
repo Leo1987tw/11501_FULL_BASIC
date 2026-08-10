@@ -13,12 +13,12 @@
         </tr>
         <?php
 
-        $totalques = $Ques->count(['subject' => 0]);
+        $totalques = $Quiz->count(['subject' => 0]);
         $division = 4;
         $allpages = ceil($totalques/$division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
-        $rows = $Ques->all(['subject' => 0], " LIMIT $start, $division");
+        $rows = $Quiz->all(['subject' => 0], " LIMIT $start, $division");
         foreach($rows as $key => $value):
         ?>
         <tr>

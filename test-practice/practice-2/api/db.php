@@ -113,20 +113,26 @@ function to($url){
     header("location: $url");
 }
 
-$Members = new DB('members');
-$Visits = new DB('visits');
+// $Member = new DB('member');
+// $Counter = new DB('counter');
+// $News = new DB('news');
+// $Quiz = new DB('quiz');
+// $Log = new DB('log');
+
+$Member = new DB('members');
+$Counter = new DB('visits');
 $News = new DB('news');
-$Ques = new DB('ques');
-$Logs = new DB('logs');
+$Quiz = new DB('quizzes');
+$Log = new DB('likes');
 
 if(!isset($_SESSION['visit'])){
-    $today = $Visits->find(['date' => date("Y-m-d")]);
+    $today = $Counter->find(['date' => date("Y-m-d")]);
     if(!empty($today)){
         $today['number'] += 1;
-        $Visits->save($today);
+        $Counter->save($today);
         $_SESSION['visit'] = $today['number'];
     }else {
-        $Visits->save(['date' => date("Y-m-d"), 'number' => 1]);
+        $Counter->save(['date' => date("Y-m-d"), 'number' => 1]);
         $_SESSION['visit'] = 1;
     }
 }

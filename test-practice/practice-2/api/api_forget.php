@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$user = $Members->find(['email' => $_GET['email']]);
+$user = $Member->find(['email' => $_GET['email']]);
 
 if($_GET['email'] == 'admin@labor.gov.tw'){
     $user = [];

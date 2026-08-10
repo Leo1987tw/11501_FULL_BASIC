@@ -3,14 +3,14 @@
 include_once "./db.php";
 
 if(isset($_POST['name']) && $_POST['name'] != ""){
-    $Ques->save(['text' => $_POST['name'], 'subject' => 0, 'vote' => 0]);
-    $subject = $Ques->find(['text' => $_POST['name']])['id'];
+    $Quiz->save(['text' => $_POST['name'], 'subject' => 0, 'vote' => 0]);
+    $subject = $Quiz->find(['text' => $_POST['name']])['id'];
 }
 
 if(isset($_POST['option'])){
     foreach($_POST['option'] as $option){
         if($option != ""){
-            $Ques->save(['text' => $option, 'subject' => $subject, 'vote' => 0]);
+            $Quiz->save(['text' => $option, 'subject' => $subject, 'vote' => 0]);
         }
     }
 }

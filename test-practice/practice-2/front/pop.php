@@ -16,7 +16,7 @@
         $allpages = ceil($totalnews/$division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
-        $rows = $News->all(['sh' => 1], " ORDER BY `good` DESC LIMIT $start, $division");
+        $rows = $News->all(['status' => 1], " ORDER BY `good` DESC LIMIT $start, $division");
         foreach($rows as $row):
         ?>
         <tr>
@@ -34,7 +34,7 @@
 
                 if(!empty($_SESSION['login'])){
                     echo "<a href='javascript: good({$row['id']})'>";
-                    $check = $Logs->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
+                    $check = $Log->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
                     if($check){
                         echo "收回讚";
                     }else {

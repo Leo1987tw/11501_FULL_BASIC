@@ -30,7 +30,7 @@
 
                 if(!empty($_SESSION['login'])){
                     echo "<a href='javascript: good({$row['id']})'>";
-                    $check = $Logs->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
+                    $check = $Log->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
                     if($check){
                         echo "收回讚";
                     }else {

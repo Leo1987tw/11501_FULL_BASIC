@@ -135,7 +135,7 @@
 </div>
 
 <script>
-    $(".tag").on("click", function(){
+    $(".tag").on("click", function() {
         let index = $(this).index();
         $(".tag").removeClass("active");
         $(this).addClass("active");
