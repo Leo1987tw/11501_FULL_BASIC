@@ -29,8 +29,8 @@
 
         ?>
             <li class="sswww">
-                <?= mb_substr($row['text'], 0, 25); ?>
-                <span class="all" style="display: none;"><?= $row['text'];?></span>
+                <?= mb_substr($row['content'], 0, 25); ?>
+                <span class="all" style="display: none;"><?= $row['content'];?></span>
             </li>
         <?php endforeach; ?>
     </ol>

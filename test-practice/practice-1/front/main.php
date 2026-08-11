@@ -10,7 +10,7 @@
         var lin = new Array();
         <?php
 
-        $banners = $Banner->all(["sh" => 1]);
+        $banners = $Banner->all(["status" => 1]);
         foreach($banners as $banner){
             echo "lin.push('upload/{$banner['image']}');";
         }
@@ -43,7 +43,9 @@
                 <?php
 
                 if($Post->count(["status" => 1]) > 5){
+                    echo "<a href='?do=post' style='float: right;'>";
                     echo "More";
+                    echo "</a>";
                 }
                 ?>
             </a>

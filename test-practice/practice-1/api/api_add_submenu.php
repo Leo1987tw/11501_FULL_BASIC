@@ -20,7 +20,9 @@ if(isset($_POST['nameadd'])){
                 'name' => $value, 
                 'url' => $_POST['urladd'][$key], 
                 'status' => 1, 
-                'parent_id' => $_POST['parent_id']
+                'sort' => NULL, 
+                'parent_id' => $_POST['parent_id'], 
+                'deleted_at' => NULL
                 ]);
         }
     }

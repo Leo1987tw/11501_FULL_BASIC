@@ -139,7 +139,7 @@
                             if (x == 1 && nowpage - 1 >= 0) {
                                 nowpage--;
                             }
-                            if (x == 2 && (nowpage * 1 + 3) <= num * 1) {
+                            if (x == 2 && (nowpage * 1 + 3) < num * 1) {
                                 nowpage++;
                             }
                             $(".im").hide()

@@ -11,16 +11,19 @@ if(!empty($_FILES['image']['tmp_name'])){
 }
 
 switch($table){
-    case 'title':
-        $_POST['status'] = 0;
-        break;
     case 'admin':
         unset($_POST['passwordchecked']);
+        break;
+    case 'title':
+        $_POST['status'] = 0;
+        $_POST['deleted_at'] = NULL;
         break;
     case 'menu':
         $_POST['parent_id'] = 0;
     default:
         $_POST['status'] = 1;
+        $_POST['sort'] = NULL;
+        $_POST['deleted_at'] = NULL;
 }
 
 $Table->save($_POST);

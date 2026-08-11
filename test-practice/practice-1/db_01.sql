@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-11 10:23:07
+-- 產生時間： 2026-08-11 22:54:43
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -51,7 +51,7 @@ CREATE TABLE `ads` (
   `content` varchar(255) NOT NULL COMMENT '廣告文字內容',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
-  `deleted_at` datetime DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `banners` (
   `image` varchar(255) NOT NULL COMMENT '輪播圖檔案名稱',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
-  `deleted_at` datetime DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `images` (
   `image` varchar(255) NOT NULL COMMENT '圖片檔案名稱',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
-  `deleted_at` datetime DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -165,11 +165,11 @@ INSERT INTO `images` (`id`, `image`, `status`, `sort`, `deleted_at`) VALUES
 
 CREATE TABLE `menus` (
   `id` int(11) UNSIGNED NOT NULL,
-  `url` varchar(255) NOT NULL COMMENT '選單跳轉網址/連結',
   `name` varchar(100) NOT NULL COMMENT '選單顯示名稱',
+  `url` varchar(255) NOT NULL COMMENT '選單跳轉網址/連結',
+  `parent_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父層選單ID (0代表最上層主選單)',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
-  `parent_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父層選單ID (0代表最上層主選單)',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -177,10 +177,10 @@ CREATE TABLE `menus` (
 -- 傾印資料表的資料 `menus`
 --
 
-INSERT INTO `menus` (`id`, `url`, `name`, `status`, `sort`, `parent_id`, `deleted_at`) VALUES
-(1, 'index.php?do=admin', '登入管理', 1, NULL, 0, NULL),
-(2, 'index.php', '網站首頁', 1, NULL, 0, NULL),
-(3, 'index.php', '更多內容', 1, NULL, 2, NULL);
+INSERT INTO `menus` (`id`, `name`, `url`, `parent_id`, `status`, `sort`, `deleted_at`) VALUES
+(1, '登入管理', 'index.php?do=admin', 0, 1, NULL, NULL),
+(2, '網站首頁', 'index.php', 0, 1, NULL, NULL),
+(3, '更多內容', 'index.php', 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,7 +194,7 @@ CREATE TABLE `posts` (
   `content` text NOT NULL COMMENT '最新消息內文',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
-  `deleted_at` datetime DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -219,21 +219,21 @@ INSERT INTO `posts` (`id`, `title`, `content`, `status`, `sort`, `deleted_at`) V
 
 CREATE TABLE `titles` (
   `id` int(11) UNSIGNED NOT NULL,
-  `image` varchar(255) NOT NULL COMMENT '標題圖片檔案名稱',
   `title` varchar(255) NOT NULL COMMENT '網站標題文字',
+  `image` varchar(255) NOT NULL COMMENT '標題圖片檔案名稱',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '狀態：0隱藏，1顯示',
-  `deleted_at` datetime DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間 (NULL為未刪除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `titles`
 --
 
-INSERT INTO `titles` (`id`, `image`, `title`, `status`, `deleted_at`) VALUES
-(1, '01B01.jpg', '卓越科技大學校園資訊系統', 1, NULL),
-(2, '01B02.jpg', '卓越科技大學校園資訊系統', 0, NULL),
-(3, '01B03.jpg', '卓越科技大學校園資訊系統', 0, NULL),
-(4, '01B04.jpg', '卓越科技大學校園資訊系統', 0, NULL);
+INSERT INTO `titles` (`id`, `title`, `image`, `status`, `deleted_at`) VALUES
+(1, '卓越科技大學校園資訊系統', '01B01.jpg', 1, NULL),
+(2, '卓越科技大學校園資訊系統', '01B02.jpg', 0, NULL),
+(3, '卓越科技大學校園資訊系統', '01B03.jpg', 0, NULL),
+(4, '卓越科技大學校園資訊系統', '01B04.jpg', 0, NULL);
 
 --
 -- 已傾印資料表的索引
