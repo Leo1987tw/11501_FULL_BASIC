@@ -7,7 +7,7 @@
         <tr>
             <td class="tt">網站標題圖片：</td>
             <td>
-                <input type="file" name="src">
+                <input type="file" name="image">
             </td>
         </tr>
     </table>

@@ -21,12 +21,12 @@
                     $Table = ${ucfirst($do)};
                     $rows = $Table->all();
                     foreach($rows as $row):
-                        if($_SESSION['login'] == 1 && $_SESSION['account'] == "admin"):
+                        if($_SESSION['login'] == 1 && $_SESSION['username'] == "admin"):
                     
                     ?>
                     <tr>
                         <td>
-                            <input type="text" name="account[]" value="<?= $row['account'];?>">
+                            <input type="text" name="username[]" value="<?= $row['username'];?>">
                         </td>
                         <td>
                             <input type="password" name="password[]" value="<?= $row['password'];?>">
@@ -38,12 +38,12 @@
                     </tr>
                     <?php
                     
-                        elseif ($row['account'] != "admin"):
+                        elseif ($row['username'] != "admin"):
                     
                     ?>
                     <tr>
                         <td>
-                            <input type="text" name="account[]" value="<?= $row['account'];?>">
+                            <input type="text" name="username[]" value="<?= $row['username'];?>">
                         </td>
                         <td>
                             <input type="password" name="password[]" value="<?= $row['password'];?>">

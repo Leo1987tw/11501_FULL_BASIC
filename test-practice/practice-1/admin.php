@@ -30,9 +30,9 @@ if($_SESSION['login'] != 1){
 	</div>
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-		<?php $title=$Title->find(["sh" => 1]);?>
-		<a title="<?= $title['text'];?>" href="index.php?do=title">
-			<div class="ti" style="background:url(&#39;upload/<?= $title['src'];?>&#39;); background-size:cover;"></div>
+		<?php $title=$Title->find(["status" => 1]);?>
+		<a title="<?= $title['title'];?>" href="index.php?do=title">
+			<div class="ti" style="background:url(&#39;upload/<?= $title['image'];?>&#39;); background-size:cover;"></div>
 			<!--標題-->
 		</a>
 		<div id="ms">
@@ -48,7 +48,7 @@ if($_SESSION['login'] != 1){
 						<div class="mainmu">
 							動態文字廣告管理 </div>
 					</a>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=banner">
 						<div class="mainmu">
 							動畫圖片管理 </div>
 					</a>
@@ -56,15 +56,15 @@ if($_SESSION['login'] != 1){
 						<div class="mainmu">
 							校園映象資料管理 </div>
 					</a>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=counter">
 						<div class="mainmu">
 							進站總人數管理 </div>
 					</a>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=bottom">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=footer">
 						<div class="mainmu">
 							頁尾版權資料管理 </div>
 					</a>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=news">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=post">
 						<div class="mainmu">
 							最新消息資料管理 </div>
 					</a>
@@ -81,7 +81,7 @@ if($_SESSION['login'] != 1){
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						<?= $Total->find(1)['total']?> </span>
+						<?= $Counter->find(1)['count_value']?> </span>
 				</div>
 			</div>
 			<?php
@@ -116,7 +116,7 @@ if($_SESSION['login'] != 1){
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
 			<span class="t" style="line-height:123px;">
-				<?= $Bottom->find(1)['bottom'];?>
+				<?= $Footer->find(1)['copyright'];?>
 			</span>
 		</div>
 	</div>

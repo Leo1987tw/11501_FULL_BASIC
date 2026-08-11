@@ -7,13 +7,13 @@
         <tr>
             <td class="tt">主選單名稱</td>
             <td>
-                <input type="text" name="text">
+                <input type="text" name="name">
             </td>
         </tr>
         <tr>
             <td class="tt">選單連結網址</td>
             <td>
-                <input type="text" name="href">
+                <input type="text" name="url">
             </td>
         </tr>
     </table>

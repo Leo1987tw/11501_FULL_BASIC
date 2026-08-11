@@ -2,10 +2,10 @@
     
 <?php
 
-$ads = $Ad->all(["sh" => 1]);
+$ads = $Ad->all(["status" => 1]);
 foreach ($ads as $ad) {
     echo "&nbsp;&nbsp";
-    echo $ad['text'];
+    echo $ad['content'];
     echo "&nbsp;&nbsp";
 }
 

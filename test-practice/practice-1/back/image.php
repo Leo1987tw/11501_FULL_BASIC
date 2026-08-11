@@ -31,17 +31,17 @@
                     ?>
                     <tr>
                         <td class="cent">
-                            <img src="./upload/<?= $row['src'];?>" style="width: 100px; height: 68px;">
+                            <img src="./upload/<?= $row['image'];?>" style="width: 100px; height: 68px;">
                         </td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                            <input type="checkbox" name="status[]" value="<?= $row['id'];?>" <?= ($row['status'] == 1) ? 'checked' : '';?>>
                         </td>
                         <td>
                             <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
                         </td>
                         <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="更換圖片">
                             <input type="hidden" name="id[]" value="<?= $row['id'];?>">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="更換圖片">
                         </td>
                     </tr>
                     <?php endforeach;?>

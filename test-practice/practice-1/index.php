@@ -24,9 +24,9 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <?php $title = $Title->find(["sh" => 1]); ?>
-        <a title="<?= $title['text']; ?>" href="?do=title">
-            <div class="ti" style="background:url(&#39;upload/<?= $title['src']; ?>&#39;); background-size:cover;"></div>
+        <?php $title = $Title->find(["status" => 1]); ?>
+        <a title="<?= $title['title']; ?>" href="?do=title">
+            <div class="ti" style="background:url(&#39;upload/<?= $title['image']; ?>&#39;); background-size:cover;"></div>
         </a>
         <div id="ms">
             <div id="lf" style="float:left;">
@@ -35,25 +35,25 @@
                     <span class="t botli">主選單區</span>
                     <?php
 
-                    $mainMenus = $Menu->all(["sh" => 1, "parent" => 0]);
+                    $mainMenus = $Menu->all(["status" => 1, "parent_id" => 0]);
                     foreach ($mainMenus as $mainMenu):
 
                     ?>
                         <div class="mainmu cent">
-                            <a href="<?= $mainMenu['href']; ?>">
-                                <?= $mainMenu['text']; ?>
+                            <a href="<?= $mainMenu['url']; ?>">
+                                <?= $mainMenu['name']; ?>
                             </a>
                             <div class="mw" style="display: none; position: absolute; top: 25px; left: 120px; width: 220px; z-index: 99;">
                                 <?php
 
-                                if ($Menu->count(["parent" => $mainMenu['id']]) > 0) {
-                                    $subMenus = $Menu->all(["sh" => 1, "parent" => $mainMenu['id']]);
+                                if ($Menu->count(["parent_id" => $mainMenu['id']]) > 0) {
+                                    $subMenus = $Menu->all(["status" => 1, "parent_id" => $mainMenu['id']]);
                                     foreach ($subMenus as $subMenu):
 
                                 ?>
                                         <div class="mainmu2">
-                                            <a href="<?= $subMenu['href'] ?>">
-                                                <?= $subMenu['text']; ?>
+                                            <a href="<?= $subMenu['url'] ?>">
+                                                <?= $subMenu['name']; ?>
                                             </a>
                                         </div>
                                 <?php endforeach;
@@ -66,7 +66,7 @@
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
-                        <?= $Counter->find(1)['total'] ?> </span>
+                        <?= $Counter->find(1)['count_value'] ?> </span>
                 </div>
             </div>
             <?php
@@ -103,18 +103,18 @@
                 <!--右邊-->
                 <?php
 
-                if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
-                
+                if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
+
                 ?>
-                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;./admin.php&#39;)">回到後台</button>
+                    <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;./admin.php&#39;)">回到後台</button>
                 <?php
 
-                }else {
-                
+                } else {
+
                 ?>
-                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
+                    <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
                 <?php
-                
+
                 }
 
                 ?>
@@ -123,16 +123,16 @@
                     <div class="cent"><img src="./icon/up.jpg" onclick="pp(1)"></div>
                     <?php
 
-                    $images = $Image->all(["sh" => 1]);
-                    foreach ($images as $key => $image):
+                    $images = $Image->all(["status" => 1]);
+                    foreach ($images as $key => $value):
 
                     ?>
-                        <div class="im cent" id="ssaa<?= $key; ?>" style="margin: 10px;"><img src="./upload/<?= $image['src']; ?>" alt="" style="width: 150px; height: 103px; bolder: 3px solid orange"></div>
+                        <div class="im cent" id="ssaa<?= $key; ?>" style="margin: 10px;"><img src="./upload/<?= $value['image']; ?>" alt="" style="width: 150px; height: 103px; bolder: 3px solid orange"></div>
                     <?php endforeach; ?>
                     <div class="cent"><img src="./icon/dn.jpg" onclick="pp(2)"></div>
                     <script>
                         var nowpage = 0,
-                            num = <?= $Image->count(["sh" => 1]); ?>;
+                            num = <?= $Image->count(["status" => 1]); ?>;
 
                         function pp(x) {
                             var s, t;
@@ -156,7 +156,7 @@
         <div style="clear:both;"></div>
         <div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;">
-                <?= $Bottom->find(1)['bottom'];?>
+                <?= $Footer->find(1)['copyright']; ?>
             </span>
         </div>
     </div>

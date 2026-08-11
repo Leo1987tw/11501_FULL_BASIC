@@ -7,7 +7,7 @@
         <tr>
             <td class="tt">校園映像資料：</td>
             <td>
-                <input type="file" name="src">
+                <input type="file" name="image">
             </td>
         </tr>
     </table>

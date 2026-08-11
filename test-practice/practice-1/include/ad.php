@@ -7,7 +7,7 @@
         <tr>
             <td class="tt">動態文字廣告：</td>
             <td>
-                <input type="text" name="text">
+                <input type="text" name="content">
             </td>
         </tr>
     </table>

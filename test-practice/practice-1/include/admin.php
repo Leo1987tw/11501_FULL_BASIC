@@ -7,7 +7,7 @@
         <tr>
             <td class="tt">帳號</td>
             <td>
-                <input type="text" name="account">
+                <input type="text" name="username">
             </td>
         </tr>
         <tr>

@@ -12,26 +12,26 @@ foreach($_POST['id'] as $key => $value){
         $row = $Table->find($value);
         switch($table){
             case 'title':
-                $row['text'] = $_POST['text'][$key];
-                $row['sh'] = (isset($_POST['sh']) && $_POST['sh'] == $value) ? '1' : '0';
+                $row['title'] = $_POST['title'][$key];
+                $row['status'] = (isset($_POST['status']) && $_POST['status'] == $value) ? '1' : '0';
                 break;
             case 'ad':
-            case 'news':
-                $row['text'] = $_POST['text'][$key];
-                $row['sh'] = (isset($_POST['sh']) && in_array($value, $_POST['sh'])) ? '1' : '0';
+            case 'post':
+                $row['content'] = $_POST['content'][$key];
+                $row['status'] = (isset($_POST['status']) && in_array($value, $_POST['status'])) ? '1' : '0';
                 break;
-            case 'mvim':
+            case 'banner':
             case 'image':
-                $row['sh'] = (isset($_POST['sh']) && in_array($value, $_POST['sh'])) ? '1' : '0';
+                $row['status'] = (isset($_POST['status']) && in_array($value, $_POST['status'])) ? '1' : '0';
                 break;
             case 'admin':
-                $row['account'] = $_POST['account'][$key];
+                $row['username'] = $_POST['username'][$key];
                 $row['password'] = $_POST['password'][$key];
                 break;
             case 'menu':
-                $row['href'] = $_POST['href'][$key];
-                $row['text'] = $_POST['text'][$key];
-                $row['sh'] = (isset($_POST['sh']) && in_array($value, $_POST['sh'])) ? '1' : '0';
+                $row['url'] = $_POST['url'][$key];
+                $row['name'] = $_POST['name'][$key];
+                $row['status'] = (isset($_POST['status']) && in_array($value, $_POST['status'])) ? '1' : '0';
                 break;
         }
 

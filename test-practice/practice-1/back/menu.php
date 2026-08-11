@@ -22,28 +22,28 @@
                     </tr>
                     <?php
                     $Table = ${ucfirst($do)};
-                    $rows = $Table->all(['parent' => 0]);
+                    $rows = $Table->all(['parent_id' => 0]);
                     foreach($rows as $row):
                     ?>
                     <tr>
                         <td>
-                            <input type="text" name="text[]" value="<?= $row['text'];?>">
+                            <input type="text" name="name[]" value="<?= $row['name'];?>">
                         </td>
                         <td>
-                            <input type="text" name="href[]" value="<?= $row['href'];?>">
+                            <input type="text" name="url[]" value="<?= $row['url'];?>">
                         </td>
                         <td>
-                            <?= $Menu->count(['parent' => $row['id']]);?>
+                            <?= $Menu->count(['parent_id' => $row['id']]);?>
                         </td>
                         <td>
-                            <input type="checkbox" name='sh[]' value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                            <input type="checkbox" name='status[]' value="<?= $row['id'];?>" <?= ($row['status'] == 1) ? 'checked' : '';?>>
                         </td>
                         <td>
                             <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
                         </td>
                         <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/submenu.php?id=<?= $row['id']?>&#39;)" value="編輯次選單">
                             <input type="hidden" name="id[]" value="<?= $row['id'];?>">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/submenu.php?id=<?= $row['id']?>&#39;)" value="編輯次選單">
                         </td>
                     </tr>
                     <?php endforeach;?>

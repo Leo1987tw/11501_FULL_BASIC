@@ -113,25 +113,25 @@ function to($url){
     header("location: $url");
 }
 
-$Title = new DB('title');
-$Ad = new DB('ad');
-$Mvim = new DB('mvim');
-$Image = new DB('image');
-$News = new DB('news');
-$Admin = new DB('admin');
-$Menu = new DB('menu');
-$Counter = new DB('counter');
-$Copyright = new DB('copyright');
+// $Admin = new DB('admin');
+// $Ad = new DB('ad');
+// $Banner = new DB('banner');
+// $Footer = new DB('footer');
+// $Image = new DB('image');
+// $Menu = new DB('menu');
+// $Post = new DB('post');
+// $Counter = new DB('counter');
+// $Title = new DB('title');
 
-// $Title = new DB('titles');
-// $Ad = new DB('ads');
-// $Mvim = new DB('mvims');
-// $Image = new DB('images');
-// $News = new DB('news');
-// $Admin = new DB('admins');
-// $Menu = new DB('menus');
-// $Counter = new DB('visits');
-// $Copyright = new DB('footers');
+$Admin = new DB('admins');
+$Ad = new DB('ads');
+$Banner = new DB('banners');
+$Footer = new DB('footer_settings');
+$Image = new DB('images');
+$Menu = new DB('menus');
+$Post = new DB('posts');
+$Counter = new DB('counters');
+$Title = new DB('titles');
 
 if(!isset($_SESSION['visit'])){
     $_SESSION['visit'] = 1;

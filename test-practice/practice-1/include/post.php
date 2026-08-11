@@ -2,12 +2,12 @@
 
 <br>
 
-<form action="./api/api_add.php?table=news" method="POST" enctype="multipart/form-data">
+<form action="./api/api_add.php?table=post" method="POST" enctype="multipart/form-data">
     <table class="all" style="width: 70%; margin: auto;">
         <tr>
             <td class="tt">新增最新消息資料：</td>
             <td>
-                <textarea name="text" id=""></textarea>
+                <textarea name="content" id="content"></textarea>
             </td>
         </tr>
     </table>

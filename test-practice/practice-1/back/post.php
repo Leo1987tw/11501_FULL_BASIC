@@ -8,44 +8,69 @@
     
     ?>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">動畫圖片管理</p>
+        <p class="t cent botli">最新消息資料管理</p>
         <form method="post" action="./api/api_edit.php?table=<?= $do?>">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="50%">動畫圖片</td>
+                        <td width="80%">最新消息資料內容</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                         <td></td>
                     </tr>
                     <?php
                     $Table = ${ucfirst($do)};
-                    $rows = $Table->all();
+                    $all = $Table->count();
+                    $division = 3;
+                    $pages = ceil($all/ $division);
+                    $nowpage = $_GET['page'] ?? 1;
+                    $start = ($nowpage - 1) * $division;
+
+                    $rows = $Table->all(" LIMIT $start, $division");
                     foreach($rows as $row):
                     ?>
                     <tr>
-                        <td class="cent">
-                            <img src="./upload/<?= $row['src'];?>" style="width: 150px; height: 150px;">
+                        <td width="23%">
+                            <textarea name="content[]" style="width: 600px; height: 100px;"><?= $row['content'];?></textarea>
                         </td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?= $row['id'];?>" <?= ($row['sh'] == 1) ? 'checked' : '';?>>
+                            <input type="checkbox" name='status[]' value="<?= $row['id'];?>" <?= ($row['status'] == 1) ? 'checked' : '';?>>
                         </td>
                         <td>
-                            <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
-                        </td>
-                        <td>
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/update_<?= $do;?>.php?id=<?= $row['id'];?>&#39;)" value="更換動畫">
                             <input type="hidden" name="id[]" value="<?= $row['id'];?>">
+                            <input type="checkbox" name="delete[]" value="<?= $row['id'];?>">
                         </td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>
             </table>
+
+            <div class="cent">
+                <?php
+
+                if($nowpage - 1 > 0){
+                    $prev = $nowpage - 1;
+                    echo "<a href='?do=$do&page=$prev'> < </a>";
+                }
+
+                for($i = 1; $i<= $pages; $i++){
+                    $size = ($i == $nowpage) ? '20px' : '16px';
+                    echo "<a href='?do=$do&page=$i' style='font-size: $size'>$i</a>";
+                }
+
+                if($nowpage + 1 <= $pages){
+                    $next = $nowpage + 1;
+                    echo "<a href='?do=$do&page=$next'> > </a>";
+                }
+
+                ?>
+            </div>
+
             <table style="margin-top:40px; width:70%;">
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/<?= $do;?>.php&#39;)" value="新增動畫圖片">
+                            <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;include/<?= $do;?>.php&#39;)" value="新增最新消息資料">
                         </td>
                         <td class="cent">
                             <input type="submit" value="修改確定">

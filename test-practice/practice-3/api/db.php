@@ -114,12 +114,12 @@ function to($url){
     header("location: " . $url);
 }
 
-// $Poster = new DB("poster");
 // $Movie = new DB("movie");
 // $Order = new DB("order");
+// $Poster = new DB("poster");
 
-$Poster = new DB("posters");
 $Movie = new DB("movies");
 $Order = new DB("orders");
+$Poster = new DB("posters");
 
 ?>

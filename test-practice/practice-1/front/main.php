@@ -10,9 +10,9 @@
         var lin = new Array();
         <?php
 
-        $mvims = $Mvim->all(["sh" => 1]);
-        foreach($mvims as $mvim){
-            echo "lin.push('upload/{$mvim['src']}');";
+        $banners = $Banner->all(["sh" => 1]);
+        foreach($banners as $banner){
+            echo "lin.push('upload/{$banner['image']}');";
         }
         
         ?>
@@ -42,7 +42,7 @@
             <a href="?do=news" style="float: right;">
                 <?php
 
-                if($News->count(["sh" => 1]) > 5){
+                if($Post->count(["status" => 1]) > 5){
                     echo "More";
                 }
                 ?>
@@ -51,13 +51,13 @@
         <ul class="ssaa" style="list-style-type:decimal;">
             <?php
 
-            $news = $News->all(["sh" => 1], " LIMIT 5");
-            foreach($news as $n):
+            $posts = $Post->all(["status" => 1], " LIMIT 5");
+            foreach($posts as $post):
             
             ?>
             <li>
-                <?= mb_substr($n["text"], 0, 25);?>
-                <div class="all" style="display: none"><?= $n['text'];?></div>
+                <?= mb_substr($post["content"], 0, 25);?>
+                <div class="all" style="display: none"><?= $post['content'];?></div>
             </li>
             <?php endforeach;?>
         </ul>

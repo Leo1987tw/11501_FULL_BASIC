@@ -17,21 +17,21 @@ include_once "../api/db.php";
         </tr>
         <?php
         
-        if($Menu->count(['parent' => $_GET['id']]) > 0):
-            $rows = $Menu->all(['parent' => $_GET['id']]);
+        if($Menu->count(['parent_id' => $_GET['id']]) > 0):
+            $rows = $Menu->all(['parent_id' => $_GET['id']]);
             foreach($rows as $row):
         
         ?>
         <tr>
             <td>
-                <input type="text" name="text[]" value="<?= $row['text']?>">
+                <input type="text" name="name[]" value="<?= $row['name']?>">
             </td>
             <td>
-                <input type="text" name="href[]" value="<?= $row['href']?>">
+                <input type="text" name="url[]" value="<?= $row['url']?>">
             </td>
             <td>
-                <input type="checkbox" name="delete[]" value="<?= $row['id']?>">
                 <input type="hidden" name="id[]" value="<?= $row['id']?>">
+                <input type="checkbox" name="delete[]" value="<?= $row['id']?>">
             </td>
         </tr>
         <?php
@@ -42,7 +42,7 @@ include_once "../api/db.php";
         ?>
     </table>
     <div class="cent">
-        <input type="hidden" name="parent" value="<?= $_GET['id']?>">
+        <input type="hidden" name="parent_id" value="<?= $_GET['id']?>">
         <input type="submit" value="修改確定">
         <input type="reset" value="重置">
         <input type="button" value="更多次選單" onclick="more()">

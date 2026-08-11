@@ -7,20 +7,20 @@ foreach($_POST['id'] as $key => $value){
         $Menu->del($value);
     }else {
         $row = $Menu->find($value);
-        $row['text'] = $_POST['text'][$key];
-        $row['href'] = $_POST['href'][$key];
+        $row['name'] = $_POST['name'][$key];
+        $row['url'] = $_POST['url'][$key];
         $Menu->save($row);
     }
 }
 
-if(isset($_POST['textadd'])){
-    foreach($_POST['textadd'] as $key => $value){
+if(isset($_POST['nameadd'])){
+    foreach($_POST['nameadd'] as $key => $value){
         if(!empty($value)){
             $Menu->save([
-                'text' => $value, 
-                'href' => $_POST['hrefadd'][$key], 
-                'sh' => 1, 
-                'parent' => $_POST['parent']
+                'name' => $value, 
+                'url' => $_POST['urladd'][$key], 
+                'status' => 1, 
+                'parent_id' => $_POST['parent_id']
                 ]);
         }
     }

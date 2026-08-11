@@ -31,7 +31,7 @@
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						<?= $Counter->find(1)['total'] ?> </span>
+						<?= $Counter->find(1)['count_value'] ?> </span>
 				</div>
 			</div>
 			<?php include "./front/news.php"; ?>

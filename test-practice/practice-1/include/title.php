@@ -7,13 +7,13 @@
         <tr>
             <td class="tt">網站標題圖片：</td>
             <td>
-                <input type="file" name="src">
+                <input type="file" name="image">
             </td>
         </tr>
         <tr>
             <td class="tt">替代文字：</td>
             <td>
-                <input type="text" name="text">
+                <input type="text" name="title">
             </td>
         </tr>
     </table>
