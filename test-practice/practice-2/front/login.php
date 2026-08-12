@@ -5,7 +5,7 @@
             <tr>
                 <td>帳號</td>
                 <td>
-                    <input type="text" id="account" name="account">
+                    <input type="text" id="username" name="username">
                 </td>
             </tr>
             <tr>
@@ -17,7 +17,7 @@
             <tr>
                 <td>
                     <button type="button" onclick="login()">登入</button>
-                    <button type="button" onclick="$('#account, #password').val('')">清除</button>
+                    <button type="button" onclick="$('#username, #password').val('')">清除</button>
                 </td>
                 <td>
                     <a href="?do=forget">忘記密碼</a>
@@ -31,27 +31,27 @@
 <script>
     function login(){
         let user = {
-            'account': $("#account").val(), 
+            'username': $("#username").val(), 
             'password': $("#password").val()
         }
 
-        $.get("./api/api_check_account.php", user, (response1) => {
+        $.get("./api/api_check_username.php", user, (response1) => {
             if(parseInt(response1) > 0){
                 $.post("./api/api_check_password.php", user, (response2) => {
                     if(parseInt(response2) > 0){
-                        if(user.account == 'admin'){
+                        if(user.username == 'admin'){
                             location.href = "./admin.php";
                         }else {
                             location.href = "./index.php";
                         }
                     }else {
                         alert("密碼錯誤");
-                        $('#account, #password').val('');
+                        $('#username, #password').val('');
                     }
                 })
             }else {
                 alert("查無帳號");
-                $('#account, #password').val('');
+                $('#username, #password').val('');
             }
         })
     }

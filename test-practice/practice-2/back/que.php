@@ -1,10 +1,10 @@
 <fieldset>
     <legend>新增問卷</legend>
-    <form action="./api/api_add_que.php" method="post">
+    <form action="./api/api_add_survey.php" method="post">
         <table style="width: 80%; margin: auto;">
             <tr>
                 <td>問卷名稱</td>
-                <td><input type="text" name="name" id="name"></td>
+                <td><input type="text" name="title" id="title"></td>
             </tr>
             <tr>
                 <td colspan="2">

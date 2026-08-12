@@ -11,12 +11,12 @@
         </tr>
         <?php
 
-        $totalnews = $News->count(['sh' => 1]);
+        $allPosts = $Post->count(['status' => 1]);
         $division = 4;
-        $allpages = ceil($totalnews/$division);
-        $nowpage = $_GET['p'] ?? 1;
+        $allpages = ceil($allPosts/$division);
+        $nowpage = $_GET['page'] ?? 1;
         $start = ($nowpage - 1) * $division;
-        $rows = $News->all(['sh' => 1], " LIMIT $start, $division");
+        $rows = $Post->all(['status' => 1], " LIMIT $start, $division");
         foreach($rows as $row):
         ?>
         <tr>
@@ -30,7 +30,7 @@
 
                 if(!empty($_SESSION['login'])){
                     echo "<a href='javascript: good({$row['id']})'>";
-                    $check = $Log->count(['user' => $_SESSION['login'], 'news' => $row['id']]);
+                    $check = $Log->count(['user_id' => $_SESSION['login'], 'post_id' => $row['id']]);
                     if($check){
                         echo "收回讚";
                     }else {
@@ -50,17 +50,17 @@
 
     if($nowpage > 1){
         $prepage = $nowpage - 1;
-        echo "<a href='?do=news&p=$prepage'> < </a>";
+        echo "<a href='?do=news&page=$prepage'> < </a>";
     }
 
     for($i = 1; $i <= $allpages; $i++){
         $size = ($nowpage == $i) ? '24px' : '18px';
-        echo "<a href='?do=news&p=$i' style='font-size: $size'> $i </a>";
+        echo "<a href='?do=news&page=$i' style='font-size: $size'> $i </a>";
     }
 
     if($nowpage < $allpages){
         $nextpage = $nowpage + 1;
-        echo "<a href='?do=news&p=$nextpage'> > </a>";
+        echo "<a href='?do=news&page=$nextpage'> > </a>";
     }
 
     ?>

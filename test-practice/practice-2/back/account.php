@@ -1,6 +1,6 @@
 <fieldset style="width: 80%; margin: auto;">
     <legend>帳號管理</legend>
-    <form action="./api/api_edit_account.php" method="post">
+    <form action="./api/api_edit_user.php" method="post">
         <table class="ct" style="width: 80%; margin: auto;">
             <tr class="clo">
                 <td style="width: 60%;">帳號</td>
@@ -9,15 +9,15 @@
             </tr>
             <?php
 
-            $members = $Member->all();
-            foreach($members as $member):
+            $users = $User->all();
+            foreach($users as $user):
             
             ?>
             <tr>
-                <td><?= $member['account'];?></td>
-                <td><?= str_repeat("*", strlen($member['password']))?></td>
+                <td><?= $user['username'];?></td>
+                <td><?= str_repeat("*", strlen($user['password']))?></td>
                 <td>
-                    <input type="checkbox" name="delete[]" value="<?= $member['id'];?>">
+                    <input type="checkbox" name="delete[]" value="<?= $user['id'];?>">
                 </td>
             </tr>
             <?php endforeach;?>
@@ -33,7 +33,7 @@
             <tr>
                 <td class="clo">登入帳號</td>
                 <td>
-                    <input type="text" id="account" name="account">
+                    <input type="text" id="username" name="username">
                 </td>
             </tr>
             <tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td>
                     <button type="button" onclick=register()>新增</button>
-                    <button type="button" onclick="$('#account, #password, #password2, #email').val('')">清除</button>
+                    <button type="button" onclick="$('#username, #password, #password2, #email').val('')">清除</button>
                 </td>
             </tr>
         </table>
@@ -67,18 +67,18 @@
 <script>
     function register(){
         let user = {
-            'account': $("#account").val(), 
+            'username': $("#username").val(), 
             'password': $("#password").val(), 
             'password2': $("#password").val(),
             'email': $("#email").val()
         }
 
-        if(user.account == '' || user.password == '' || user.password2 == '' || user.email == ''){
+        if(user.username == '' || user.password == '' || user.password2 == '' || user.email == ''){
             alert("不可空白");
         }else if(user.password != user.password2){
             alert("密碼錯誤");
         }else {
-            $.get("./api/api_check_account.php", user, (response) => {
+            $.get("./api/api_check_username.php", user, (response) => {
                 console.log(response);
                 if(parseInt(response) > 0){
                     alert("帳號重複");

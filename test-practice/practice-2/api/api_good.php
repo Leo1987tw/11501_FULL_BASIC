@@ -2,22 +2,22 @@
 
 include_once "db.php";
 
-$_POST['id'];
+// $_POST['id'];
 
-$_SESSION['login'];
+// $_SESSION['login'];
 
-$check = $Log->count(['user' => $_SESSION['user'], 'news' => $_POST['id']]);
-$post = $News->find($_POST['id']);
+$check = $Log->count(['user_id' => $_SESSION['login'], 'post_id' => $_POST['id']]);
+$post = $Post->find($_POST['id']);
 
 if($check){
-    $Log->del(['user' => $_SESSION['login'], 'news' => $_POST['id']]);
-    $post['good'] -= 1;
+    $Log->del(['user_id' => $_SESSION['login'], 'post_id' => $_POST['id']]);
+    $post['likes'] -= 1;
     
 }else {
-    $Log->save(['user' => $_SESSION['login'], 'news' => $_POST['id']]);
-    $post['good'] += 1;
+    $Log->save(['user_id' => $_SESSION['login'], 'post_id' => $_POST['id']]);
+    $post['likes'] += 1;
 }
 
-$News->save($post);
+$Post->save($post);
 
 ?>

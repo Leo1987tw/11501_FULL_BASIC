@@ -1,4 +1,4 @@
-<form action="./api/api_edit_news.php" method="post">
+<form action="./api/api_edit_post.php" method="post">
     <table style="width: 80%; margin: auto;">
         <tr class="ct">
             <td style="width: 10%;">編號</td>
@@ -8,12 +8,12 @@
         </tr>
         <?php
 
-        $allnews = $News->count();
+        $allposts = $Post->count();
         $division = 3;
-        $allpages = ceil($allnews / $division);
+        $allpages = ceil($allposts / $division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
-        $rows = $News->all(" LIMIT $start, $division");
+        $rows = $Post->all(" LIMIT $start, $division");
         foreach($rows as $key => $value):
     
         ?>
@@ -22,7 +22,7 @@
             <td><?= $start + 1 + $key;?></td>
             <td><?= $value['title'];?></td>
             <td>
-                <input type="checkbox" name="show[]" value="<?= $value['id'];?>" <?= $value['sh'] == 1 ? 'checked' : '';?>>
+                <input type="checkbox" name="status[]" value="<?= $value['id'];?>" <?= $value['status'] == 1 ? 'checked' : '';?>>
             </td>
             <td>
                 <input type="checkbox" name="delete[]" value="<?= $value['id'];?>">

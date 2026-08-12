@@ -2,14 +2,14 @@
 
 include_once "./db.php";
 
-$option = $Quiz->find($_POST['vote']);
+$option = $Survey->find($_POST['vote']);
 $option['vote'] += 1;
 
-$subject = $Quiz->find($option['subject']);
+$subject = $Survey->find($option['parent_id']);
 $subject['vote'] += 1;
 
-$Quiz->save($option);
-$Quiz->save($subject);
+$Survey->save($option);
+$Survey->save($subject);
 
 to("../index.php?do=result&id={$subject['id']}");
 

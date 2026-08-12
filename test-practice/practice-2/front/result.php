@@ -1,19 +1,19 @@
 <?php
 
-$quiz = $Quiz->find($_GET['id']);
+$survey = $Survey->find($_GET['id']);
 
 ?>
 
 <fieldset>
     <legend>
-        目前位置：首頁 > 問卷調查 > <?= $quiz['text'];?>
+        目前位置：首頁 > 問卷調查 > <?= $survey['title'];?>
     </legend>
 
-    <h3><?= $quiz['text'];?></h3>
+    <h3><?= $survey['title'];?></h3>
 
     <?php
-    $rows = $Quiz->all(['subject' => $_GET['id']]);
-    $division = $quiz['vote'] > 0 ? $quiz['vote'] : 1;
+    $rows = $Survey->all(['parent_id' => $_GET['id']]);
+    $division = $survey['vote'] > 0 ? $survey['vote'] : 1;
     foreach($rows as $key => $value):
         $rate = $value['vote'] / $division;
         $percent = round($rate * 100);
@@ -21,7 +21,7 @@ $quiz = $Quiz->find($_GET['id']);
     ?>
     <div style="display: flex; align-items: center;">
         <p style="width: 40%;">
-            <?= $value['text'];?>
+            <?= $value['title'];?>
         </p>
         <div style="display: flex; width: 60%;">
             <div style="width: <?= $rate * 100;?>%;height: 30px; background-color: gray;"></div>

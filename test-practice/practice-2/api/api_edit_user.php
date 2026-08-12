@@ -4,7 +4,7 @@ include_once "./db.php";
 
 if(isset($_POST['delete'])){
     foreach($_POST['delete'] as $id){
-        $Member->del($id);
+        $User->del($id);
     }
 }
 

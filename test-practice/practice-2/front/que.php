@@ -13,17 +13,17 @@
         </tr>
         <?php
 
-        $totalques = $Quiz->count(['subject' => 0]);
+        $totalques = $Survey->count(['parent_id' => 0]);
         $division = 4;
         $allpages = ceil($totalques/$division);
         $nowpage = $_GET['p'] ?? 1;
         $start = ($nowpage - 1) * $division;
-        $rows = $Quiz->all(['subject' => 0], " LIMIT $start, $division");
+        $rows = $Survey->all(['parent_id' => 0], " LIMIT $start, $division");
         foreach($rows as $key => $value):
         ?>
         <tr>
             <td class="post-title"><?= $key + 1;?></td>
-            <td class="post-title"><?= $value['text'];?></td>
+            <td class="post-title"><?= $value['title'];?></td>
             <td class="post-title"><?= $value['vote'];?></td>
             <td>
                 <a href="?do=result&id=<?= $value['id'];?>">結果</a>
