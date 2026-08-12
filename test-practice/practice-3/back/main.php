@@ -1,8 +1,8 @@
 <?php
 
-if(isset($_POST['account']) && $_POST['account'] == "admin" && isset($_POST['password']) && $_POST['password'] == "1234"){
+if(isset($_POST['username']) && $_POST['username'] == "admin" && isset($_POST['password']) && $_POST['password'] == "1234"){
   $_SESSION['login'] = "admin";
-}elseif((isset($_POST['account']) && $_POST['account'] !== "admin") || (isset($_POST['password']) && $_POST['password'] !== "1234")) {
+}elseif((isset($_POST['username']) && $_POST['username'] !== "admin") || (isset($_POST['password']) && $_POST['password'] !== "1234")) {
   echo "<p class='ct'>帳號或密碼錯誤</p>";
 }
 
@@ -42,7 +42,7 @@ else:
     <tr>
       <td>
         帳號：
-        <input type="text" id="account" name="account">
+        <input type="text" id="username" name="username">
       </td>
     </tr>
     <tr>

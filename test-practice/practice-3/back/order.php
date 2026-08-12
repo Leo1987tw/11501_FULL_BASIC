@@ -9,10 +9,10 @@
         
         $movies = $Order->q("SELECT `movie_id` FROM `orders` GROUP BY `movie_id`");
         foreach($movies as $key => $value){
-            $movie_id = $value['movie_id'];
-            $movie_name = $Movie->find($movie_id)['name'];
+            $movieID = $value['movie_id'];
+            $movieTitle = $Movie->find($movieID)['title'];
             echo "<option value='{$value['movie_id']}'>";
-            echo $movie_name;
+            echo $movieTitle;
             echo "</option>";
         }
         
@@ -34,11 +34,12 @@
 
 $rows = $Order->all(" ORDER BY `order_number` DESC");
 foreach($rows as $key => $value):
+    $movie = $Movie->find($value['movie_id']);
 
 ?>
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div><?= $value['order_number'];?></div>
-    <div><?= $value['movie_id'];?></div>
+    <div><?= $movie['title'];?></div>
     <div><?= $value['on_date'];?></div>
     <div><?= $value['session'];?></div>
     <div><?= $value['quantity'];?></div>
@@ -74,20 +75,27 @@ endforeach;
     function qDel(){
         let type = $("input[type='radio']:checked").attr('id');
         let value;
+        let check;
         switch(type){
             case "date":
                 value = $(`input[name='${type}']`).val();
+                date = $(`input[name="${type}"]`).val();
+                check = confirm(`你確定要刪除${date}全部訂單資料嗎?`);
+                type = "on_date";
                 break;
             case "movie":
                 value = $(`select[name='${type}']`).val();
-                break
+                title = $(`select[name="${type}"] option:selected`).text();
+                check = confirm(`你確定要刪除${title}全部訂單資料嗎?`);
+                type = "movie_id";
+                break;
         }
         console.log(value);
         if(!value || value.trim() === ""){
             alert("你沒有選想刪除的內容");
             return;
         }
-        let check = confirm(`你確定要刪除${value}全部訂單資料嗎?`);
+        
         if(check){
             $.post("./api/api_qdelete.php", {type, value}, () => {
                 location.reload();

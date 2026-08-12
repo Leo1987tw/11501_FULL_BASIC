@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-11 22:54:13
+-- 產生時間： 2026-08-12 08:20:54
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -147,7 +147,7 @@ CREATE TABLE `product` (
   `stock` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '庫存數量',
   `image_path` varchar(255) NOT NULL COMMENT '商品圖片名稱',
   `introduction` text NOT NULL COMMENT '商品介紹',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0下架，1上架',
   `sort` int(11) DEFAULT NULL COMMENT '排序'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

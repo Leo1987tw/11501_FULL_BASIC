@@ -8,7 +8,7 @@
                 <table>
                     <tr>
                         <td>片名:</td>
-                        <td><input type="text" name="name" id="namegrade"></td>
+                        <td><input type="text" name="title" id="title"></td>
                     </tr>
                     <tr>
                         <td>分級:</td>

@@ -7,10 +7,10 @@ foreach($_POST['id'] as $key => $value){
         $Poster->del($value);
     }else {
         $row = $Poster->find($value);
-        $row['name'] = $_POST['name'][$key];
-        $row['rank'] = $_POST['rank'][$key];
-        $row['is_displayed'] = isset($_POST['is_displayed'][$key]) && in_array($value, $_POST['is_displayed']) ? "1" : "0";
-        $row['animation_type'] = $_POST['animation_type'][$key];
+        $row['title'] = $_POST['title'][$key];
+        $row['sort'] = $_POST['sort'][$key];
+        $row['status'] = isset($_POST['status'][$key]) && in_array($value, $_POST['status']) ? "1" : "0";
+        $row['effect'] = $_POST['effect'][$key];
         $Poster->save($row);
     }
 }

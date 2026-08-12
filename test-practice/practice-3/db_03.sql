@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-11 22:54:26
+-- 產生時間： 2026-08-12 08:20:50
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -35,8 +35,8 @@ CREATE TABLE `movies` (
   `director` varchar(100) NOT NULL COMMENT '導演姓名',
   `publish` varchar(100) NOT NULL COMMENT '發行商/出品公司名稱',
   `on_date` date NOT NULL COMMENT '電影上映日期 (YYYY-MM-DD)',
-  `trailer_file` varchar(100) NOT NULL COMMENT '預告片影音檔案名稱 (副檔名: .mp4/.avi)',
-  `poster_file` varchar(100) NOT NULL COMMENT '電影海報圖片檔案名稱 (副檔名: .jpg/.png)',
+  `trailer` varchar(100) NOT NULL COMMENT '預告片影音檔案名稱 (副檔名: .mp4/.avi)',
+  `poster` varchar(100) NOT NULL COMMENT '電影海報圖片檔案名稱 (副檔名: .jpg/.png)',
   `introduction` text NOT NULL COMMENT '電影劇情簡介文字',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
@@ -47,7 +47,7 @@ CREATE TABLE `movies` (
 -- 傾印資料表的資料 `movies`
 --
 
-INSERT INTO `movies` (`id`, `title`, `length`, `grade`, `director`, `publish`, `on_date`, `trailer_file`, `poster_file`, `introduction`, `status`, `sort`, `deleted_at`) VALUES
+INSERT INTO `movies` (`id`, `title`, `length`, `grade`, `director`, `publish`, `on_date`, `trailer`, `poster`, `introduction`, `status`, `sort`, `deleted_at`) VALUES
 (1, '帥哥中歷險記一', 120, 1, '帥哥中', '帥哥中', '2026-08-09', '03B01v.mp4', '03B01.png', '名導演帥哥中第一部作品', 1, 1, NULL),
 (2, '帥哥中歷險記二', 120, 1, '帥哥中', '帥哥中', '2026-08-09', '03B02v.mp4', '03B02.png', '名導演帥哥中第二部作品', 1, 2, NULL),
 (3, '帥哥中歷險記三', 120, 1, '帥哥中', '帥哥中', '2026-08-09', '03B03v.mp4', '03B03.png', '名導演帥哥中第三部作品', 1, 3, NULL),
@@ -117,7 +117,7 @@ INSERT INTO `orders` (`id`, `order_number`, `movie_id`, `on_date`, `session`, `q
 CREATE TABLE `posters` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(100) NOT NULL COMMENT '預告片海報名稱',
-  `file_name` varchar(255) NOT NULL COMMENT '海報圖片檔案名稱',
+  `poster` varchar(255) NOT NULL COMMENT '海報圖片檔案名稱',
   `effect` int(11) UNSIGNED NOT NULL DEFAULT 1 COMMENT '換場動畫特效 (1: 淡入淡出 / 2: 縮放特效 / 3: 滑入滑出)'';',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
   `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
@@ -128,7 +128,7 @@ CREATE TABLE `posters` (
 -- 傾印資料表的資料 `posters`
 --
 
-INSERT INTO `posters` (`id`, `title`, `file_name`, `effect`, `status`, `sort`, `deleted_at`) VALUES
+INSERT INTO `posters` (`id`, `title`, `poster`, `effect`, `status`, `sort`, `deleted_at`) VALUES
 (1, '03A01', '03A01.jpg', 1, 1, NULL, NULL),
 (2, '03A02', '03A02.jpg', 2, 1, NULL, NULL),
 (3, '03A03', '03A03.jpg', 3, 1, NULL, NULL),

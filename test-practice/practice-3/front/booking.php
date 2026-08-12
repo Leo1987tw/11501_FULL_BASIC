@@ -69,7 +69,7 @@
                     電影:
                 </td>
                 <td>
-                    <select name="movie" id="movie"></select>
+                    <select name="title" id="title"></select>
                 </td>
             </tr>
             <tr>
@@ -104,53 +104,53 @@
 
     getMovies();
 
-    $("#movie").on("change", function(){
-        let movie = $(this).val();
-        getDays(movie);
+    $("#title").on("change", function(){
+        let title = $(this).val();
+        getDates(title);
     });
 
     $("#date").on("change", function(){
-        let movie = $("#movie").val();
+        let title = $("#title").val();
         let date = $(this).val();
-        getSessions(movie, date);
+        getSessions(title, date);
     });
 
     function getMovies(){
-        $.get("./api/api_get_movies.php", (movies) => {
+        $.get("./api/api_get_movies.php", (titles) => {
+            $("#title").html(titles);
             if(movieId != null){
-                $(`#movie option[value="${movieId}"]`).prop("selected", true);
+                $(`#title option[value="${movieId}"]`).prop("selected", true);
             }
-            $("#movie").html(movies);
-            let movie = $("#movie").val();
-            getDays(movie);
+            let movieID = $("#title").val();
+            getDates(movieID);
         });
     }
 
-    function getDays(movie){
-        $.get("./api/api_get_days.php", {movie}, (days) => {
-            $("#date").html(days);
+    function getDates(movieID){
+        $.get("./api/api_get_dates.php", {movieID}, (dates) => {
+            $("#date").html(dates);
             let date = $("#date").val();
-            getSessions(movie, date);
+            getSessions(movieID, date);
         });
     }
 
-    function getSessions(movie, date){
-        $.get("./api/api_get_sessions.php", {movie, date}, (sessions) => {
+    function getSessions(movieID, date){
+        $.get("./api/api_get_sessions.php", {movieID, date}, (sessions) => {
             $("#session").html(sessions);
         })
     }
 
     function booking(){
         let data = {
-            "movie": $("#movie option:selected").text(), 
-            "date": $("#date").val(), 
+            "movie_id": $("#title option:selected").val(), 
+            "on_date": $("#date").val(), 
             "session": $("#session").val()
         }
 
         $("#booking-form").hide();
         $.get("./api/api_get_seats.php", data , (seats) => {
             $("#seats").html(seats);
-            $(".seats-movie").text($("#movie option:selected").text());
+            $(".seats-movie").text($("#title option:selected").text());
             $(".seats-date").text($("#date").val());
             $(".seats-session").text($("#session").val());
         })

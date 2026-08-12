@@ -10,35 +10,35 @@
         <div style="height: 270px; overflow: auto;">
             <?php
             $Table = ${ucfirst($_GET['do'])};
-            $rows = $Table->all("ORDER BY `rank`");
+            $rows = $Table->all("ORDER BY `sort`");
             foreach($rows as $key => $value):
         
             ?>
             <div style="display: flex; justify-content: space-between; align-items: center; height:100px; margin: 3px; padding: 3px; background-color: white; color: black;">
                 <div style="width: 20%;">
-                    <img src="./upload/<?= $value['image_path']?>" alt="" style="width: 60px; height: 80px;">
+                    <img src="./upload/<?= $value['poster']?>" alt="" style="width: 60px; height: 80px;">
                 </div>
                 <div style="width: 30%;">
-                    <input type="text" name="name[]" value="<?= $value['name'];?>">
+                    <input type="text" name="title[]" value="<?= $value['title'];?>">
                 </div>
                 <div style="width: 25%;">
-                    <!-- <input type="number" name="rank[]" value="<?= $value['rank'];?>"> -->
+                    <!-- <input type="number" name="sort[]" value="<?= $value['sort'];?>"> -->
                     <?php
 
                     $prev = ($key == 0) ? $value['id'] : $rows[$key - 1]['id'];
                     $next = ($key == count($rows) - 1) ? $value['id'] : $rows[$key + 1]['id'];
 
                     ?>
-                    <input type="button" class="switch-rank" value="往上" data-switch="<?= $value['id'] . "-" . $prev;?>">
-                    <input type="button" class="switch-rank" value="往下" data-switch="<?= $value['id'] . "-" . $next;?>">
+                    <input type="button" class="switch-sort" value="往上" data-switch="<?= $value['id'] . "-" . $prev;?>">
+                    <input type="button" class="switch-sort" value="往下" data-switch="<?= $value['id'] . "-" . $next;?>">
                 </div>
                 <div style="width: 25%;">
-                    <input type="checkbox" name="is_displayed[]" value="<?= $value['id'];?>" <?= ($value['is_displayed'] == 1) ? "checked" : "";?>><label for="sh[]">顯示</label>
+                    <input type="checkbox" name="status[]" value="<?= $value['id'];?>" <?= ($value['status'] == 1) ? "checked" : "";?>><label for="sh[]">顯示</label>
                     <input type="checkbox" name="del[]" value="<?= $value['id'];?>"><label for="del[]">刪除</label>
-                    <select name="animation_type[]">
-                        <option value="1" <?= ($value['animation_type'] == 1) ? 'selected' : '';?>>淡入淡出</option>
-                        <option value="2" <?= ($value['animation_type'] == 2) ? 'selected' : '';?>>滑入滑出</option>
-                        <option value="3" <?= ($value['animation_type'] == 3) ? 'selected' : '';?>>縮放</option>
+                    <select name="effect[]">
+                        <option value="1" <?= ($value['effect'] == 1) ? 'selected' : '';?>>淡入淡出</option>
+                        <option value="2" <?= ($value['effect'] == 2) ? 'selected' : '';?>>滑入滑出</option>
+                        <option value="3" <?= ($value['effect'] == 3) ? 'selected' : '';?>>縮放</option>
                     </select>
                     <input type="hidden" name="id[]" value="<?= $value['id'];?>">
                 </div>
@@ -47,7 +47,7 @@
             endforeach;
             ?>
             <script>
-                $(".switch-rank").on("click", function(){
+                $(".switch-sort").on("click", function(){
                     let index = $(this).data('switch').split('-');
                     console.log(index);
                     $.post("./api/api_switch.php", {index, "table": "Poster"}, () => {
@@ -70,11 +70,11 @@
             <tr>
                 <td>
                     預告片海報：
-                    <input type="file" id="image_path" name="image_path">
+                    <input type="file" id="poster" name="poster">
                 </td>
                 <td>
                     預告片片名：
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="title" name="title">
                 </td>
             </tr>
         </table>

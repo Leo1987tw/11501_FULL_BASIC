@@ -13,7 +13,7 @@ $movie = $Movie->find($_GET['id']);
                     <tr>
                         <td>片名:</td>
                         <td>
-                            <input type="text" name="name" id="name" value="<?= $movie['name'] ?>">
+                            <input type="text" name="title" id="title" value="<?= $movie['title'] ?>">
                         </td>
                     </tr>
                     <tr>

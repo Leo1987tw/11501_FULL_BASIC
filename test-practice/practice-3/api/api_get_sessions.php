@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$movie = $Movie->find($_GET['movie']);
+$movie = $Movie->find($_GET['movieID']);
 $date = $_GET['date'];
 $today = date("Y-m-d");
 $hour = date("G");
@@ -47,9 +47,9 @@ if($date == $today && $hour > 14){
 
 if($start != 5){
     for($i = $start; $i < 5; $i++){
-        $qt = $Order->q("SELECT sum(`qt`) AS `sum` FROM `orders` WHERE `movie`='{$movie['name']}' AND `date`='$date' AND `session`='$sessions[$i]'")[0]["sum"];
-        $rqt = 20 - $qt;
-        echo "<option value='$sessions[$i]'>$sessions[$i] 剩餘座位$rqt</option>";
+        $quantity = $Order->q("SELECT sum(`quantity`) AS `sum` FROM `orders` WHERE `movie_id`='{$movie['id']}' AND `on_date`='$date' AND `session`='$sessions[$i]'")[0]["sum"];
+        $remainingSeats = 20 - $quantity;
+        echo "<option value='$sessions[$i]'>$sessions[$i] 剩餘座位$remainingSeats</option>";
     }
 }else {
     echo "本日已無場次";

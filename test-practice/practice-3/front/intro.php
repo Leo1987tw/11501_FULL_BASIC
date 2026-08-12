@@ -11,7 +11,7 @@ $movie = $Movie->find($_GET['id']);
       <p style="margin:3px">影片名稱 ：<?= $movie['name'];?>
         <input type="button" value="線上訂票" onclick="location.href='?do=booking&id=<?= $movie['id']?>'" style="margin-left:50px; padding:2px 4px" class="b2_btu">
       </p>
-      <p style="margin:3px">影片分級 ： <img src="./icon/03C0<?= $movie['grade'];?>.png" style="display:inline-block;"><?= $levelStr[$movie['grade']];?> </p>
+      <p style="margin:3px">影片分級 ： <img src="./icon/03C0<?= $movie['grade'];?>.png" style="display:inline-block;"><?= $levelString[$movie['grade']];?> </p>
       <p style="margin:3px">影片片長 ： <?= floor($movie['length'] / 60);?>時/<?= $movie['length'] % 60?>分</p>
       <p style="margin:3px">上映日期 <?= str_replace("-", "/", $movie['ondate']);?></p>
       <p style="margin:3px">發行商 ： <?= $movie['publish'];?></p>

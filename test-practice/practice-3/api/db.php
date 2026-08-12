@@ -2,7 +2,7 @@
 
 session_start();
 date_default_timezone_set("Asia/Taipei");
-$levelStr = [
+$levelString = [
     1 => '普遍級', 
     2 => '輔導級', 
     3 => '保護級', 
@@ -23,6 +23,10 @@ class DB {
     protected function a2s($array){
         $tmp = [];
         foreach($array as $key => $value){
+            if($key == 'deleted_at' && $value == NULL){
+                $tmp[] = "`deleted_at` = NULL";
+                continue;
+            }
             $tmp[] = "`$key`='$value'";
         }
         return $tmp;

@@ -12,8 +12,8 @@ if(!empty($_FILES['poster']['tmp_name'])){
     $_POST['poster'] = $_FILES['poster']['name'];
 }
 
-$_POST['is_displayed'] = 1;
-$_POST['rank'] = $Movie->q("SELECT MAX(`id`) AS 'maxid' FROM `movies`;")[0]['maxid'] + 1;
+$_POST['status'] = 1;
+$_POST['sort'] = $Movie->q("SELECT MAX(`id`) AS 'maxid' FROM `movies`;")[0]['maxid'] + 1;
 
 $year = $_POST['year'];
 $month = sprintf("%02d", $_POST['month']);

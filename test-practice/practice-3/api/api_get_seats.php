@@ -30,7 +30,7 @@ foreach($orders as $order){
         if(!in_array($i, $seats)):
         
         ?>
-        <input type="checkbox" name="number" class="check" value="<?= $i;?>">
+        <input type="checkbox" name="seat" class="check" value="<?= $i;?>">
         <?php
         
         endif;
@@ -63,7 +63,7 @@ foreach($orders as $order){
     let seats = new Array();
 
     $(".check").on("click", function(){
-        let number = $(this).val();
+        let seat = $(this).val();
         let status = $(this).prop("checked");
         if(status == true){
             if(seats.length > 3){
@@ -71,12 +71,12 @@ foreach($orders as $order){
                 alert("最多只能訂四張票");
                 return;
             }
-            seats.push(number);
+            seats.push(seat);
             $(this).parent().removeClass("none");
             $(this).parent().addClass("booked");
             $(".seats-tickets").text(seats.length);
         }else {
-            index = seats.indexOf(number);
+            index = seats.indexOf(seat);
             seats.splice(index, 1);
             $(this).parent().removeClass("booked");
             $(this).parent().addClass("none");
@@ -86,11 +86,10 @@ foreach($orders as $order){
 
     // function checkout(){
     //     let data = {
-    //         "movie_id": $("#movie").val(), 
-    //         "movie_name": $("#movie").text(), 
-    //         "order_date": $("#date").val(),
+    //         "movie_id": $("#title").val(), 
+    //         "on_date": $("#date").val(),
     //         "session": $("#session").val(), 
-    //         "seats_qt": seats.length, 
+    //         "quantity": seats.length, 
     //         "seats": seats
     //     }
 
@@ -105,10 +104,10 @@ foreach($orders as $order){
             return;
         }
         let data = {
-            "movie": $("#movie option:selected").text(), 
-            "date": $("#date").val(),
+            "movie_id": $("#title option:selected").val(), 
+            "on_date": $("#date").val(),
             "session": $("#session").val(), 
-            "qt": seats.length, 
+            "quantity": seats.length, 
             "seats": seats
         }
 

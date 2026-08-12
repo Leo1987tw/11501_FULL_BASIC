@@ -12,16 +12,16 @@ if(!empty($_FILES['poster']['tmp_name'])){
     $_POST['poster'] = $_FILES['poster']['name'];
 }
 
-if(isset(!$_POST['id'])){
-    $_POST['sh'] = 1;
-    $_POST['rank'] = $Movie->q("SELECT MAX(`id`) AS 'maxid' FROM `posters`;")[0]['maxid'] + 1;
+if(!isset($_POST['id'])){
+    $_POST['status'] = 1;
+    $_POST['sort'] = $Movie->q("SELECT MAX(`id`) AS 'maxid' FROM `posters`;")[0]['maxid'] + 1;
 }
 
 $year = $_POST['year'];
 $month = sprintf("%02d", $_POST['month']);
 $date = sprintf("%02d", $_POST['date']);
 
-$_POST['ondate'] = $year . "-" . $month . "-" . $date;
+$_POST['on_date'] = $year . "-" . $month . "-" . $date;
 
 unset($_POST['year'], $_POST['month'], $_POST['date']);
 

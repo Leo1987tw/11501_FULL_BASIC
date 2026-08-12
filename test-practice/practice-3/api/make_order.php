@@ -12,11 +12,11 @@ for($i = 1; $i<=10; $i++){
     $data['movie_id'] = $movies[rand(0, 1)];
     $data['on_date'] = $date[rand(0, 1)];
     $data['session'] = $session[rand(0, 1)];
-    $remain = $Order->q("SELECT COUNT(*) FROM `orders` WHERE `movie_id`= '{$data['movie_id']}' and `on_date`='{$data['ondate']}' and `session`='{$data['session']}'");
-    if($remain == 0){
+    $remainingSeats = $Order->q("SELECT COUNT(*) FROM `orders` WHERE `movie_id`= '{$data['movie_id']}' and `on_date`='{$data['ondate']}' and `session`='{$data['session']}'");
+    if($remainingSeats == 0){
         continue;
     }
-    $data['quantity'] = rand(1, $remain);
+    $data['quantity'] = rand(1, min(1, $remainingSeats));
     $tmp = [];
     for($j = 1; $j <= $data['qt']; $j++){
         $tmp[] = rand(0, 19);

@@ -18,7 +18,7 @@
     <?php
 
     $Table = ${ucfirst($_GET['do'])};
-    $rows = $Table->all(" ORDER BY `rank`");
+    $rows = $Table->all(" ORDER BY `sort`");
     foreach($rows as $key => $value):
     
     ?>
@@ -31,13 +31,13 @@
         </div>
         <div style="width: 70%;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>片名:<?= $value['name'];?></div>
+                <div>片名:<?= $value['title'];?></div>
                 <div>片長:<?= $value['length'];?></div>
                 <div>上映時間:<?= $value['on_date'];?></div>
             </div>
             <div style="display: flex; justify-content: end; align-items: center;">
                 <button class="show" data-id="<?= $value['id'];?>">
-                    <?= ($value['is_displayed'] == 1) ? "顯示" : "隱藏"?>
+                    <?= ($value['status'] == 1) ? "顯示" : "隱藏"?>
                 </button>
                 <?php
                 

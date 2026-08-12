@@ -7,9 +7,9 @@ $table = ${$_POST['table']};
 $row1 = $table->find($_POST['index'][0]);
 $row2 = $table->find($_POST['index'][1]);
 
-$tmp = $row1['rank'];
-$row1['rank'] = $row2['rank'];
-$row2['rank'] = $tmp;
+$tmp = $row1['sort'];
+$row1['sort'] = $row2['sort'];
+$row2['sort'] = $tmp;
 
 $table->save($row1);
 $table->save($row2);
