@@ -1,7 +1,6 @@
 <?php
 
-$member = $Member->find(['account' => $_SESSION['member']]);
-$items = $Item->find()
+$member = $Member->find(['username' => $_SESSION['member']]);
 
 ?>
 
@@ -10,9 +9,9 @@ $items = $Item->find()
 <!-- table.all>tr>td.tt.ct+td.pp -->
 <table class="all">
     <tr>
-        <td class="tt ct">會員帳號</td>
+        <td class="tt ct">登入帳號</td>
         <td class="pp">
-            <input type="text" name="account" id="account" value="<?= $member['account'];?>">
+            <?= $_SESSION['member'];?>
         </td>
     </tr>
     <tr>
@@ -51,18 +50,18 @@ $items = $Item->find()
     </tr>
     <?php
     
-    $summary = 0;
+    $summation = 0;
     foreach($_SESSION['cart'] as $key => $value):
-        $item = $Item->find($key);
-        $summary += $value * $item['price'];
+        $product = $Product->find($key);
+        $summation += $value * $product['price'];
     
     ?>
     <tr class="pp ct">
-        <td><?= $item['name'];?></td>
-        <td><?= $item['number'];?></td>
+        <td><?= $product['name'];?></td>
+        <td><?= $product['product_number'];?></td>
         <td><?= $value;?></td>
-        <td><?= $item['price'];?></td>
-        <td><?= $value * $item['price'];?></td>
+        <td><?= $product['price'];?></td>
+        <td><?= $value * $product['price'];?></td>
     </tr>
     <?php
     
@@ -70,7 +69,7 @@ $items = $Item->find()
     
     ?>
 </table>
-<div class="all tt ct">總價：<?= $summary?></div>
+<div class="all tt ct">總價：<?= $summation?></div>
 <div class="ct">
     <button onclick="send()">確定送出</button>
     <button onclick="location.href = '?do=buycart'">返回修改訂單</button>
@@ -83,7 +82,7 @@ $items = $Item->find()
             email: $("#email").val(), 
             address: $("#address").val(), 
             telephone: $("#telephone").val(), 
-            total: <?= $summary;?>
+            total_price: <?= $summation;?>
         }
 
         $.post("./api/api_checkout.php", user, (response) => {

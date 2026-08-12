@@ -2,14 +2,14 @@
 
 $order = $Order->find($_GET['id']);
 
-?><h2 class="ct">訂單編號<span style="color: red;"><?= $order['number'];?></span></h2>
+?><h2 class="ct">訂單編號<span style="color: red;"><?= $order['order_number'];?></span></h2>
 
 <!-- table.all>tr>td.tt.ct+td.pp -->
 <table class="all">
     <tr>
         <td class="tt ct">會員帳號</td>
         <td class="pp">
-            <?= $order['account'];?>
+            <?= $order['member_id'];?>
         </td>
     </tr>
     <tr>
@@ -48,26 +48,26 @@ $order = $Order->find($_GET['id']);
     </tr>
     <?php
     
-    $cart = unserialize($order['items']);
+    $cart = unserialize($order['order_items']);
     foreach($cart as $key => $value):
-        $item = $Item->find($key);
+        $product = $Product->find($key);
     
     ?>
     <tr class="pp ct">
         <td>
-            <?= $item['name'];?>
+            <?= $product['name'];?>
         </td>
         <td>
-            <?= $item['number'];?>
+            <?= $product['product_number'];?>
         </td>
         <td>
             <?= $value;?>
         </td>
         <td>
-            <?= $item['price'];?>
+            <?= $product['price'];?>
         </td>
         <td>
-            <?= $item['price'] * $value;?>
+            <?= $product['price'] * $value;?>
         </td>
     </tr>
     <?php

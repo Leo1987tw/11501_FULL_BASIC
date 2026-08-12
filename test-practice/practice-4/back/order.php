@@ -19,14 +19,14 @@
     <tr class="pp ct">
         <td>
             <a href="?do=detail&id=<?= $order['id'];?>">
-                <?= $order['number'];?>
+                <?= $order['order_number'];?>
             </a>
         </td>
         <td>
-            <?= $order['total'];?>
+            <?= $order['total_price'];?>
         </td>
         <td>
-            <?= $order['account'];?>
+            <?= $order['member_id'];?>
         </td>
         <td>
             <?= $order['name'];?>

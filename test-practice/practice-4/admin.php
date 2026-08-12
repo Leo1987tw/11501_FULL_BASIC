@@ -7,9 +7,9 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-$system = $Admin->find(["account" => $_SESSION["admin"]]);
+$admin = $Admin->find(["username" => $_SESSION["admin"]]);
 
-$system["private"] = unserialize($system["private"]);
+$admin["role"] = unserialize($admin["role"]);
 
 ?>
 
@@ -30,7 +30,7 @@ $system["private"] = unserialize($system["private"]);
     <iframe name="back" style="display:none;"></iframe>
     <div id="main">
         <div id="top">
-            <a href="?">
+            <a href="./index.php">
                 <img src="./icon/0416.jpg">
             </a>
             <img src="./icon/0417.jpg">
@@ -40,7 +40,7 @@ $system["private"] = unserialize($system["private"]);
                 <a href="?do=admin">管理權限設置</a>
                 <?php
 
-                if (in_array(1, $system["private"])):
+                if (in_array(1, $admin["role"])):
 
                 ?>
                     <a href="?do=th">商品分類與管理</a>
@@ -51,7 +51,7 @@ $system["private"] = unserialize($system["private"]);
                 ?>
                 <?php
 
-                if (in_array(2, $system["private"])):
+                if (in_array(2, $admin["role"])):
 
                 ?>
                     <a href="?do=order">訂單管理</a>
@@ -62,7 +62,7 @@ $system["private"] = unserialize($system["private"]);
                 ?>
                 <?php
 
-                if (in_array(3, $system["private"])):
+                if (in_array(3, $admin["role"])):
 
                 ?>
                     <a href="?do=mem">會員管理</a>
@@ -73,7 +73,7 @@ $system["private"] = unserialize($system["private"]);
                 ?>
                 <?php
 
-                if (in_array(4, $system["private"])):
+                if (in_array(4, $admin["role"])):
 
                 ?>
                     <a href="?do=bot">頁尾版權管理</a>
@@ -84,7 +84,7 @@ $system["private"] = unserialize($system["private"]);
                 ?>
                 <?php
 
-                if (in_array(5, $system["private"])):
+                if (in_array(5, $admin["role"])):
 
                 ?>
                     <a href="?do=news">最新消息管理</a>
@@ -111,7 +111,7 @@ $system["private"] = unserialize($system["private"]);
             ?>
         </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
-            <?= $Footer->find(1)["text"]; ?>
+            <?= $Footer->find(1)["copyright"]; ?>
         </div>
     </div>
 

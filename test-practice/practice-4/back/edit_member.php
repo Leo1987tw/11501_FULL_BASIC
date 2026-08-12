@@ -12,7 +12,7 @@ $member = $Member->find($_GET['id']);
         <tr>
             <td class="tt ct">帳號</td>
             <td class="pp">
-                <input type="text" name="account" value="<?= $member['account'];?>">
+                <input type="text" name="username" value="<?= $member['username'];?>">
             </td>
         </tr>
         <tr>

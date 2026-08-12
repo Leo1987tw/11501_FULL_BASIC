@@ -4,13 +4,13 @@
 <table class="all">
     <tr>
         <td class="tt ct">姓名</td>
-        <td class="pp"><input type="text" name="" id="name"></td>
+        <td class="pp"><input type="text" name="name" id="name"></td>
     </tr>
     <tr>
         <td class="tt ct">帳號</td>
         <td class="pp">
-            <input type="text" name="" id="account">
-            <input type="button" value="檢測帳號" onclick="checkAccount()">
+            <input type="text" name="username" id="username">
+            <input type="button" value="檢測帳號" onclick="checkUsername()">
         </td>
     </tr>
     <tr>
@@ -19,15 +19,15 @@
     </tr>
     <tr>
         <td class="tt ct">電話</td>
-        <td class="pp"><input type="text" name="" id="telephone"></td>
+        <td class="pp"><input type="text" name="telephone" id="telephone"></td>
     </tr>
     <tr>
         <td class="tt ct">住址</td>
-        <td class="pp"><input type="text" name="" id="address"></td>
+        <td class="pp"><input type="text" name="address" id="address"></td>
     </tr>
     <tr>
         <td class="tt ct">電子信箱</td>
-        <td class="pp"><input type="text" name="" id="email"></td>
+        <td class="pp"><input type="text" name="email" id="email"></td>
     </tr>
 </table>
 
@@ -37,10 +37,10 @@
 </div>
 
 <script>
-    function checkAccount(){
-        let account = $("#account").val();
-        $.get("./api/api_check_account.php", {account}, (response) => {
-            if(parseInt(response) > 0 || account=="admin"){
+    function checkUsername(){
+        let username = $("#username").val();
+        $.get("./api/api_check_member.php", {username}, (response) => {
+            if(parseInt(response) > 0 || username=="admin"){
                 alert("帳號已存在");
             }else {
                 alert("此帳號可使用");
@@ -49,14 +49,14 @@
     }
 
     function register(){
-        let account = $("#account").val();
-        $.get("./api/api_check_account.php", {account}, (response) => {
-            if(parseInt(response) > 0 || account=="admin"){
+        let username = $("#username").val();
+        $.get("./api/api_check_member.php", {username}, (response) => {
+            if(parseInt(response) > 0 || username=="admin"){
                 alert("帳號已存在");
             }else {
                 let user = {
                     "name": $("#name").val(),
-                    "account": $("#account").val(),
+                    "username": $("#username").val(),
                     "password": $("#password").val(),
                     "telephone": $("#telephone").val(),
                     "address": $("#address").val(),
@@ -71,6 +71,6 @@
     }
 
     function resetForm(){
-        $("#name, #account, #password, #telephone, #address, #email").val("");
+        $("#name, #username, #password, #telephone, #address, #email").val("");
     };
 </script>

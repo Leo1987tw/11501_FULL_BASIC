@@ -22,17 +22,17 @@
 <script>
     getBigs();
 
-    getTypeList();
+    getCategoryList();
 
     function addBig(){
         let big = $("#big").val();
-        $.post("./api/api_save_type.php", {
+        $.post("./api/api_save_category.php", {
             "name": big, 
-            "parent": 0
+            "parent_id": 0
         }, () => {
             $("#big").val("");
             getBigs();
-            getTypeList();
+            getCategoryList();
         })
     }
 
@@ -45,16 +45,16 @@
     function addMiddle(){
         let middle = $("#middle").val();
         let parent = $("#big-select").val();
-        $.post("./api/api_save_type.php", {
+        $.post("./api/api_save_category.php", {
             "name": middle, 
-            "parent": parent
+            "parent_id": parent
         }, () => {
             $("#middle").val("");
-            getTypeList();
+            getCategoryList();
         })
     }
 
-    // function addType(type){
+    // function addCategory(type){
     //     let name = "";
     //     let parent = 0;
     //     switch(type){
@@ -66,18 +66,18 @@
     //             parent = $("#big-select").val();
     //             break;
     //     }
-    //     $.post("./api/api_save_type.php", {
+    //     $.post("./api/api_save_category.php", {
     //         name, 
     //         parent
     //     }, () => {
     //         $("#middle, #big").val("");
     //         getBigs();
-    //         getTypeList();
+    //         getcategoryList();
     //     })
     // }
 
-    function getTypeList(){
-        $.get("./api/api_get_type_list.php", (list) => {
+    function getCategoryList(){
+        $.get("./api/api_get_category_list.php", (list) => {
             $(".type-list").html(list);
         })
     }

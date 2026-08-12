@@ -15,11 +15,11 @@
     ?>
     <tr class="pp ct">
         <td><?= $member['name'];?></td>
-        <td><?= $member['account'];?></td>
+        <td><?= $member['username'];?></td>
         <td><?= date("Y/m/d", strtotime($member['created_at']));?></td>
         <td>
             <button onclick="location.href = '?do=edit_member&id=<?= $member['id'];?>'">修改</button>
-            <button onclick="del('Members', <?= $member['id'];?>)">刪除</button>
+            <button onclick="del('Member', <?= $member['id'];?>)">刪除</button>
         </td>
     </tr>
     <?php

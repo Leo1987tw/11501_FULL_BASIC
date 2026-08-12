@@ -71,23 +71,23 @@ include_once "./api/db.php";
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
-                <a href="?type=0">全部商品</a>
+                <a href="?category=0">全部商品</a>
                 <?php
                 
-                $bigs = $Type->all(['parent' => 0]);
+                $bigs = $Category->all(['parent_id' => 0]);
                 foreach($bigs as $big):
                     echo "<div class='ww'>";
                 ?>
-                <a href="?type=<?= $big['id'];?>" class="ww"><?= $big['name'];?></a>
+                <a href="?category=<?= $big['id'];?>" class="ww"><?= $big['name'];?></a>
                 <?php
                 
-                    if($Type->count(['parent' => $big['id']]) > 0):
-                        $middles = $Types->all(['parent' => $big['id']]);
+                    if($Category->count(['parent_id' => $big['id']]) > 0):
+                        $middles = $Category->all(['parent_id' => $big['id']]);
                         echo "<div class='s'>";
                         foreach($middles as $middle):
                 
                 ?>
-                <a href="?type=<?= $middle['id'];?>"><?= $middle['name'];?></a>
+                <a href="?category=<?= $middle['id'];?>"><?= $middle['name'];?></a>
                 <?php
                 
                         endforeach;
@@ -118,7 +118,7 @@ include_once "./api/db.php";
             ?>
         </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-            <?= $Footer->find(1)["text"]; ?>
+            <?= $Footer->find(1)["copyright"]; ?>
         </div>
     </div>
 

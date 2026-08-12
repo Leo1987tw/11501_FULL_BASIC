@@ -8,11 +8,11 @@ if(!empty($_FILES["image"]["tmp_name"])){
 }
 
 if(!isset($_POST["id"])){
-    $_POST["number"] = rand(100000, 999999);
-    $_POST["sh"] = 1;
+    $_POST["product_number"] = rand(100000, 999999);
+    $_POST["status"] = 1;
 }
 
-$Item->save($_POST);
+$Product->save($_POST);
 
 to("../admin.php?do=th");
 

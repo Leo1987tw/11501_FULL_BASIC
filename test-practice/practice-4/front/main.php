@@ -1,20 +1,20 @@
 <?php
 
-$type = $_GET['type'] ?? 0;
+$category = $_GET['category'] ?? 0;
 
 $nav_string = "全部商品";
 
-$items = $Item->all(['sh' => 1]);
+$products = $Product->all(['status' => 1]);
 
-if($type != 0){
-    $tmp = $Types->find($type);
-    if($tmp['parent'] == 0){
+if($category != 0){
+    $tmp = $Category->find($category);
+    if($tmp['parent_id'] == 0){
         $nav_string = $tmp['name'];
-        $items = $Item->all(['big' => $tmp['id'], 'sh' => 1]);
+        $products = $Product->all(['parent_category_id' => $tmp['id'], 'status' => 1]);
     }else {
-        $big = $Types->find($tmp['parent']);
+        $big = $Category->find($tmp['parent_id']);
         $nav_string = $big['name'] . ">" . $tmp['name'];
-        $items = $Item->all(['middle' => $tmp['id']]);
+        $products = $Product->all(['sub_category_id' => $tmp['id']]);
     }
 }
 
@@ -24,7 +24,7 @@ if($type != 0){
 
 <?php
 
-foreach($items as $item):
+foreach($products as $product):
 
 ?>
 <!-- div.all>div*2>table>tr>td.pp -->
@@ -33,8 +33,8 @@ foreach($items as $item):
         <table>
             <tr>
                 <td style="text-align: center;">
-                    <a href="?do=detail&id=<?= $item['id'];?>">
-                        <img src="./upload/<?= $item['image'];?>" alt="" style="width: 80%;">
+                    <a href="?do=detail&id=<?= $product['id'];?>">
+                        <img src="./upload/<?= $product['image'];?>" alt="" style="width: 80%;">
                     </a>
                 </td>
             </tr>
@@ -44,25 +44,25 @@ foreach($items as $item):
         <table>
             <tr>
                 <td class="tt ct">
-                    <?= $item['name'];?>
+                    <?= $product['name'];?>
                 </td>
             </tr>
             <tr>
                 <td class="pp">
-                    價錢:<?= $item['price'];?>
-                    <a href="?do=buycart&id=<?= $item['id'];?>&quantity=1">
+                    價錢:<?= $product['price'];?>
+                    <a href="?do=buycart&id=<?= $product['id'];?>&quantity=1">
                         <img src="./icon/0402.jpg" alt="">
                     </a>
                 </td>
             </tr>
             <tr>
                 <td class="pp">
-                    規格:<?= $item['specification'];?>
+                    規格:<?= $product['specification'];?>
                 </td>
             </tr>
             <tr>
                 <td class="pp">
-                    簡介:<?= mb_substr($item['introduction'], 0, 25);?>...
+                    簡介:<?= mb_substr($product['introduction'], 0, 25);?>...
                 </td>
             </tr>
         </table>
@@ -73,28 +73,28 @@ foreach($items as $item):
 <table class="all">
     <tr>
         <td rowspan="4" class="pp" style="width: 35%; text-align: center; vertical-align: center;">
-            <a href="?do=detail&id=<?= $item['id'];?>">
-                <img src="./upload/<?= $item['image'];?>" alt="" style="width: 80%;">
+            <a href="?do=detail&id=<?= $product['id'];?>">
+                <img src="./upload/<?= $product['image'];?>" alt="" style="width: 80%;">
             </a>
         </td>
-        <td class="tt" style="width: 65%;"><?= $item['name'];?></td>
+        <td class="tt" style="width: 65%;"><?= $product['name'];?></td>
     </tr>
     <tr>
         <td class="pp">
-            價錢:<?= $item['price'];?>
-            <a href="?do=buycart&id=<?= $item['id'];?>&quantity=1">
+            價錢:<?= $product['price'];?>
+            <a href="?do=buycart&id=<?= $product['id'];?>&quantity=1">
                 <img src="./icon/0402.jpg" alt="">
             </a>
         </td>
     </tr>
     <tr>
         <td class="pp">
-            規格:<?= $item['specification'];?>
+            規格:<?= $product['specification'];?>
         </td>
     </tr>
     <tr>
         <td class="pp">
-            簡介:<?= mb_substr($item['introduction'], 0, 25);?>...
+            簡介:<?= mb_substr($product['introduction'], 0, 25);?>...
         </td>
     </tr>
 </table>

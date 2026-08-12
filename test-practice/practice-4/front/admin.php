@@ -2,11 +2,11 @@
 <table class="all">
     <tr>
         <td class="tt ct">帳號</td>
-        <td class="pp"><input type="text" name="" id="account"></td>
+        <td class="pp"><input type="text" name="username" id="username"></td>
     </tr>
     <tr>
         <td class="tt ct">密碼</td>
-        <td class="pp"><input type="text" name="" id="password"></td>
+        <td class="pp"><input type="password" name="password" id="password"></td>
     </tr>
     <tr>
         <td class="tt ct">驗證碼</td>
@@ -34,7 +34,7 @@
     function send() {
         let code = $("#code").val();
         let user = {
-            "account": $("#account").val(),
+            "username": $("#username").val(),
             "password": $("#password").val()
         }
         $.get("./api/api_check_answer.php", {

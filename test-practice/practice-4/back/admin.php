@@ -10,18 +10,18 @@
     </tr>
     <?php
     
-    $users = $Admin->all();
+    $admins = $Admin->all();
 
-    foreach($users as $user):
+    foreach($admins as $admin):
     
     ?>
     <tr class="pp ct">
-        <td><?= $user["account"]?></td>
-        <td><?= str_repeat("*", mb_strlen($user["password"]));?></td>
+        <td><?= $admin["username"]?></td>
+        <td><?= str_repeat("*", mb_strlen($admin["password"]));?></td>
         <td>
             <?php
             
-            if($user["account"] == "admin"):
+            if($admin["username"] == "admin"):
             
             ?>
             此帳號為最高權限
@@ -30,8 +30,8 @@
             else:
             
             ?>
-            <button onclick="location.href = '?do=edit_admin&id=<?= $user['id'];?>'">修改</button>
-            <button onclick="del('Admin', <?= $user['id'];?>)">刪除</button>
+            <button onclick="location.href = '?do=edit_admin&id=<?= $admin['id'];?>'">修改</button>
+            <button onclick="del('Admin', <?= $admin['id'];?>)">刪除</button>
             <?php
             
             endif;

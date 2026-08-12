@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-12 08:20:54
+-- 產生時間： 2026-08-12 21:06:33
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
   `id` int(11) UNSIGNED NOT NULL,
   `username` varchar(50) NOT NULL COMMENT '使用者名稱',
   `password` varchar(255) NOT NULL COMMENT '密碼',
-  `role` varchar(20) NOT NULL DEFAULT 'user' COMMENT '使用者權限'
+  `role` varchar(50) NOT NULL DEFAULT 'user' COMMENT '使用者權限'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -39,8 +39,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '1234', 'admin'),
-(2, 'Leo1987tw', '1234', 'user');
+(1, 'admin', '1234', 'a:5:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;}'),
+(2, 'Leo1987tw', '1234', 'a:5:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;}');
 
 -- --------------------------------------------------------
 
@@ -99,10 +99,10 @@ CREATE TABLE `members` (
   `id` int(11) UNSIGNED NOT NULL,
   `username` varchar(50) NOT NULL COMMENT '使用者名稱',
   `password` varchar(255) NOT NULL COMMENT '密碼',
-  `name` varchar(50) NOT NULL COMMENT '姓名',
-  `telephone` varchar(32) NOT NULL COMMENT '電話',
-  `email` varchar(100) NOT NULL COMMENT '電子信箱',
-  `address` varchar(255) NOT NULL COMMENT '地址',
+  `name` varchar(50) NOT NULL COMMENT '會員姓名',
+  `telephone` varchar(32) NOT NULL COMMENT '會員電話',
+  `email` varchar(100) NOT NULL COMMENT '會員電子信箱',
+  `address` varchar(255) NOT NULL COMMENT '會員地址',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '註冊時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -111,7 +111,7 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `username`, `password`, `name`, `telephone`, `email`, `address`, `created_at`) VALUES
-(1, 'Leo1987tw', '1234', '游禮中', '0987654321', 'Leo1987tw@gmail.com', '新北市板橋區', '2026-07-24 05:54:54');
+(1, 'Leo1987tw', '1234', '帥哥中', '0987654321', 'Leo1987tw@gmail.com', '新北市板橋區', '2026-08-12 12:24:56');
 
 -- --------------------------------------------------------
 
@@ -123,20 +123,23 @@ CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_number` varchar(32) NOT NULL COMMENT '訂單編號',
   `member_id` int(11) UNSIGNED NOT NULL COMMENT '會員 ID',
-  `item_id` int(11) UNSIGNED NOT NULL COMMENT '商品 ID',
-  `quantity` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '購買商品數量',
-  `total_price` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '訂單金額',
+  `name` varchar(50) NOT NULL COMMENT '聯絡人姓名',
+  `order_items` text NOT NULL COMMENT '訂單項目內容',
+  `total_price` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '訂單總金額',
   `status` int(11) UNSIGNED NOT NULL COMMENT '訂單狀態 (0:未付款 / 1:已取消 / 2:付款成功 / 3:退票退款)',
+  `address` varchar(255) NOT NULL COMMENT '配送地址',
+  `telephone` varchar(32) NOT NULL COMMENT '聯絡電話',
+  `email` varchar(100) NOT NULL COMMENT '聯絡電子信箱',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '結帳時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `product`
+-- 資料表結構 `products`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE `products` (
   `id` int(11) UNSIGNED NOT NULL,
   `product_number` varchar(32) NOT NULL COMMENT '商品編號',
   `name` varchar(50) NOT NULL COMMENT '商品名稱',
@@ -145,17 +148,17 @@ CREATE TABLE `product` (
   `price` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品價格',
   `specification` varchar(255) NOT NULL COMMENT '商品規格',
   `stock` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '庫存數量',
-  `image_path` varchar(255) NOT NULL COMMENT '商品圖片名稱',
+  `image` varchar(255) NOT NULL COMMENT '商品圖片名稱',
   `introduction` text NOT NULL COMMENT '商品介紹',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0下架，1上架',
   `sort` int(11) DEFAULT NULL COMMENT '排序'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 傾印資料表的資料 `product`
+-- 傾印資料表的資料 `products`
 --
 
-INSERT INTO `product` (`id`, `product_number`, `name`, `parent_category_id`, `sub_category_id`, `price`, `specification`, `stock`, `image_path`, `introduction`, `status`, `sort`) VALUES
+INSERT INTO `products` (`id`, `product_number`, `name`, `parent_category_id`, `sub_category_id`, `price`, `specification`, `stock`, `image`, `introduction`, `status`, `sort`) VALUES
 (1, '602587', '手工訂製長夾', 1, 5, 1200, '全牛皮', 2, '0403.jpg', '手工製作長夾卡片層6*2 鈔票層 *2 零錢拉鍊層 *1 \r\n採用愛馬仕相同的雙針縫法,皮件堅固耐用不脫線 \r\n材質:直革鞣(馬鞍皮)牛皮製作  \r\n手工染色                                 ', 1, NULL),
 (2, '020705', '兩用式磁扣腰包', 1, 5, 685, '中型', 18, '0404.jpg', '材質:進口牛皮\r\n顏色:黑色荔枝紋+黑色珠光面皮(黑色縫線)\r\n尺寸:15cm*14cm(高)*6cm(前後)\r\n產地:臺灣', 1, NULL),
 (3, '020706', '超薄設計男士長款真皮', 1, 5, 800, 'L號', 61, '0405.jpg', '基本:編織皮革對摺長款零錢包\r\n特色:最潮流最時尚的單品 \r\n顏色:黑色珠光面皮(黑色縫線)\r\n形狀:黑白格編織皮革對摺', 1, NULL),
@@ -203,9 +206,9 @@ ALTER TABLE `orders`
   ADD UNIQUE KEY `uk_order_number` (`order_number`);
 
 --
--- 資料表索引 `product`
+-- 資料表索引 `products`
 --
-ALTER TABLE `product`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uk_item_number` (`product_number`);
 
@@ -238,9 +241,9 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `product`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `products`
 --
-ALTER TABLE `product`
+ALTER TABLE `products`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 

@@ -5,7 +5,7 @@
     <table class="all">
         <tr>
             <td class="tt ct">帳號</td>
-            <td class="pp"><input type="text" name="account" id="account"></td>
+            <td class="pp"><input type="text" name="username" id="username"></td>
         </tr>
         <tr>
             <td class="tt ct">密碼</td>
@@ -15,19 +15,19 @@
             <td class="tt ct">權限</td>
             <td class="pp">
                 <div>
-                    <input type="checkbox" name="private[]" value="1">商品分類與管理
+                    <input type="checkbox" name="role[]" value="1">商品分類與管理
                 </div>
                 <div>
-                    <input type="checkbox" name="private[]" value="2">訂單管理
+                    <input type="checkbox" name="role[]" value="2">訂單管理
                 </div>
                 <div>
-                    <input type="checkbox" name="private[]" value="3">會員管理
+                    <input type="checkbox" name="role[]" value="3">會員管理
                 </div>
                 <div>
-                    <input type="checkbox" name="private[]" value="4">頁尾版權區管理
+                    <input type="checkbox" name="role[]" value="4">頁尾版權區管理
                 </div>
                 <div>
-                    <input type="checkbox" name="private[]" value="5">最新消息管理
+                    <input type="checkbox" name="role[]" value="5">最新消息管理
                 </div>
             </td>
         </tr>

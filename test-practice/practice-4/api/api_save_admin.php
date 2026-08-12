@@ -2,7 +2,7 @@
 
 include_once "./db.php";
 
-$_POST["private"] = serialize($_POST["private"]);
+$_POST["role"] = serialize($_POST["role"]);
 
 $Admin->save($_POST);
 

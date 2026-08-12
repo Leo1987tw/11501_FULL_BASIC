@@ -31,30 +31,30 @@ if(!isset($_SESSION['member'])){
     <?php
     
     foreach($_SESSION['cart'] as $key => $value):
-        $item = $Item->find($key);
+        $product = $Product->find($key);
     
     ?>
     <tr class="pp">
         <td>
-            <?= $item['number'];?>
+            <?= $product['product_number'];?>
         </td>
         <td>
-            <?= $item['name'];?>
+            <?= $product['name'];?>
         </td>
         <td>
             <?= $value;?>
         </td>
         <td>
-            <?= $item['stock'];?>
+            <?= $product['stock'];?>
         </td>
         <td>
-            <?= $item['price'];?>
+            <?= $product['price'];?>
         </td>
         <td>
-            <?= $value * $item['price'];?>
+            <?= $value * $product['price'];?>
         </td>
         <td>
-            <img src="./icon/0415.jpg" alt="" onclick="delItem(<?= $key;?>)">
+            <img src="./icon/0415.jpg" alt="" onclick="deleteProduct(<?= $key;?>)">
         </td>
     </tr>
     <?php
@@ -86,8 +86,8 @@ if(!isset($_SESSION['member'])){
 </div>
 
 <script>
-    function delItem(id){
-        $.post("./api/api_delete_items.php", {id}, () => {
+    function deleteProduct(id){
+        $.post("./api/api_delete_products.php", {id}, () => {
             location.href = '?do=buycart';
         })
     }
