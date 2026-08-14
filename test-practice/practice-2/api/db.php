@@ -1,15 +1,25 @@
 <?php
 
+$config = include __DIR__ . "/../../../../db_config/back-end-learning/test-practice/practice-2/db_config.php";
+
 session_start();
 
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_02";
+    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
     protected $pdo;
     protected $table;
 
     function __construct($table){
+        global $config;
+
+        $this->dsn = "{$config['driver']}:host={$config['host']}; dbname={$config['db_name']}";
+
+        if($config['driver'] == 'mysql'){
+            $this->dsn .= "; charset=utf8";
+        }
+
         $this->table = $table;
-        $this->pdo = new PDO($this->dsn, 'root', '', []);
+        $this->pdo = new PDO($this->dsn, $config['username'], $config['password'], []);
     }
 
     function all(...$args){

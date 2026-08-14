@@ -11,8 +11,8 @@ if($admin == 1){
 }else {
     echo "<script>";
     echo "alert('帳號或密碼錯誤');";
+    echo "location.href='../index.php?do=admin'";
     echo "</script>";
-    to("./index?do=admin");
 }
 
 ?>
