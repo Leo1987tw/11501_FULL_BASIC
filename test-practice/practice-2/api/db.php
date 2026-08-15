@@ -12,7 +12,7 @@ class DB{
     function __construct($table){
         global $config;
 
-        $this->dsn = "{$config['driver']}:host={$config['host']}; dbname={$config['db_name']}";
+        $this->dsn = "{$config['driver']}:host={$config['host']}; dbname={$config['database']}";
 
         if($config['driver'] == 'mysql'){
             $this->dsn .= "; charset=utf8";
