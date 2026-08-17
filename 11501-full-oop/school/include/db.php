@@ -1,7 +1,7 @@
 <?php
 
 class DB{
-    private $host = "localhost";
+    private $host;
     private $charset = "utf8";
     private $dbname;
     protected $dsn;
@@ -9,6 +9,8 @@ class DB{
     protected $table;
 
     function __construct(...$args){
+        global $config;
+
         if(isset($args[0]) && is_string($args[0])){
             $this->dbname = $args[0];
         }elseif(isset($args[0])){
