@@ -14,7 +14,7 @@ $levelString = [
 ];
 
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
+    protected $dsn;
     protected $pdo;
     protected $table;
 
@@ -35,12 +35,12 @@ class DB{
         $tmp = [];
         foreach($array as $key => $value){
             if($key == 'sort' && $value == NULL){
-                $tmp[] = "`sort` = NULL";
+                $tmp[] = "`sort` IS NULL";
                 continue;
             }
 
             if($key == 'deleted_at' && $value == NULL){
-                $tmp[] = "`deleted_at` = NULL";
+                $tmp[] = "`deleted_at` IS NULL";
                 continue;
             }
 

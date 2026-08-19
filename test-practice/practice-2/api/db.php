@@ -5,7 +5,7 @@ $config = include __DIR__ . "/../../../../db_config/back-end-learning/test-pract
 session_start();
 
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
+    protected $dsn;
     protected $pdo;
     protected $table;
 

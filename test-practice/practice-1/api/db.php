@@ -5,7 +5,7 @@ $config = include __DIR__ . "/../../../../db_config/back-end-learning/test-pract
 session_start();
 
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db_01";
+    protected $dsn;
     protected $pdo;
     protected $table;
 
@@ -103,12 +103,12 @@ class DB{
         $tmp = [];
         foreach($array as $key => $value){
             if($key == 'sort' && $value == NULL){
-                $tmp[] = "`sort` = NULL";
+                $tmp[] = "`sort` IS NULL";
                 continue;
             }
 
             if($key == 'deleted_at' && $value == NULL){
-                $tmp[] = "`deleted_at` = NULL";
+                $tmp[] = "`deleted_at` IS NULL";
                 continue;
             }
 
@@ -155,7 +155,7 @@ $Title = new DB('titles');
 if(!isset($_SESSION['visit'])){
     $_SESSION['visit'] = 1;
     $visit = $Counter->find(1);
-    $visit['total'] += 1;
+    $visit['count_value'] += 1;
     $Counter->save($visit);
 }
 
