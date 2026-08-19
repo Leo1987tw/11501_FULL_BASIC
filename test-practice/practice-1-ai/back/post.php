@@ -1,0 +1,14 @@
+<?php include_once './api/db.php'; if(($_SESSION['login'] ?? 0) !== 1){ http_response_code(403); exit('Forbidden'); } ?>
+<div class="container-fluid py-4">
+    <?php include_once './back/logout.php'; ?>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4"><div><p class="text-uppercase small text-secondary mb-1">Pet case management</p><h2 class="fw-bold mb-0">寵物案件管理</h2></div><button class="btn btn-success" onclick="op('#cover','#cvr','include/post.php')">新增寵物案件</button></div>
+    <?php $rows = $Post->all(['deleted_at' => NULL], " ORDER BY `sort`, `id` DESC"); $menus = $Menu->all(['status' => 1, 'deleted_at' => NULL]); ?>
+    <form method="post" action="./api/api_edit.php?table=post">
+        <div class="row g-4">
+            <?php foreach ($rows as $row): ?>
+                <article class="col-12 col-xl-6"><div class="card border-0 shadow-sm h-100"><div class="card-body"><div class="d-flex justify-content-between mb-3"><span class="badge bg-light text-dark">案件 #<?= (int) $row['id'] ?></span><label class="small"><input type="checkbox" name="delete[]" value="<?= (int) $row['id'] ?>"> 刪除</label></div><input type="hidden" name="id[]" value="<?= (int) $row['id'] ?>"><div class="row g-3"><div class="col-sm-6"><label class="form-label">分類</label><select name="menu_id[]" class="form-select" required><?php foreach ($menus as $menu): ?><?php if ((int) $menu['parent_id'] > 0): ?><option value="<?= (int) $menu['id'] ?>" <?= (int) $row['menu_id'] === (int) $menu['id'] ? 'selected' : '' ?>><?= htmlspecialchars($menu['name'], ENT_QUOTES, 'UTF-8') ?></option><?php endif; ?><?php endforeach; ?></select></div><div class="col-sm-6"><label class="form-label">寵物名字</label><input name="pet_name[]" class="form-control" value="<?= htmlspecialchars($row['pet_name'], ENT_QUOTES, 'UTF-8') ?>" required></div><div class="col-sm-6"><label class="form-label">聯絡電話</label><input name="phone[]" class="form-control" value="<?= htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') ?>" required></div><div class="col-sm-6"><label class="form-label">案件狀態</label><select name="case_status[]" class="form-select"><option value="刊登中" <?= $row['case_status'] === '刊登中' ? 'selected' : '' ?>>刊登中</option><option value="已認養" <?= $row['case_status'] === '已認養' ? 'selected' : '' ?>>已認養</option><option value="已尋獲" <?= $row['case_status'] === '已尋獲' ? 'selected' : '' ?>>已尋獲</option></select></div><div class="col-12"><label class="form-label">特徵描述</label><textarea name="features[]" class="form-control" rows="3" required><?= htmlspecialchars($row['features'], ENT_QUOTES, 'UTF-8') ?></textarea></div></div></div></div></article>
+            <?php endforeach; ?>
+        </div>
+        <?php if (!$rows): ?><div class="alert alert-info">目前沒有寵物案件。</div><?php endif; ?><div class="text-end mt-4"><button type="submit" class="btn btn-primary px-4">儲存全部修改</button></div>
+    </form>
+</div>

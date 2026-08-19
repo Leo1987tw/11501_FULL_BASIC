@@ -1,0 +1,99 @@
+@workspace這是我們 db_01.sql 資料庫檔案的後半段完整結構（包含 posts 資料、titles 結構與所有自動遞增 AUTO_INCREMENT 索引設定）。請根據我們目前的舊結構，將 #db_01.sql 完整重構更新為「寵物認養與走失尋找網站」專用資料庫，並遵循以下修改細則：titles (網站標題)：結構維持不變。請將裡面的測試文字 title 從「卓越科技大學校園資訊系統」改成「溫暖家園 - 寵物認養與走失尋找平台」。menus (主次選單)：結構維持不變。請產生以下測試資料（主選單 parent_id=0，次選單對應主選單 id）：主功能 1：id=1, name='寵物認養', parent_id=0主功能 2：id=2, name='走失尋找', parent_id=0認養次選單：id=3, name='狗狗認養', parent_id=1；id=4, name='貓咪認養', parent_id=1；id=5, name='其他寵物', parent_id=1走失次選單：id=6, name='狗狗協尋', parent_id=2；id=7, name='貓咪協尋', parent_id=2；id=8, name='其他協尋', parent_id=2posts (寵物案件公告)：請幫我把原本存放學校公告的 posts 資料表欄位擴充並修改為以下結構：sqlCREATE TABLE `posts` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `menu_id` int(11) UNSIGNED NOT NULL COMMENT '對應 menus 的次選單 ID',
+  `pet_name` varchar(50) NOT NULL COMMENT '寵物名字',
+  `features` text NOT NULL COMMENT '特徵與毛色描述',
+  `phone` varchar(20) NOT NULL COMMENT '聯絡電話',
+  `image` varchar(255) NOT NULL COMMENT '照片檔案名稱',
+  `case_status` varchar(20) NOT NULL DEFAULT '刊登中' COMMENT '狀態：刊登中/已認養/已尋獲',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '狀態：0隱藏，1顯示',
+  `sort` int(11) UNSIGNED DEFAULT NULL COMMENT '排序',
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '刪除時間',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+請謹慎使用程式碼。請幫我移除原本的學校公告，並塞入 5 筆逼真的寵物認養與走失測試資料（對應上面的 menu_id）。其餘資料表 (admins, ads, banners, counters, footer_settings)：結構維持不變。請將 ads（原本的跑馬燈）內容替換成宣導認養代替購買、晶片登記等寵物標語。請直接幫我產生這份全新的 SQL，並自動套用修改、覆蓋我專案中的 #db_01.sql 檔案。
+
+
+@workspace接下來我們要開始修改前台的畫面與網頁外觀樣式。原本網頁設計乙級第一題的版面非常傳統呆板，我希望你能完全自由發揮，重新設計出一套現代、美觀、且對使用者友善（UI/UX）的寵物網站樣式。外觀與設計風格需求：現代化框架：請全面引入 Bootstrap 5 (透過 CDN) 來製作，確保網站支援手機與電腦瀏覽（RWD 響應式網頁）。色彩搭配：請使用溫暖、柔和的色調（例如：暖橘、米色、森林綠、大理石灰），營造出愛護寵物、溫馨的平台氛圍。主頁佈局（自由發揮）：擺脫原本乙級生硬的框架。上方可以設計一個滿版、精美的寵物輪播 Banner（對應 banners 資料表）。左側選單或導覽列請設計得精緻有質感。中央內容區：原本的純文字消息列表，請全部改用「卡片式網頁（Card Layout）」呈現。每一隻寵物都是一個精美的卡片，包含圓角照片、毛色特徵標籤、可愛的名字與刊登日期。動態互動：滑鼠移過寵物卡片時，請加上優雅的放大或陰影浮起（Hover Effect）特效。請先幫我重新設計並修改前台主要入口 #index.php，將這些現代化的美觀樣式融合進去，同時保持資料庫動態捞取資料的邏輯。
+
+
+
+@workspace我授權你作為我的資深全端工程師。請全面掃描我目前的專案結構，理解各個檔案（index.php、admin.php、api/、back/、front/、include/）的邏輯關聯，並全自動動手修改我的專案程式碼，將整個網站重構為「寵物認養與走失尋找網站」。請在不破壞原本乙級基本物件導向或資料庫撈取邏輯的前提下，執行以下自動修改：全域變數與名稱轉換：自動搜尋所有檔案，將前台顯示和選單，從原本的學校公告、系所字樣，全部自動對接到全新 posts 表的寵物欄位（pet_name、features、phone、image）與 menus 的寵物分類。後台全面修改：修改 back/submenu.php 及 api/ 底下對應的次選單 API。請自動重寫 JavaScript 邏輯，改用獨立的 text_new[] 陣列接收動態新增的新增列，並自動加上可以 .remove() 該列的取消按鈕。樣式美化與整合：在前台大外殼及 front/ 所有頁面中，自動引入 Bootstrap 5 CDN。將原本生硬的表格全面改寫為現代化的 RWD 寵物資料卡片（Card Layout），並在登入頁面套用精美的置中登入卡片樣式。請規劃好修改順序，直接開始動手修改相關檔案，完成後請向我回報修改了哪些檔案！
+
+
+
+@workspace
+停一下，你剛剛對於網站標題（titles）和輪播圖（banners）的理解似乎有點誤會了，請幫我修正邏輯：
+
+titles 資料表（網站最上方招牌）：
+它是網頁最頂端固定的 Logo 招牌。
+它的文字（title 欄位）要顯示為：溫暖家園 - 寵物認養與走失尋找平台。
+它的圖片（image 欄位）是固定的一張頂部招牌背景圖（例如 01B01.jpg 或你設計的 Logo）。
+banners 資料表（中央動態輪播圖）：
+這才是用來在網頁中動態切換、輪播的寵物宣導照片（例如 01C01.gif 等）。
+
+它們不需要搭配 $siteTitle 的文字。
+請重新檢查 #index.php 裡面的 HTML 與 PHP 撈取結構：
+
+網頁最頂端的 Header 部分，請使用我們剛剛討論的 $siteTitle = $Title->find(['status' => 1]) ... 邏輯來顯示固定的網站招牌與文字。
+
+網頁中央的輪播區塊，請獨立使用 $Banners->all(['status' => 1]) 的迴圈，來動態生成 Bootstrap 5 的 Carousel 輪播效果。
+請根據這個正確的邏輯，重新修正並自動更新 #index.php。
+
+@workspace
+看了畫面之後，你的版面結構寫錯了。在網頁設計乙級第一題中，titles 資料表裡面撈出來的圖片（image 欄位）是**「長條型的網站招牌大圖」**，而不是左上角的小 Logo。
+請幫我把 #index.php 的結構修改為以下標準順序（由上到下）：
+
+最頂端（Header 區）：
+放一個滿版的 <div> 或 <header>。
+背景圖或裡面的 <img> 請動態載入資料庫撈出來的長條標題圖片：upload/<?= $siteTitle['image']; ?>。
+原本左上角殘留的「學校」二字請徹底刪除。
+第二層（導覽列 Navigation）：
+將現有的 Bootstrap 5 導覽列（包含首頁、寵物認養、走失尋找、管理登入）移到長條標題圖片的下方。
+第三層（中央內容區）：
+現有的綠色大 Banner（讓每一次相遇都走向一個家）請保留，但請把它當作網頁中央的宣導區，不要讓它蓋掉最上方的長條標題圖。
+請根據這個正確的上下層級結構，重新調整 #index.php 的 HTML 順序。
+
+
+
+@workspace目前網頁中央的輪播圖，左右切換的箭頭按鈕點擊後沒有任何反應、完全沒有作用。請幫我檢查並修正 #index.php 檔案中的以下兩個常見錯誤：檢查 JS 引入：請確保在頁面最下方的 </body> 標籤之前，有正確引入 Bootstrap 5 的完整 JavaScript 檔案。如果沒有，請幫我補上：html<script src="https://jsdelivr.net"></script>
+請謹慎使用程式碼。檢查 Carousel ID 與控制屬性：請檢查輪播大外殼的 div 是否有一個唯一的 id（例如 id="petCarousel"）。請確保左、右兩個控制按鈕（<button class="carousel-control-prev"...>）裡面的屬性是 data-bs-target="#petCarousel"（注意要有 # 號，且必須與上面的 id 完全一致）。在 Bootstrap 5 中，控制屬性必須是 data-bs- 開頭（例如 data-bs-target 和 data-bs-slide），請幫我確認他有沒有漏寫了 -bs-。請針對這兩點自動修正 #index.php，讓輪播圖可以正常手動與自動切換。
+
+
+
+@workspace我們的「寵物認養與走失尋找網站」前台主頁已經大致完成。接下來，我需要你扮演一個專業的 QA 測試工程師（Quality Assurance），全面自動稽核、檢查我專案中所有檔案的功能完善度。請針對以下 3 大核心功能鏈（User Flow），逐一掃描檔案邏輯，並回報是否有任何潛在的 Bug、路徑錯誤或程式碼斷點：1. 驗證【前台分類列表與詳細頁面鏈】（檢查 index.php, front/ 底下檔案）當使用者點擊導覽列的「寵物認養 -> 貓咪認養」時，網址會帶入 ?menu_id=4。請檢查接收端的 PHP 程式碼，是否能正確利用這個 id 去 posts 資料表撈出對應的寵物？列表的分頁邏輯（Pagination）是否安全？當沒有資料、或只有 1 頁時，程式碼會不會報錯？點擊寵物卡片跳轉到詳細頁（detail.php）時，是否有漏掉撈取某些重要欄位（如聯絡電話 phone、特徵 features）？2. 驗證【後台登入安全鏈】（檢查 login.php, check_login.php, admin.php）請幫我檢查登入表單的 <form action="..."> 是否已經正確指向我們改名後的 check_login.php？在 admin.php（後台主頁）以及 back/ 底下的所有管理頁面中，是否有正確加上 if(!isset($_SESSION['login'])) 的防護機制？（確保沒登入的人不能用網址直連後台）。3. 驗證【後台資料增刪查改（CRUD）與檔案上傳】（檢查 back/ 與 api/）檢查我們一開始提到的 back/submenu.php。當使用者點擊「更多寵物類別」並按下「修改確定」時，送到 API 的新增欄位名稱（如 text_new[]），後端 API 檔案是否有寫好對應的 foreach 迴圈來新增資料？舊有資料的修改與刪除是否也能並存？檢查寵物案件上傳功能（新增寵物）。當上傳寵物照片時，PHP 的 move_uploaded_file 目的地路徑（如 upload/）是否正確？資料庫裡存的是否是「檔案名稱字串」，且與前台 <img> 標籤的讀取路徑吻合？請幫我進行全專案代碼審查（Code Review）。如果發現任何 Bug、前後端名稱不一致、或是漏掉的檔案，請直接列出來並告訴我該如何修正它（或者直接幫我動手修復）。
+
+
+
+> **@workspace**
+> 請全面掃描目前的整個專案結構，自我分析有哪些是原本科技大學公告系統殘留的過時舊檔案、重複檔案或死路徑。請直接幫我把這些多餘的檔案**全部刪除**，並自動修正所有檔案中殘留的錯誤邏輯與連結，確保整個寵物網站的功能是完美互通且乾淨的。完成後直接列出你刪除了什麼與修正了什麼即可。
+
+---
+
+
+
+@workspace檢查我的 admin.php，目前尚未登入時點擊「管理登入」會直接盲開後台，且畫面上方出現 Warning: Undefined array key "login" 警告，中央顯示 Forbidden，但下方的橘色後台選單依然曝露出來，版面非常不安全且很醜。請幫我同時修復後台安全邏輯並全面美化後台畫面：1. 修正 admin.php 的安全權限阻擋（位於第 5 行附近）：請檢查檢查 $_SESSION['login'] 的邏輯。當發現未登入或 Session 不存在時，必須立刻使用 to("login.php"); exit();（或引導至正確的登入頁面路徑）強制跳轉 [INDEX, INDEX]，絕對不能讓程式碼繼續往下執行顯示後台選單 [INDEX]！2. 全面美化後台管理介面（admin.php 樣式升級）：請比照前台 index.php 的質感，在 #admin.php 中全面引入 Bootstrap 5。徹底拋棄原本傳統生硬的橘色表格（<table>）排版。重新設計佈局：左側選單：改用現代化的 Bootstrap list-group 或是漂亮的側邊導覽列（Sidebar Container），將所有管理項目（如：選單管理、最新消息管理、動態圖片管理）做成精美的點擊按鈕。右側內容區：當點擊左側時，右側作為主要控制台（Dashboard），動態動態載入（include）對應的後台管理元件，並用美觀的卡片（Card）與乾淨的表格（table class="table table-hover"）呈現。最上方的網站標題請與前台保持連動，使用我們設定的 溫暖家園 - 寵物認養與走失尋找平台（動態讀取 titles 資料表）。請直接重構並自動修復 #admin.php 的權限與外觀樣式！
+
+
+
+@workspace後台美化得很好！但是現在「寵物案件管理」右側內容區出現了 SQL 語法錯誤（PDOException）。問題出在 back/post.php 的第 5 行左右。錯誤原因是你呼叫資料庫的 all() 函數時，後方的排序語法誤用了單引號 'ORDER BY 'sort', 'id' DESC'。請幫我把 back/post.php 裡面撈取寵物公告（posts）的資料庫語法修正為正確的 MariaDB 格式：php// 請將該行修正為（移除 sort 和 id 的單引號，或改用反引號）：
+$rows = $Post->all([], " ORDER BY `sort`, `id` DESC");
+請謹慎使用程式碼。請立刻幫我修正這個檔案並自動套用變更！
+
+
+
+@workspace目前在後台點擊「網站招牌管理」時，右側內容區完全是空的、沒有任何資料回傳。請執行以下任務：
+
+自主診斷問題：請仔細對照這段程式碼與我們現有的「管理員登入流程」，找出為什麼使用者登入後點進來，這段程式碼卻會導致右側畫面一片空白、完全無法渲染出表格和內容的底層原因。直接進行修正與美化：找出邏輯斷點並修正它。同時，請將這整頁老舊的 HTML 表格與內嵌 style 樣式，全面重構為符合我們前台質感、漂亮的 Bootstrap 5 樣式。請在分析完畢後，直接將修正並美化好的程式碼儲存覆蓋到 #back/title.php。
+
+
+
+@workspace招牌資料已經成功全部捞出來了！但目前的卡片式版面不符合長條招牌圖的比例，看起來有點凌亂不夠美觀。請幫我重新將 #back/title.php 內的 foreach 迴圈部分重構為「精美的單欄滿版橫式佈局（Row Layout）」，規格如下：移除兩欄網格：將 col-xl-6 移除，全面改為滿版的 col-12 mb-3，讓每一張招牌圖片都能以長條型優雅地橫向展開。內部左右分欄（Flex 排版）：每一筆資料的卡片內部（card-body），左側 40% 寬度用來顯示完整的長條招牌圖片（img 標籤移除固定高度，改為 class="img-fluid rounded border" 讓它自然等比例縮放）。右側 60% 寬度放一個縱向排列的容器，把「網站標題文字輸入框」、「狀態 Badge」、「刪除/設為目前招牌」以及「更換圖片」按鈕整齊排列。表單元件精細化：輸入框（.form-control）不要給予過大的外距，與按鈕群組（.input-group）對齊。右下角的「儲存標題設定」與「重置」按鈕改用深色與灰色質感搭配（例：btn-dark 與 btn-light）。請直接幫我精細化調整 #back/title.php 的 HTML 與 Bootstrap 結構並儲存！
+
+
+
+@workspace請幫我精細化調整 #back/title.php 的響應式設計（RWD）佈局，徹底解決長條圖片在桌機畫面上比例失衡、變形的問題。請將 <article class="col-12 col-xl-6"> 內部的卡片結構（.card-body）重構為標準的 Bootstrap 5 響應式橫式卡片（Horizontal Card）：大外殼網格：請將最外層改為滿版 col-12 mb-4，讓每一筆招牌資料在寬螢幕上獨立佔滿一整橫列。卡片內部 RWD 分欄（使用 .row.g-0）：左側圖片區（小螢幕滿版，大螢幕佔 4 欄）：<div class="col-12 col-md-4">。裡面的招牌圖片引入 class="img-fluid rounded-start h-100"，並加上 style="object-fit: contain; max-height: 80px;"，確保長條圖在電腦上能保持原本的黃金比例不變形。右側操作區（小螢幕滿版，大螢幕佔 8 欄）：<div class="col-12 col-md-8">。裡面放原本的文字輸入框、狀態標籤和控制按鈕。間距微調：加上 Bootstrap 的內距控制（如 p-3），確保文字和按鈕在手機上不會擠在邊緣。請直接自動動手重寫 #back/title.php 內部的 RWD HTML 結構並儲存！
+
+
+
+@workspace請在專案的根目錄（Root Folder）下，直接幫我全新建立並生成一份名為 專案重構最終分析報告.md 的實體檔案。檔案內容請完全使用繁體中文與 Markdown 排版語法，並包含以下四大核心區塊：溫暖家園 - 寵物認養與走失尋找平台【重構最終分析報告】🛠️ 1. 已確認完善的核心功能清單詳細列出目前前台、後台、登入安全（Session 阻擋）以及資料庫 posts、titles [INDEX] 的動態撈取功能。🧹 2. 已清除的冗餘檔案與舊代碼條列出在此次大掃除中，被徹底清除的所有乙級第一題舊校務系統殘留檔（例如已廢棄的 train.php 等舊驗證檔）。📱 3. RWD 響應式與 UI 美化成果摘要說明前台 Bootstrap 5 寵物卡片瀑布流，以及後台「網站招牌管理」與「寵物案件管理」重構為滿版 RWD 橫式卡片（Horizontal Card）的視覺與比例調整成果。⚠️ 4. 本地端手動測試溫馨提示條列出有哪些涉及瀏覽器實際運行、檔案上傳路徑（upload/）或登入 Session 防盲開的動作 [INDEX, INDEX]，需要我接下來親自手動上網頁點擊測試的步驟。請直接自動動手建立這個檔案，寫入完整的報告內容並幫我儲存！

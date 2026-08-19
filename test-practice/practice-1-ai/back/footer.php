@@ -1,0 +1,36 @@
+<?php include_once "./api/db.php"; if(($_SESSION['login'] ?? 0) !== 1){ http_response_code(403); exit('Forbidden'); } ?>
+
+<div class="di" style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+    <!--正中央-->
+    <?php
+
+    include_once "./back/logout.php";
+    
+    ?>
+    <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
+        <p class="t cent botli">頁尾版權資料管理</p>
+        <form method="post" action="./api/api_edit_footer.php?table=<?= $do?>">
+            <table width="100%">
+                <tbody>
+                    <tr class="yel">
+                        <td width="50%">頁尾版權資料：</td>
+                        <td width="50%">
+                            <input type="hidden" name="id" value="1">
+                            <input type="text" name="copyright" value=<?= $Footer->find(1)['copyright']?>>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="margin-top:40px; width:70%;">
+                <tbody>
+                    <tr>
+                        <td class="cent">
+                            <input type="submit" value="修改確定">
+                            <input type="reset" value="重置">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
