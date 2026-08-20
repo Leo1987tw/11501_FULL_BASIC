@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="../../index.html"><div class="types">返回前頁</div></a>
 <a href="upload.php"><div class="types">表單檔案上傳</div></a>
 <a href="manage.php"><div class="types">檔案管理</div></a>
 <a href="text-import.php"><div class="types">文字檔案處理</div></a>

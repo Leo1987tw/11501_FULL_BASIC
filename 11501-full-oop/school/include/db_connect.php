@@ -13,10 +13,10 @@ $pdo = new PDO($dsn, $config['username'], $config['password'], []);
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
-function pdo($dbname){
-    $dsn = "mysql:host=localhost; charset=utf8; dbname=$dbname";
-    return new PDO($dsn, 'root', '', []);
-}
+// function pdo($dbname){
+//     $dsn = "mysql:host=localhost; charset=utf8; dbname=$dbname";
+//     return new PDO($dsn, 'root', '', []);
+// }
 
 function all($table){
     global $pdo;

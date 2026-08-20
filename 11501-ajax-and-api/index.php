@@ -20,6 +20,9 @@
 <body>
     <h1 class="header">AJAX 非同步的Javascript 及 XML 技術</h1>
     <div class="types">
+        <a href="../../index.html">返回前頁</a>
+    </div>
+    <div class="types">
         <a href="xhr.html">XMLHttpRequest</a>
     </div>
     <div class="types">
