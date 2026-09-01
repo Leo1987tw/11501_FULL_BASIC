@@ -17,21 +17,13 @@ include_once "./db.php";
     $category = $_GET['category'] ?? 0;
 
     if($category == 0){
-        $product = $Product->all();
+        $products = $Product->all();
     }else {
         $current_category = $Category->find($category);
-        if($current_category['parent'] == 0){
-            $sub_categories = $Category->all(['parent' => $current_category]);
-            $sub_ids = array_column($sub_categories, 'id');
-
-            if(!empty($sub_ids)){
-                $sub_ids_string = implode(', ', $sub_ids);
-                $product = $Category->all(" WHERE `category` IN ($sub_ids_string)");
-            }else {
-                $product = [];
-            }
+        if($current_category['parent_id'] == 0){
+            $products = $Product->all(['parent_category_id' => $category]);
         }else {
-            $product = $Product->all(['category' => $current_category]);
+            $products = $Product->all(['sub_category_id' => $current_category]);
         }
     }
 
