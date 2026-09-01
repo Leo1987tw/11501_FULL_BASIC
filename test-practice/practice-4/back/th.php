@@ -89,13 +89,31 @@
     <button onclick="location.href = '?do=add_item'">新增商品</button>
 </div>
 
+<select name="category" id="category">
+    <option value="all">全部商品</option>
+    <?php
+    
+    $categories = $Category->all();
+
+    foreach($categories as $category):
+    
+    ?>
+    <option value="<?= $category['id'];?>"><?= $category['name'];?></option>
+    <?php
+    
+    endforeach;
+    
+    ?>
+</select>
+
 <div class="item-list"></div>
 
 <script>
     getItemList();
     
     function getItemList(){
-        $.get("./api/api_get_item_list.php", (response) => {
+        let category = $("#category").val();
+        $.get("./api/api_get_item_list.php", {category}, (response) => {
             $(".item-list").html(response)
         })
     }

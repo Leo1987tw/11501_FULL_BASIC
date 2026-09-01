@@ -4,7 +4,7 @@ include_once "./db.php";
 
 $product = $Product->find($_POST["id"]);
 
-switch($_POST["type"]){
+switch($_POST["status"]){
     case 0:
         $product["status"] = 0;
         break;

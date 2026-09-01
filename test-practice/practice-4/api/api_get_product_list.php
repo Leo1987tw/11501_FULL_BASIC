@@ -13,8 +13,27 @@ include_once "./db.php";
         <td>操作</td>
     </tr>
     <?php
-    
-    $products = $Product->all();
+
+    $category = $_GET['category'] ?? 0;
+
+    if($category == 0){
+        $product = $Product->all();
+    }else {
+        $current_category = $Category->find($category);
+        if($current_category['parent'] == 0){
+            $sub_categories = $Category->all(['parent' => $current_category]);
+            $sub_ids = array_column($sub_categories, 'id');
+
+            if(!empty($sub_ids)){
+                $sub_ids_string = implode(', ', $sub_ids);
+                $product = $Category->all(" WHERE `category` IN ($sub_ids_string)");
+            }else {
+                $product = [];
+            }
+        }else {
+            $product = $Product->all(['category' => $current_category]);
+        }
+    }
 
     foreach($products as $product):
     
@@ -39,8 +58,8 @@ include_once "./db.php";
 </table>
 
 <script>
-    function status(category, id){
-        $.post("./api/api_status.php", {category, id}, () => {
+    function status(status, id){
+        $.post("./api/api_status.php", {status, id}, () => {
             // location.reload();
             getProductList();
         })
